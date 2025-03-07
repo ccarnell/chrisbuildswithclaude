@@ -72,8 +72,13 @@ export function Footer() {
       <div className="flex items-center justify-between">
         <a href="https://github.com/ibelick/nim" target="_blank">
           <TextLoop className="text-xs text-zinc-500">
-            <span>© 2024 Nim.</span>
-            <span>Built with Motion-Primitives.</span>
+            <span>1/7: Act for the global good.</span>
+            <span>2/7: Hold light and shade.</span>
+            <span>3/7: Be good to their users.</span>
+            <span>4/7: Ignite a race to the top on safety.</span>
+            <span>5/7: Do the simple thing that works.</span>
+            <span>6/7: Be helpful, honest, and harmless.</span>
+            <span>7/7: Put the mission first.</span>
           </TextLoop>
         </a>
         <div className="text-xs text-zinc-400">

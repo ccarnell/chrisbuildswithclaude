@@ -29,20 +29,20 @@ type SocialLink = {
 
 export const PROJECTS: Project[] = [
   {
-    name: 'PumpTrakr',
+    name: 'Project 1',
     description:
-      'IoT irrigation automation web and mobile platform',
-    link: 'https://pumptrakr.com/',
+      'Description of Project 1',
+    link: 'Url of Project 2 title',
     video:
-      'https://pumptrakr.com/wp-content/uploads/2025/03/header-devices.webp',
+      'image/video of Project 1 (checkout cloudinary)',
     id: 'project1',
   },
   {
-    name: 'Motion Primitives',
-    description: 'UI kit to make beautiful, animated interfaces.',
-    link: 'https://motion-primitives.com/',
+    name: 'Project 2',
+    description: 'Description of Project 2',
+    link: 'url of Project 2 title',
     video:
-      'https://res.cloudinary.com/read-cv/video/upload/t_v_b/v1/1/profileItems/W2azTw5BVbMXfj7F53G92hMVIn32/XSfIvT7BUWbPRXhrbLed/ee6871c9-8400-49d2-8be9-e32675eabf7e.mp4?_a=DATAdtAAZAA0',
+      'image/video of Project 2',
     id: 'project2',
   },
 ]
@@ -58,7 +58,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
   },
   {
     company: 'Youth Coding League',
-    title: 'Founder',
+    title: 'Former Founder',
     start: '2018',
     end: '2024',
     link: 'https://www.youthcodingleague.com/',
@@ -70,7 +70,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
 export const BLOG_POSTS: BlogPost[] = [
   {
     title: 'What is chrisbuildswithclaude.com?',
-    description: 'A living document',
+    description: 'An evergreen, versioned project',
     link: '/blog/what-is-chrisbuildswithclaude-intro',
     uid: 'blog-1',
   },

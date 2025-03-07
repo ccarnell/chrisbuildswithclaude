@@ -136,9 +136,13 @@ export default function Personal() {
         transition={TRANSITION_SECTION}
       >
         <div className="flex-1">
-          <p className="text-zinc-600 dark:text-zinc-400">
-            Focused on creating intuitive and performant web experiences.
-            Bridging the gap between design and development.
+          <p className="list-disc ml-4 text-zinc-600 dark:text-zinc-400 whitespace-pre-line">
+          Idea concept: March 4th, 2024 at 4:41pm CST.<br/>Submitted resume: March 7th, 2024 at XX:XX__.
+          <br /><br />
+          This is my attempt to:
+          <li>Express shared values</li>
+          <li>Showcase learning speed and capabilities under ambiguity</li>
+          <li>Gain trust & confidence. I do whatever it takes to succeed</li>
           </p>
         </div>
       </motion.section>

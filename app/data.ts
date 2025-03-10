@@ -26,17 +26,17 @@ type SocialLink = {
 
 export const PROJECTS: Project[] = [
   {
-    name: 'WIP',
+    name: 'Name_WIP1',
     description:
-      'WIP',
+      'description_wip1',
     link: 'Url of Project 2 title',
     video:
       'image/video of Project 1 (checkout cloudinary)',
     id: 'project1',
   },
   {
-    name: 'WIP',
-    description: 'WIP',
+    name: 'Name_WIP2',
+    description: 'description_wip2',
     link: 'url of Project 2 title',
     video:
       'image/video of Project 2',

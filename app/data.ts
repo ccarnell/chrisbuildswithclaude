@@ -6,12 +6,9 @@ type Project = {
   id: string
 }
 
-type WorkExperience = {
-  company: string
+type Snapshot = {
   title: string
-  start: string
-  end: string
-  link: string
+  description: string
   id: string
 }
 
@@ -29,17 +26,17 @@ type SocialLink = {
 
 export const PROJECTS: Project[] = [
   {
-    name: 'Project 1',
+    name: 'WIP',
     description:
-      'Description of Project 1',
+      'WIP',
     link: 'Url of Project 2 title',
     video:
       'image/video of Project 1 (checkout cloudinary)',
     id: 'project1',
   },
   {
-    name: 'Project 2',
-    description: 'Description of Project 2',
+    name: 'WIP',
+    description: 'WIP',
     link: 'url of Project 2 title',
     video:
       'image/video of Project 2',
@@ -47,24 +44,42 @@ export const PROJECTS: Project[] = [
   },
 ]
 
-export const WORK_EXPERIENCE: WorkExperience[] = [
+export const SNAPSHOT: Snapshot[] = [
   {
-    company: 'Codefi and Codefi Foundation on Rural Innovation',
-    title: 'Former Co-founder and Former Executive Director',
-    start: '2014',
-    end: '2024',
-    link: 'https://www.codefiworks.com/',
-    id: 'work1',
+    title: "Setup, local deployment, and hosting",
+    description: "Setup domain via Cloudflare, deployed a boilerplate static project via Vercel, updated DNS and verified SSL. Setup GitHub, installed Git, node.js, etc, and setup VS Code. Learned to deploy and test localhost",
+    id: "snapshot1",
   },
   {
-    company: 'Youth Coding League',
-    title: 'Former Founder',
-    start: '2018',
-    end: '2024',
-    link: 'https://www.youthcodingleague.com/',
-    id: 'work2',
+    title: "Email forwarding",
+    description: "Set ImprovMX & added SPF records in GoDaddy to setup Gmails SMTP for personal domain",
+    id: "snapshot2",
   },
-
+  {
+    title: "Git workflow",
+    description: "Moved static site to new v1 Vercel project and created v1 branch in GitHub to keep versioning records. Kept main branch for most updated project. Learned clone, add, commmit, push flow for v2 on Vercel and GitHub",
+    id: "snapshot3",
+  },
+  {
+    title: "Packages and Dependencies",
+    description: "Learned difference between local and global packages. Resolved depency issues",
+    id: "snapshot4",
+  },
+  {
+    title: "Folders files, and functions",
+    description: "Reviewed pages, public, styles, components, package.json and navigated making updates to mainly HTML/CSS. Learning more about Next.js and Tailwind",
+    id: "snapshot5",
+  },
+  {
+    title: "When to take a breather",
+    description: "Ran into some npm Git, Next.js, command-line and environment file issues while trying to setup MongoDB with a v3. Decided to abandon and overwrite v2. Moved on to easier tasks with updating favicon, and hosting SVG icons while custom developing an email sig with HTML",
+    id: "snapshot6",
+  },
+  {
+    title: "Claude Code",
+    description: "On Windows PC today, so setup WSL. Generated Anthropic API key and setup Code with Claude. Holding off on integrating into VS Code. Made first changes with Claude Code and committed updates",
+    id: "snapshot7",
+  }
 ]
 
 export const BLOG_POSTS: BlogPost[] = [

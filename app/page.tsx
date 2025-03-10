@@ -14,7 +14,7 @@ import Link from 'next/link'
 import { AnimatedBackground } from '@/components/ui/animated-background'
 import {
   PROJECTS,
-  WORK_EXPERIENCE,
+  SNAPSHOT,
   BLOG_POSTS,
   EMAIL,
   SOCIAL_LINKS,
@@ -137,12 +137,14 @@ export default function Personal() {
       >
         <div className="flex-1">
           <p className="list-disc ml-4 text-zinc-600 dark:text-zinc-400 whitespace-pre-line">
-          Idea concept: March 4th, 2024 at 4:41pm CST.<br/>Submitted resume: March 7th, 2024 at XX:XX__.
+          Idea concept: March 4th, 2024 at 4:41pm CST.<br/>~40 hours spent on project to-date.
           <br /><br />
-          This is my attempt to:
-          <li>Express shared values</li>
-          <li>Showcase learning speed and capabilities under ambiguity</li>
-          <li>Gain trust & confidence. I do whatever it takes to succeed</li>
+          I am applying to Anthropic. While I've been in the tech industry for over a decade working with designers and engineers every day, I haven't needed to do much more than sketch out concepts--meaning the most coding I've done is "Hello World!" and I've never personally deployed a project.  This is my attempt at proving to Anthropic that I can quickly increase my technic skills because I understand how important these skills are, and I've heard the culture is about quick prototyping. So let's get to work.
+          <br /><br />
+          This is my attempt to:<br />
+          - Express shared values<br />
+          - Showcase learning speed and capabilities under ambiguity<br />
+          - Gain trust & confidence. I do whatever it takes to succeed
           </p>
         </div>
       </motion.section>
@@ -180,40 +182,33 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-5 text-lg font-medium">Work Experience</h3>
+        <h3 className="mb-5 text-lg font-medium">Learning Snapshots</h3>
         <div className="flex flex-col space-y-2">
-          {WORK_EXPERIENCE.map((job) => (
-            <a
+          {SNAPSHOT.map((item) => (
+            <div
               className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30"
-              href={job.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              key={job.id}
+              key={item.id}
             >
               <Spotlight
                 className="from-zinc-900 via-zinc-800 to-zinc-700 blur-2xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50"
                 size={64}
               />
               <div className="relative h-full w-full rounded-[15px] bg-white p-4 dark:bg-zinc-950">
-                <div className="relative flex w-full flex-row justify-between">
-                  <div>
-                    <h4 className="font-normal dark:text-zinc-100">
-                      {job.title}
-                    </h4>
-                    <p className="text-zinc-500 dark:text-zinc-400">
-                      {job.company}
-                    </p>
-                  </div>
-                  <p className="text-zinc-600 dark:text-zinc-400">
-                    {job.start} - {job.end}
+                <div className="relative w-full">
+                  <h4 className="font-normal dark:text-zinc-100">
+                    {item.title}
+                  </h4>
+                  <p className="text-zinc-500 dark:text-zinc-400">
+                    {item.description}
                   </p>
                 </div>
               </div>
-            </a>
+            </div>
           ))}
         </div>
       </motion.section>
 
+      {/* Blog section commented out temporarily
       <motion.section
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
@@ -249,6 +244,7 @@ export default function Personal() {
           </AnimatedBackground>
         </div>
       </motion.section>
+      */}
 
       <motion.section
         variants={VARIANTS_SECTION}

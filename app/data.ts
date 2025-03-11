@@ -46,40 +46,45 @@ export const PROJECTS: Project[] = [
 
 export const SNAPSHOT: Snapshot[] = [
   {
-    title: "Setup, local deployment, and hosting",
-    description: "Setup domain via Cloudflare, deployed a boilerplate static project via Vercel, updated DNS and verified SSL. Setup GitHub, installed Git, node.js, etc, and setup VS Code. Learned to deploy and test localhost",
-    id: "snapshot1",
+    title: "WIP: Update 8",
+    description: "Removing animations from Projects section and then going to move on to some actual features",
+    id: "snapshot8",
   },
   {
-    title: "Email forwarding",
-    description: "Set ImprovMX & added SPF records in GoDaddy to setup Gmails SMTP for personal domain",
-    id: "snapshot2",
+    title: "Update 7: Claude Code",
+    description: "On Windows PC today, so setup WSL. Generated Anthropic API key and setup Claude Code. Holding off on integrating into VS Code. Made first changes with Claude Code: changed constants, variables, text, added tel: link, commented out the blog and committed updates",
+    id: "snapshot7",
   },
   {
-    title: "Git workflow",
+    title: "Update 6: When to take a breather",
+    description: "Ran into some npm Git, Next.js, command-line and environment file issues while trying to setup MongoDB with a v3. Since a database isn't critical right now, decided to abandon and overwrite v2. Wanted at least a small win, so completed some easier tasks with updating favicon, and hosting SVG icons while custom developing an email sig with HTML",
+    id: "snapshot6",
+  },
+  {
+    title: "Update 5: Folders files, and functions",
+    description: "Reviewed pages, public, styles, components, package.json and navigated making updates to mainly HTML/CSS. Learning more about Next.js and Tailwind. Changed some initial text from boilerplate. Added Anthropic's mission to footer",
+    id: "snapshot5",
+  },
+  {
+  title: "Update 4: Packages and dependencies",
+  description: "Learned difference between local and global packages. Resolved depency issues",
+  id: "snapshot4",
+  },
+  {
+    title: "Update 3: Git workflow",
     description: "Moved static site to new v1 Vercel project and created v1 branch in GitHub to keep versioning records. Kept main branch for most updated project. Learned clone, add, commmit, push flow for v2 on Vercel and GitHub",
     id: "snapshot3",
   },
   {
-    title: "Packages and Dependencies",
-    description: "Learned difference between local and global packages. Resolved depency issues",
-    id: "snapshot4",
-  },
+    title: "Update 2: Email forwarding",
+    description: "Set ImprovMX & added SPF records in GoDaddy to setup Gmails SMTP for personal domain",
+    id: "snapshot2",
+  },  
   {
-    title: "Folders files, and functions",
-    description: "Reviewed pages, public, styles, components, package.json and navigated making updates to mainly HTML/CSS. Learning more about Next.js and Tailwind",
-    id: "snapshot5",
+    title: "Update 1: Setup, local deployment, and hosting",
+    description: "Setup domain via Cloudflare, deployed a boilerplate static project via Vercel, updated DNS and verified SSL. Setup GitHub, installed Git, node.js, etc, and setup VS Code. Learned to deploy and test localhost",
+    id: "snapshot1",
   },
-  {
-    title: "When to take a breather",
-    description: "Ran into some npm Git, Next.js, command-line and environment file issues while trying to setup MongoDB with a v3. Decided to abandon and overwrite v2. Moved on to easier tasks with updating favicon, and hosting SVG icons while custom developing an email sig with HTML",
-    id: "snapshot6",
-  },
-  {
-    title: "Claude Code",
-    description: "On Windows PC today, so setup WSL. Generated Anthropic API key and setup Code with Claude. Holding off on integrating into VS Code. Made first changes with Claude Code and committed updates",
-    id: "snapshot7",
-  }
 ]
 
 export const BLOG_POSTS: BlogPost[] = [

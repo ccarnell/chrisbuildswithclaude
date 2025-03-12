@@ -48,16 +48,16 @@ export const PROJECTS: Project[] = [
 export const SNAPSHOT: Snapshot[] = [
   {
     title: "Backlog: Ideating Update 10",
-    description: "1.) feature to show Anthropic collaborative efforts via Strategic Product Management\n2.) integrating Flourish as I'm diving deeper into SQL\n3.) researching a way to make this more than just a demonstration project. e.g. build a prototype Anthropic could potentially actually value even if I were to never receive an interview offer",
+    description: "The deployment objective is complete. I will now take a step back from the demonstration of quickly learning technical implementation details to:\n1.) Discuss the importance of AI safety and ethics\n2.) Then begin from further back to provide evidence of deeper understanding of product strategy\n3.) Display experience abstract and concrete examples of managing complex systems and ambiguity",
     id: "snapshot10",
   },
   {
     title: "WIP: Update 9",
-    description: "Researching creative ways to show off the other products and startups I've worked with",
+    description: "Quickly add past product and startup experience and move on to additional critical demonstrations",
     id: "snapshot9",
   },
   {
-    title: "Update 8",
+    title: "Update 8: Update styling and better component comprehension",
     description: "Updated motion-primitive animations under the Selected Projects section to accept image and/or video formats. Added title, image, link, and description to v1 site. Updated phone number in Header to include sms: and tel: icons and functionality. Threw in some Anthropic accent colors but didn't change the entire color palette after discussing with Claude that it would probably raise some ethical concerns with trademark/brand identity and potential confusion. Completely understandable",
     id: "snapshot8",
   },

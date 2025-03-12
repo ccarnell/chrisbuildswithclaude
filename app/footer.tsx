@@ -71,17 +71,26 @@ export function Footer() {
     <footer className="mt-24 border-t border-zinc-100 px-0 py-4 dark:border-zinc-800">
       <div className="flex items-center justify-between">
         <div>
-          <TextLoop className="text-xs text-zinc-500">
-            <span>1/7: Act for the global good.</span>
-            <span>2/7: Hold light and shade.</span>
-            <span>3/7: Be good to their users.</span>
-            <span>4/7: Ignite a race to the top on safety.</span>
-            <span>5/7: Do the simple thing that works.</span>
-            <span>6/7: Be helpful, honest, and harmless.</span>
-            <span>7/7: Put the mission first.</span>
+          <a
+            href="https://www.anthropic.com/company"
+            target="blank"
+            rel="noopener noreferrer"
+            className="text xs text-white font-bold hover:underline"
+          >
+            quoted from Anthropic:
+          </a>
+          <br />
+          <TextLoop className="text-xs text-[#CC785C] font-italics font-bold m1-1">
+            <span>"1/7: Act for the global good."</span>
+            <span>"2/7: Hold light and shade."</span>
+            <span>"3/7: Be good to their users."</span>
+            <span>"4/7: Ignite a race to the top on safety."</span>
+            <span>"5/7: Do the simple thing that works."</span>
+            <span>"6/7: Be helpful, honest, and harmless."</span>
+            <span>"7/7: Put their mission first."</span>
           </TextLoop>
         </div>
-        <div className="text-xs text-zinc-400">
+        <div className="text-xs text-[#CC785C] font-bold">
           <ThemeSwitch />
         </div>
       </div>

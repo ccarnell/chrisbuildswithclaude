@@ -16,7 +16,9 @@ export function Header() {
             Chris Carnell
           </TextEffect>
         </Link>
-        <div>
+      </div>
+      <div>
+          {/*
           <TextEffect
             preset="fade"
             per="char"
@@ -51,10 +53,11 @@ export function Header() {
                 </svg>
                 Call
               </TextEffect>
-            </a>
+              </a>
           </div>
         </div>
+        */}
       </div>
     </header>
-  )
+  );
 }

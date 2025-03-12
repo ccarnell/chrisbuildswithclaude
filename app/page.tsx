@@ -159,7 +159,7 @@ export default function Personal() {
           <strong>Idea concept:</strong> March 4th, 2024 at 4:41pm CST
           <br/><strong>Resume submitted:</strong> received confirmation email March 11, 2025 6:13pm CST
           <br /><br />
-          Hi Anthropic. This was built specifically for you. I've spent a decade with software, collaborating directly with tech- and non-technical founders, UI/UX, devs, and many more to solve problems and build solutions. While I've built low-code automations, can have conversations, and have technical knowledge, my resume and GitHub won't show much past, "Hello World!" From my research, Anthropic appreciates technical capabilities and urgency with rapid internal prototyping. So, to align with the team, I'm using this as a demonstration project for real-/passtime work & more technical learning. So let's get to work!
+          Hi Anthropic. This was built specifically for (and only shared with) you. I've spent a decade with software, collaborating directly with tech- and non-technical founders, UI/UX, devs, and many more to solve problems and build solutions. While I've built low-code automations, can have conversations, and have technical knowledge, my resume and GitHub won't show much past, "Hello World!" From my research, Anthropic appreciates technical capabilities and urgency with rapid internal prototyping. So, to align with the team, I'm using this as a demonstration project for real-/passtime work & more technical learning. So let's get to work!
           <br /><br />
           This is my attempt to:<br />
           - Express shared values<br />

@@ -44,6 +44,9 @@ type ProjectVideoProps = {
 }
 
 function ProjectVideo({ src }: ProjectVideoProps) {
+  // Check if the source is a video or an image
+  const isImage = src.includes('-image') || src.endsWith('.png') || src.endsWith('.jpg') || src.endsWith('.jpeg') || src.endsWith('.gif')
+  
   return (
     <MorphingDialog
       transition={{
@@ -53,23 +56,39 @@ function ProjectVideo({ src }: ProjectVideoProps) {
       }}
     >
       <MorphingDialogTrigger>
-        <video
-          src={src}
-          autoPlay
-          loop
-          muted
-          className="aspect-video w-full cursor-zoom-in rounded-xl"
-        />
-      </MorphingDialogTrigger>
-      <MorphingDialogContainer>
-        <MorphingDialogContent className="relative aspect-video rounded-2xl bg-zinc-50 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950 dark:ring-zinc-800/50">
+        {isImage ? (
+          <img
+            src={src}
+            alt="Project screenshot"
+            className="aspect-video w-full cursor-zoom-in rounded-xl object-cover"
+          />
+        ) : (
           <video
             src={src}
             autoPlay
             loop
             muted
-            className="aspect-video h-[50vh] w-full rounded-xl md:h-[70vh]"
+            className="aspect-video w-full cursor-zoom-in rounded-xl"
           />
+        )}
+      </MorphingDialogTrigger>
+      <MorphingDialogContainer>
+        <MorphingDialogContent className="relative aspect-video rounded-2xl bg-zinc-50 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950 dark:ring-zinc-800/50">
+          {isImage ? (
+            <img
+              src={src}
+              alt="Project screenshot"
+              className="aspect-video h-[50vh] w-full rounded-xl object-contain md:h-[70vh]"
+            />
+          ) : (
+            <video
+              src={src}
+              autoPlay
+              loop
+              muted
+              className="aspect-video h-[50vh] w-full rounded-xl md:h-[70vh]"
+            />
+          )}
         </MorphingDialogContent>
         <MorphingDialogClose
           className="fixed top-6 right-6 h-fit w-fit rounded-full bg-white p-1"
@@ -137,9 +156,10 @@ export default function Personal() {
       >
         <div className="flex-1">
           <p className="list-disc ml-4 text-zinc-600 dark:text-zinc-400 whitespace-pre-line">
-          Idea concept: March 4th, 2024 at 4:41pm CST.<br/>~40 hours spent on project to-date.
+          <strong>Idea concept:</strong> March 4th, 2024 at 4:41pm CST
+          <br/><strong>Resume submitted:</strong> received confirmation email March 11, 2025 6:13pm CST
           <br /><br />
-          I am applying to Anthropic. While I've been in the tech industry for over a decade working with designers and engineers every day, I haven't needed to do much more than sketch out concepts--meaning the most coding I've done is "Hello World!" and I've never personally deployed a project.  This is my attempt at proving to Anthropic that I can quickly increase my technic skills because I understand how important these skills are, and I've heard the culture is about quick prototyping. So let's get to work.
+          Hi Anthropic. This was built specifically for you. I've spent a decade with software, collaborating directly with tech- and non-technical founders, UI/UX, devs, and many more to solve problems and build solutions. While I've built low-code automations, can have conversations, and have technical knowledge, my resume and GitHub won't show much past, "Hello World!" From my research, Anthropic appreciates technical capabilities and urgency with rapid internal prototyping. So, to align with the team, I'm using this as a demonstration project for real-/passtime work & more technical learning. So let's get to work!
           <br /><br />
           This is my attempt to:<br />
           - Express shared values<br />
@@ -182,6 +202,7 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
+        <p className="mb-3 text-zinc-600 dark:text-zinc-400">~42 hours spent on project to-date. <em>(I understand time is not the best metric to measure with software, but this is provided just to give an idea of how long it's taken for me to go from never deploying code to learning and prototyping the different technical concepts below)</em></p>
         <h3 className="mb-5 text-lg font-medium">Learning Snapshots</h3>
         <div className="flex flex-col space-y-2">
           {SNAPSHOT.map((item) => (
@@ -196,9 +217,17 @@ export default function Personal() {
               <div className="relative h-full w-full rounded-[15px] bg-white p-4 dark:bg-zinc-950">
                 <div className="relative w-full">
                   <h4 className="font-normal dark:text-zinc-100">
-                    {item.title}
+                    {item.title.startsWith("Update") ? (
+                      <span style={{ color: '#61AAF2' }}>{item.title}</span>
+                    ) : item.title.startsWith("WIP") ? (
+                      <span style={{ color: '#EBDBBC' }}>{item.title}</span>
+                    ) : item.title.startsWith("Backlog") ? (
+                      <span style={{ color: '#CC785C' }}>{item.title}</span>
+                    ) : (
+                      item.title
+                    )}
                   </h4>
-                  <p className="text-zinc-500 dark:text-zinc-400">
+                  <p className="text-zinc-500 dark:text-zinc-400 whitespace-pre-line">
                     {item.description}
                   </p>
                 </div>

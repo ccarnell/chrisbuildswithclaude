@@ -12,10 +12,10 @@ import React from 'react'
 
 export type PresetType = 'blur' | 'fade-in-blur' | 'scale' | 'fade' | 'slide'
 
-export type PerType = 'word' | 'char' | 'line'
+export type PerType = 'word' | 'char' | 'line' | 'element'
 
 export type TextEffectProps = {
-  children: string
+  children: React.ReactNode
   per?: PerType
   as?: keyof React.JSX.IntrinsicElements
   variants?: {
@@ -40,6 +40,7 @@ const defaultStaggerTimes: Record<PerType, number> = {
   char: 0.03,
   word: 0.05,
   line: 0.1,
+  element: 0.05,
 }
 
 const defaultContainerVariants: Variants = {
@@ -110,11 +111,21 @@ const presetVariants: Record<
 }
 
 const AnimationComponent: React.FC<{
-  segment: string
+  segment: string | React.ReactNode
   variants: Variants
-  per: 'line' | 'word' | 'char'
+  per: PerType
   segmentWrapperClassName?: string
 }> = React.memo(({ segment, variants, per, segmentWrapperClassName }) => {
+  // Handle React element segments (like SVG icons)
+  if (typeof segment !== 'string') {
+    return (
+      <motion.span variants={variants} className="inline-flex items-center">
+        {segment}
+      </motion.span>
+    )
+  }
+  
+  // Handle string segments
   const content =
     per === 'line' ? (
       <motion.span variants={variants} className="block">
@@ -158,7 +169,11 @@ const AnimationComponent: React.FC<{
 
 AnimationComponent.displayName = 'AnimationComponent'
 
-const splitText = (text: string, per: 'line' | 'word' | 'char') => {
+const splitText = (text: string | React.ReactNode, per: PerType) => {
+  // If text is not a string (React element) or per is 'element', return it as a single item array
+  if (typeof text !== 'string' || per === 'element') return [text]
+  
+  // Handle string content
   if (per === 'line') return text.split('\n')
   return text.split(/(\s+)/)
 }

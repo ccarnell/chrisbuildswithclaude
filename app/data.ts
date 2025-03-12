@@ -26,33 +26,44 @@ type SocialLink = {
 
 export const PROJECTS: Project[] = [
   {
-    name: 'Name_WIP1',
+    name: 'Version 1',
     description:
-      'description_wip1',
-    link: 'Url of Project 2 title',
-    video:
-      'image/video of Project 1 (checkout cloudinary)',
+      'Simply deployed my first Next.js app via Vercel to hosted domain. Moving on to v2 quickly.',
+    link: 'https://www.chrisbuildswithclaude.com',
+    video: '/v1-chrisbuildswithclaude-project-image.png',
     id: 'project1',
   },
+  // Comment out the second project until we have content for it
+  /*
   {
     name: 'Name_WIP2',
     description: 'description_wip2',
     link: 'url of Project 2 title',
-    video:
-      'image/video of Project 2',
+    video: 'image/video of Project 2',
     id: 'project2',
   },
+  */
 ]
 
 export const SNAPSHOT: Snapshot[] = [
   {
-    title: "WIP: Update 8",
-    description: "Removing animations from Projects section and then going to move on to some actual features",
+    title: "Backlog: Ideating Update 10",
+    description: "1.) feature to show Anthropic collaborative efforts via Strategic Product Management\n2.) integrating Flourish as I'm diving deeper into SQL\n3.) researching a way to make this more than just a demonstration project. e.g. build a prototype Anthropic could potentially actually value even if I were to never receive an interview offer",
+    id: "snapshot10",
+  },
+  {
+    title: "WIP: Update 9",
+    description: "Researching creative ways to show off the other products and startups I've worked with",
+    id: "snapshot9",
+  },
+  {
+    title: "Update 8",
+    description: "Updated motion-primitive animations under the Selected Projects section to accept image and/or video formats. Added title, image, link, and description to v1 site. Updated phone number in Header to include sms: and tel: icons and functionality. Threw in some Anthropic accent colors but didn't change the entire color palette after discussing with Claude that it would probably raise some ethical concerns with trademark/brand identity and potential confusion. Completely understandable",
     id: "snapshot8",
   },
   {
     title: "Update 7: Claude Code",
-    description: "On Windows PC today, so setup WSL. Generated Anthropic API key and setup Claude Code. Holding off on integrating into VS Code. Made first changes with Claude Code: changed constants, variables, text, added tel: link, commented out the blog and committed updates",
+    description: "On Windows PC today, so setup WSL. Generated Anthropic API key and setup Claude Code. Holding off on integrating into VS Code. Made first changes with Claude Code: changed constants, variables, text, commented out the blog and committed updates",
     id: "snapshot7",
   },
   {
@@ -77,7 +88,7 @@ export const SNAPSHOT: Snapshot[] = [
   },
   {
     title: "Update 2: Email forwarding",
-    description: "Set ImprovMX & added SPF records in GoDaddy to setup Gmails SMTP for personal domain",
+    description: "Set ImprovMX & added SPF records in GoDaddy to setup Gmail's SMTP for personal domain",
     id: "snapshot2",
   },  
   {

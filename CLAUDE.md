@@ -14,9 +14,16 @@
 - **Types**: Prefer explicit TypeScript types, avoid `any`
 - **Styling**: Uses TailwindCSS, prefer utility classes over custom CSS
 - **Error Handling**: Use try/catch for async operations, provide fallbacks
+- **Animations**: Use motion-primitives for animations and transitions
+
+## Key Dependencies
+- Next.js 15
+- TailwindCSS
+- motion-primitives: Used for animations, component transitions, and motion effects
+- TypeScript
 
 ## Project Structure
-- `app/`: Next.js 13+ app router structure with page components
+- `app/`: Next.js 15+ app router structure with page components
 - `components/`: Reusable UI components, especially in /ui subfolder
 - `hooks/`: Custom React hooks
 - `lib/`: Utilities and constants

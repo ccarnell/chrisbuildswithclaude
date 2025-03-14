@@ -1,6 +1,7 @@
 'use client'
 import { motion } from 'motion/react'
 import { XIcon } from 'lucide-react'
+import { useState } from 'react'
 import { Spotlight } from '@/components/ui/spotlight'
 import { Magnetic } from '@/components/ui/magnetic'
 import {
@@ -204,37 +205,65 @@ export default function Personal() {
       >
         <p className="mb-3 text-zinc-600 dark:text-zinc-400">~42 hours spent on project to-date. <em>(I understand time is not the best metric to measure with software, but this is provided just to give an idea of how long it's taken for me to go from never deploying code to learning and prototyping the different technical concepts below)</em></p>
         <h3 className="mb-5 text-lg font-medium">Learning Snapshots</h3>
-        <div className="flex flex-col space-y-2">
-          {SNAPSHOT.map((item) => (
-            <div
-              className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30"
-              key={item.id}
-            >
-              <Spotlight
-                className="from-zinc-900 via-zinc-800 to-zinc-700 blur-2xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50"
-                size={64}
-              />
-              <div className="relative h-full w-full rounded-[15px] bg-white p-4 dark:bg-zinc-950">
-                <div className="relative w-full">
-                  <h4 className="font-normal dark:text-zinc-100">
-                    {item.title.startsWith("Update") ? (
-                      <span style={{ color: '#61AAF2' }}>{item.title}</span>
-                    ) : item.title.startsWith("WIP") ? (
-                      <span style={{ color: '#EBDBBC' }}>{item.title}</span>
-                    ) : item.title.startsWith("Backlog") ? (
-                      <span style={{ color: '#CC785C' }}>{item.title}</span>
-                    ) : (
-                      item.title
-                    )}
-                  </h4>
-                  <p className="text-zinc-500 dark:text-zinc-400 whitespace-pre-line">
-                    {item.description}
-                  </p>
-                </div>
+        {(() => {
+          const [isExpanded, setIsExpanded] = useState(false)
+
+          // Filter snapshots for collapsed view - show only Backlog, WIP, and latest Update
+          const filteredSnapshots = isExpanded 
+            ? SNAPSHOT 
+            : SNAPSHOT.filter(item => 
+                item.title.startsWith("Backlog") || 
+                item.title.startsWith("WIP") || 
+                (item.title.startsWith("Update") && 
+                  // Find index of the latest update
+                  SNAPSHOT.findIndex(
+                    snapshot => snapshot.title.startsWith("Update")
+                  ) === SNAPSHOT.indexOf(item)
+                )
+              )
+
+          return (
+            <>
+              <div className="flex flex-col space-y-2">
+                {filteredSnapshots.map((item) => (
+                  <div
+                    className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30"
+                    key={item.id}
+                  >
+                    <Spotlight
+                      className="from-zinc-900 via-zinc-800 to-zinc-700 blur-2xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50"
+                      size={64}
+                    />
+                    <div className="relative h-full w-full rounded-[15px] bg-white p-4 dark:bg-zinc-950">
+                      <div className="relative w-full">
+                        <h4 className="font-normal dark:text-zinc-100">
+                          {item.title.startsWith("Update") ? (
+                            <span style={{ color: '#61AAF2' }}>{item.title}</span>
+                          ) : item.title.startsWith("WIP") ? (
+                            <span style={{ color: '#EBDBBC' }}>{item.title}</span>
+                          ) : item.title.startsWith("Backlog") ? (
+                            <span style={{ color: '#CC785C' }}>{item.title}</span>
+                          ) : (
+                            item.title
+                          )}
+                        </h4>
+                        <p className="text-zinc-500 dark:text-zinc-400 whitespace-pre-line">
+                          {item.description}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
-            </div>
-          ))}
-        </div>
+              <button
+                onClick={() => setIsExpanded(!isExpanded)}
+                className="mt-4 text-sm text-zinc-500 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-200 transition-colors duration-200"
+              >
+                {isExpanded ? "--- collapse ---" : "+++ expand +++"}
+              </button>
+            </>
+          )
+        })()}
       </motion.section>
 
       {/* Blog section commented out temporarily

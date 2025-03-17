@@ -162,7 +162,7 @@ export default function Personal() {
         <div className="flex-1">
           <p className="list-disc ml-4 text-zinc-700 dark:text-zinc-300 whitespace-pre-line">
           <strong>March 4th, 2025 at 4:41pm CST:</strong> Idea concept
-          <br/><strong>March 11, 2025 at 6:13pm CST:</strong> Resume submitted & received confirmation email
+          <br/><strong>March 11, 2025 at 6:13pm CST:</strong> Resume submitted
           </p>
           
           <div className="mt-2 mb-4">
@@ -172,15 +172,15 @@ export default function Personal() {
           <p className="list-disc ml-4 text-zinc-700 dark:text-zinc-300 whitespace-pre-line">
           Hi Anthropic.<br />
           This was built specifically for and shared only with <strong><span style={{ color: '#CC785C' }}> you.</span></strong><br />
-          <br />If you have seen my resume I'm sure you are aware that my GitHub won't reflect much past, "Hello World!"—meaning before this Idea Concept on March 4th, I had never personally deployed a project.<br />
-          <br />I didn't want what's on paper to be a limiter. From my research, Anthropic values technical capabilities and urgency in rapid internal prototyping. To align with the team, I'm using this as a demonstration project for real-time learning.<br />
+          <br />Until March 4th, despite over a decade in tech, my resume and GitHub didn't require much past "Hello World!"<br />
+          <br />I've worked with non-technical founders to Fortune 500s in strategic product and program management—from the whiteboard to the White House.<br />
           <br />
-          This is my commitment to:<br />
+          This real-time learning project is to align with Anthropic starting now, rather than waiting. This is my commitment to:<br />
           - Express shared values<br />
           - Display agility of acquiring technical skills<br />
-          - Soon, show real-time strategic product dev<br />
-          - Share how the frameworks I use under ambiguity<br />
-          - Hopefully gain a bit of trust & confidence. I do whatever it takes to succeed<br />
+          - Showcase strategic product dev<br />
+          - Share frameworks I use to manage ambiguity<br />
+          - Prove to you that I do whatever it takes<br />
           <br />Thank you for your considerations.
           </p>
         </div>
@@ -235,7 +235,6 @@ export default function Personal() {
           const peekItem = !isExpanded && SNAPSHOT.length > visibleCount 
             ? SNAPSHOT[visibleCount] 
             : null;
-
           return (
             <>
               <div className="flex flex-col space-y-2">
@@ -322,10 +321,6 @@ export default function Personal() {
           )
           
         })()}
-
-        <p className="mb-3 text-zinc-700 dark:text-zinc-400">~46 hours spent on project to-date<br />
-        ( Note 1: <strong>Time</strong><em>, or</em> <strong>time alone</strong><em> at least, is not a great metric to measure with software productivity. I began tracking this simply to show how long it's taken for me to go from never deploying code to learning and prototyping the different technical concepts below. </em>)<br />
-        <br />( Note 2: <em>This obviously turned into something much more shiny than a quick prototype, but since you only get one first impression, I wanted to shoot for hopefully being more likely a love-at-first-sight thing rather than jumpscare. I hope The Office fans can reminisce cringe with me about the blind date episode with Michael. </em>)</p>
 
       </motion.section>
 

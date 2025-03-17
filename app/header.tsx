@@ -21,7 +21,7 @@ export function Header() {
             className="text-zinc-600 dark:text-zinc-500 block mt-1"
             delay={0.5}
           >
-            Demonstration v2.0
+            Demonstration project v2.0
           </TextEffect>
         </Link>
       </div>

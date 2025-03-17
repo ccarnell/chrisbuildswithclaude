@@ -181,4 +181,20 @@ export const SOCIAL_LINKS: SocialLink[] = [
   },
 ]
 
+export type PdfLink = {
+  label: string
+  path: string
+}
+
+export const PDF_LINKS: PdfLink[] = [
+  {
+    label: 'cover letter',
+    path: '/chris-carnell-anthropic-cover-letter.pdf',
+  },
+  {
+    label: 'resume',
+    path: '/chris-carnell-anthropic-resume-strategic-product-management.pdf',
+  }
+]
+
 export const EMAIL = 'chris@questioningrural.com'

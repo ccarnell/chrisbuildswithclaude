@@ -37,7 +37,7 @@ function PreviousWorkImage({ src }: { src: string }) {
           <img
             src={src}
             alt="Project screenshot"
-            className="aspect-video w-full cursor-zoom-in rounded-xl object-cover"
+            className="aspect-[4/3] sm:aspect-video w-full cursor-zoom-in rounded-xl object-cover"
           />
         ) : (
           <video
@@ -45,17 +45,17 @@ function PreviousWorkImage({ src }: { src: string }) {
             autoPlay
             loop
             muted
-            className="aspect-video w-full cursor-zoom-in rounded-xl"
+            className="aspect-[4/3] sm:aspect-video w-full cursor-zoom-in rounded-xl"
           />
         )}
       </MorphingDialogTrigger>
       <MorphingDialogContainer>
-        <MorphingDialogContent className="relative aspect-video rounded-2xl">
+        <MorphingDialogContent className="relative aspect-auto rounded-2xl bg-zinc-50 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950 dark:ring-zinc-800/50">
           {isImage ? (
             <img
               src={src}
               alt="Project screenshot"
-              className="aspect-video h-[50vh] w-full rounded-xl object-contain md:h-[70vh]"
+              className="h-[60vh] w-full rounded-xl object-contain md:h-[70vh]"
             />
           ) : (
             <video
@@ -63,7 +63,7 @@ function PreviousWorkImage({ src }: { src: string }) {
               autoPlay
               loop
               muted
-              className="aspect-video h-[50vh] w-full rounded-xl md:h-[70vh]"
+              className="h-[60vh] w-full rounded-xl md:h-[70vh]"
             />
           )}
         </MorphingDialogContent>
@@ -128,7 +128,7 @@ export default function PreviousWorkSection({ items }: PreviousWorkProps) {
               <img 
                 src={item.imageUrl} 
                 alt={item.title}
-                className="aspect-video w-full rounded-xl object-cover"
+                className="aspect-[4/3] sm:aspect-video w-full rounded-xl object-cover"
                 style={{ height: '40px', objectFit: 'cover' }}
               />
               <div 

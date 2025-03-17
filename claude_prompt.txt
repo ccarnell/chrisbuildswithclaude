@@ -1,1 +1,25 @@
-Text file for submitting large Claude Code prompts
+#Step 1
+claude-code, to get context, please review my the CLAUDE.md file, my components, and the tsx files titled 'data', 'layout', and 'page'.
+
+#Step 2
+claude-code, i would like to implement a very simple PDF viewer with minimal features:
+1. The pdf's are currently in the /public folder.
+2. I would like to utilize the same design as the SocialLink buttons in the data.tsx file as what is used to click to display the pdf's.
+3. I will defer to you if the PDF should just expand or if it should open a new tab. Either way, it should allow page navigation and the pathway should be seamless to exit out of the pdf.
+
+#Step 3
+claude-code, please ensure we create everything needed to work flawlessly:
+1. Any necessary compenents if needed.
+2. CSS updates if necessary.
+3. Instructions for installing any dependencies.
+
+#Step 4
+claude-code, for context, my pdf's are small and have these characteristics:
+1. The largest PDF is only 2 MB
+2. At most they will be 2 pages
+3. They contain nearly all text, with minor icons (Note: we do not need functionality within the PDF's themselves other than the user just being able to view them)
+
+#Step 5
+1. Please think about the best way to complete this objective with as minimal changes as possible. Think deeply about this so that we do not overengineer.
+2. Review code written itself, and compare it with the rest of the necessary, relative folders and files to ensure compatability.
+3. Test locally before agreeing the changes are good to go.

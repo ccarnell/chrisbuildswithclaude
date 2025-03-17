@@ -11,6 +11,7 @@ import {
   MorphingDialogClose,
   MorphingDialogContainer,
 } from '@/components/ui/morphing-dialog'
+import { PdfViewerSection } from '@/components/ui/pdf-viewer'
 import Link from 'next/link'
 import { AnimatedBackground } from '@/components/ui/animated-background'
 import PreviousWorkSection from '@/components/ui/PreviousWorkSection'
@@ -21,6 +22,7 @@ import {
   BLOG_POSTS,
   EMAIL,
   SOCIAL_LINKS,
+  PDF_LINKS
 } from './data'
 
 const VARIANTS_CONTAINER = {
@@ -63,7 +65,7 @@ function ProjectVideo({ src }: ProjectVideoProps) {
           <img
             src={src}
             alt="Project screenshot"
-            className="aspect-video w-full cursor-zoom-in rounded-xl object-cover"
+            className="aspect-[4/3] sm:aspect-video w-full cursor-zoom-in rounded-xl object-cover"
           />
         ) : (
           <video
@@ -71,17 +73,17 @@ function ProjectVideo({ src }: ProjectVideoProps) {
             autoPlay
             loop
             muted
-            className="aspect-video w-full cursor-zoom-in rounded-xl"
+            className="aspect-[4/3] sm:aspect-video w-full cursor-zoom-in rounded-xl"
           />
         )}
       </MorphingDialogTrigger>
       <MorphingDialogContainer>
-        <MorphingDialogContent className="relative aspect-video rounded-2xl bg-zinc-50 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950 dark:ring-zinc-800/50">
+        <MorphingDialogContent className="relative aspect-auto rounded-2xl bg-zinc-50 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950 dark:ring-zinc-800/50">
           {isImage ? (
             <img
               src={src}
               alt="Project screenshot"
-              className="aspect-video h-[50vh] w-full rounded-xl object-contain md:h-[70vh]"
+              className="h-[60vh] w-full rounded-xl object-contain md:h-[70vh]"
             />
           ) : (
             <video
@@ -89,7 +91,7 @@ function ProjectVideo({ src }: ProjectVideoProps) {
               autoPlay
               loop
               muted
-              className="aspect-video h-[50vh] w-full rounded-xl md:h-[70vh]"
+              className="h-[60vh] w-full rounded-xl md:h-[70vh]"
             />
           )}
         </MorphingDialogContent>
@@ -161,16 +163,24 @@ export default function Personal() {
           <p className="list-disc ml-4 text-zinc-700 dark:text-zinc-300 whitespace-pre-line">
           <strong>March 4th, 2025 at 4:41pm CST:</strong> Idea concept
           <br/><strong>March 11, 2025 at 6:13pm CST:</strong> Resume submitted & received confirmation email
-          <br /><br />
+          </p>
+          
+          <div className="mt-2 mb-4">
+            <PdfViewerSection pdfLinks={PDF_LINKS} />
+          </div>
+          
+          <p className="list-disc ml-4 text-zinc-700 dark:text-zinc-300 whitespace-pre-line">
           Hi Anthropic.<br />
           This was built specifically for and shared only with <strong><span style={{ color: '#CC785C' }}> you.</span></strong><br />
-          <br />With a decade in software, I've collaborated with founders (technical and non-technical), researchers, UI/UX designers, developers, and GTM teams to solve problems and build solutions. I've built low-code automations and have technical knowledge, but my resume and GitHub won't reflect much past, "Hello World!"<br />
-          <br />While I have deep strategic product management experience, I've been fortunate to grow talented technical teams who I believe you should trust and defer to on their technical expertise—meaning before this Idea Concept on March 4th, I had never personally deployed a project. From my research, Anthropic values technical capabilities and urgency in rapid internal prototyping. To align with the team, I'm using this as a demonstration project of real-time work and deeper technical learning.<br />
+          <br />If you have seen my resume I'm sure you are aware that my GitHub won't reflect much past, "Hello World!"—meaning before this Idea Concept on March 4th, I had never personally deployed a project.<br />
+          <br />I didn't want what's on paper to be a limiter. From my research, Anthropic values technical capabilities and urgency in rapid internal prototyping. To align with the team, I'm using this as a demonstration project for real-time learning.<br />
           <br />
           This is my commitment to:<br />
           - Express shared values<br />
-          - Showcase learning speed and capabilities under ambiguity<br />
-          - Gain trust & confidence. I do whatever it takes to succeed<br />
+          - Display agility of acquiring technical skills<br />
+          - Soon, show real-time strategic product dev<br />
+          - Share how the frameworks I use under ambiguity<br />
+          - Hopefully gain a bit of trust & confidence. I do whatever it takes to succeed<br />
           <br />Thank you for your considerations.
           </p>
         </div>
@@ -209,9 +219,6 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <p className="mb-3 text-zinc-700 dark:text-zinc-400">~46 hours spent on project to-date<br />
-        ( Note 1: <strong>Time</strong><em>, or</em> <strong>time alone</strong><em> at least, is not a great metric to measure with software productivity. I began tracking this simply to show how long it's taken for me to go from never deploying code to learning and prototyping the different technical concepts below. </em>)<br />
-        <br />( Note 2: <em>This obviously turned into something much more shiny than a quick prototype, but since you only get one first impression, I wanted to shoot for hopefully being more likely a love-at-first-sight thing rather than jumpscare. I hope The Office fans can reminisce cringe with me about the blind date episode with Michael. </em>)</p>
         <h3 className="mb-5 text-2xl font-medium">Learning Snapshots</h3>
         {(() => {
           const [isExpanded, setIsExpanded] = useState(false)
@@ -313,7 +320,13 @@ export default function Personal() {
               </button>
             </>
           )
+          
         })()}
+
+        <p className="mb-3 text-zinc-700 dark:text-zinc-400">~46 hours spent on project to-date<br />
+        ( Note 1: <strong>Time</strong><em>, or</em> <strong>time alone</strong><em> at least, is not a great metric to measure with software productivity. I began tracking this simply to show how long it's taken for me to go from never deploying code to learning and prototyping the different technical concepts below. </em>)<br />
+        <br />( Note 2: <em>This obviously turned into something much more shiny than a quick prototype, but since you only get one first impression, I wanted to shoot for hopefully being more likely a love-at-first-sight thing rather than jumpscare. I hope The Office fans can reminisce cringe with me about the blind date episode with Michael. </em>)</p>
+
       </motion.section>
 
       <motion.section
@@ -362,6 +375,7 @@ export default function Personal() {
         </div>
       </motion.section>
       */}
+
 
       <motion.section
         variants={VARIANTS_SECTION}

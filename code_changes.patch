@@ -1,0 +1,553 @@
+Add Previous Work section and update styling & content
+
+
+diff --git a/app/data.ts b/app/data.ts
+index 4136178..9710566 100644
+--- a/app/data.ts
++++ b/app/data.ts
+@@ -12,6 +12,14 @@ type Snapshot = {
+   id: string
+ }
+ 
++type PreviousWork = {
++  id: string;
++  title: string;
++  description: string;
++  imageUrl: string;
++  externalUrl: string;
++}
++
+ type BlogPost = {
+   title: string
+   description: string
+@@ -47,13 +55,18 @@ export const PROJECTS: Project[] = [
+ 
+ export const SNAPSHOT: Snapshot[] = [
+   {
+-    title: "Backlog: Ideating Update 10",
+-    description: "The deployment objective is complete. I will now take a step back from the demonstration of quickly learning technical implementation details to:\n1.) Discuss the importance of AI safety and ethics\n2.) Then begin from further back to provide evidence of deeper understanding of product strategy\n3.) Display experience abstract and concrete examples of managing complex systems and ambiguity",
++    title: "Backlog: Ideating Update 11",
++    description: "The <strong>Deployment Objective</strong> I set out to do was completed on the first day. I then spent some time randomly working through different additional technical functionality for self-interest and to continue showing technical learning. Since I have applied for the Strategic Product Management position, I am now going to take a step back from the demonstration of quickly learning technical implementation details to showcase more intentional and holistic product management capabilities.\n\nAfter discussing the importance of AI safety and ethics I will showcase how I actually go about strategic product development.\n1.) Within v2, display past work, tools, and frameworks used\n2.) v3. I will then showcase actually managing the strategy of a real product for Anthropic. With my background, I will focus on the Economic Index and display systematically going through the process as if I were working within a team collaborating.",
++    id: "snapshot11",
++  },
++  {
++    title: "WIP Update 10: Discuss importance of AI safety and Ethics",
++    description: "Writing narrative",
+     id: "snapshot10",
+   },
+   {
+-    title: "WIP: Update 9",
+-    description: "Quickly add past product and startup experience and move on to additional critical demonstrations",
++    title: "Update 9: Add Previous Work section",
++    description: "Continued to work with Claude Code. Added a few startups and products that I have previously either helped build from scratch or worked directly with technical and non-technical founders. Added Vercel Analytics so we have measurements in place as a tool to identify if the product is successful in its objective. Added an Expand/Collapse functionality with a preview display directly above, and dressed up some of the site's styling.\n\n( This obviously got much more than a quick prototype, but since you only get one first impression, I wanted to shoot for hopefully being more likely a love-at-first-sight thing rather than jumpscare. The Office fans will reminiscley cringe about the blind date episode with Michael. )",
+     id: "snapshot9",
+   },
+   {
+@@ -73,7 +86,7 @@ export const SNAPSHOT: Snapshot[] = [
+   },
+   {
+     title: "Update 5: Folders files, and functions",
+-    description: "Reviewed pages, public, styles, components, package.json and navigated making updates to mainly HTML/CSS. Learning more about Next.js and Tailwind. Changed some initial text from boilerplate. Added Anthropic's mission to footer",
++    description: "Reviewed pages, public, styles, components, package.json and navigated making updates to mainly Typescript files. Learning more about Next.js and Tailwind. Changed some initial text from boilerplate. Added Anthropic's mission to footer",
+     id: "snapshot5",
+   },
+   {
+@@ -98,6 +111,51 @@ export const SNAPSHOT: Snapshot[] = [
+   },
+ ]
+ 
++export const PREVIOUS_WORK: PreviousWork[] = [
++  {
++    id: "previouswork1",
++    title: "Code Labs",
++    description: "Custom LMS for adult computer programming training with agile incorporated into curriculum environment",
++    imageUrl: "/code-labs-previous-work-screenshot.webp",
++    externalUrl: "https://www.codefiworks.com/codelabs/"
++  },
++  {
++    id: "previouswork2",
++    title: "PubGen.AI",
++    description: "Multi-modal AI-powered newsroom focused on revitalizaing newsroom deserts",
++    imageUrl: "/pubgen-ai-previous-work-screenshot.webp",
++    externalUrl: "https://www.pubgen.ai/"
++  },
++  {
++    id: "previouswork3",
++    title: "PumpTrakr",
++    description: "IoT irrigation management with AI prediction and self-healing devices",
++    imageUrl: "/pumptrakr-previous-work-screenshot.webp",
++    externalUrl: "https://www.pubgen.ai/"
++  },
++  {
++    id: "previouswork4",
++    title: "Sho.AI",
++    description: "Brand-focused AI platform for companies to manage entire brand systems",
++    imageUrl: "/sho-ai-previous-work-screenshot.webp",
++    externalUrl: "https://www.sho.ai/"
++  },
++  {
++    id: "previouswork5",
++    title: "Swipesum",
++    description: "Over $30B in OCR payment processing from fortune 500 companies to small businesses",
++    imageUrl: "/swipesum-previous-work-screenshot.webp",
++    externalUrl: "https://www.swipesum.com/"
++  },
++  {
++    id: "previouswork6",
++    title: "Youth Coding League",
++    description: "Innovative, project-based introduction to CS using a youth sports model",
++    imageUrl: "/youth-coding-league-previous-work-screenshot.webp",
++    externalUrl: "https://www.youthcodingleague.com/"
++  },
++]
++
+ export const BLOG_POSTS: BlogPost[] = [
+   {
+     title: 'What is chrisbuildswithclaude.com?',
+diff --git a/app/footer.tsx b/app/footer.tsx
+index 2b03d48..44e93b0 100644
+--- a/app/footer.tsx
++++ b/app/footer.tsx
+@@ -75,7 +75,7 @@ export function Footer() {
+             href="https://www.anthropic.com/company"
+             target="blank"
+             rel="noopener noreferrer"
+-            className="text xs text-white font-bold hover:underline"
++            className="text xs text-black dark:text-white font-bold hover:underline"
+           >
+             quoted from Anthropic:
+           </a>
+diff --git a/app/header.tsx b/app/header.tsx
+index 20c7df5..f1886b2 100644
+--- a/app/header.tsx
++++ b/app/header.tsx
+@@ -15,6 +15,14 @@ export function Header() {
+           >
+             Chris Carnell
+           </TextEffect>
++          <TextEffect
++            preset="fade"
++            per="char"
++            className="text-zinc-600 dark:text-zinc-500 block mt-1"
++            delay={0.5}
++          >
++            Demonstration v2.0
++          </TextEffect>
+         </Link>
+       </div>
+       <div>
+diff --git a/app/page.tsx b/app/page.tsx
+index 526b7e9..8430823 100644
+--- a/app/page.tsx
++++ b/app/page.tsx
+@@ -13,9 +13,11 @@ import {
+ } from '@/components/ui/morphing-dialog'
+ import Link from 'next/link'
+ import { AnimatedBackground } from '@/components/ui/animated-background'
++import PreviousWorkSection from '@/components/ui/PreviousWorkSection'
+ import {
+   PROJECTS,
+   SNAPSHOT,
++  PREVIOUS_WORK,
+   BLOG_POSTS,
+   EMAIL,
+   SOCIAL_LINKS,
+@@ -156,16 +158,20 @@ export default function Personal() {
+         transition={TRANSITION_SECTION}
+       >
+         <div className="flex-1">
+-          <p className="list-disc ml-4 text-zinc-600 dark:text-zinc-400 whitespace-pre-line">
+-          <strong>Idea concept:</strong> March 4th, 2024 at 4:41pm CST
+-          <br/><strong>Resume submitted:</strong> received confirmation email March 11, 2025 6:13pm CST
++          <p className="list-disc ml-4 text-zinc-700 dark:text-zinc-300 whitespace-pre-line">
++          <strong>March 4th, 2025 at 4:41pm CST:</strong> Idea concept
++          <br/><strong>March 11, 2025 at 6:13pm CST:</strong> Resume submitted & received confirmation email
+           <br /><br />
+-          Hi Anthropic. This was built specifically for (and only shared with) you. I've spent a decade with software, collaborating directly with tech- and non-technical founders, UI/UX, devs, and many more to solve problems and build solutions. While I've built low-code automations, can have conversations, and have technical knowledge, my resume and GitHub won't show much past, "Hello World!" From my research, Anthropic appreciates technical capabilities and urgency with rapid internal prototyping. So, to align with the team, I'm using this as a demonstration project for real-/passtime work & more technical learning. Thank you for your considerations.
+-          <br /><br />
+-          This is my attempt to:<br />
++          Hi Anthropic.<br />
++          This was built specifically for and shared only with <strong><span style={{ color: '#CC785C' }}> you.</span></strong><br />
++          <br />With a decade in software, I've collaborated with founders (technical and non-technical), researchers, UI/UX designers, developers, and GTM teams to solve problems and build solutions. I've built low-code automations and have technical knowledge, but my resume and GitHub won't reflect much past, "Hello World!"<br />
++          <br />While I have deep strategic product management experience, I've been fortunate to grow talented technical teams who I believe you should trust and defer to on their technical expertise—meaning before this Idea Concept on March 4th, I had never personally deployed a project. From my research, Anthropic values technical capabilities and urgency in rapid internal prototyping. To align with the team, I'm using this as a demonstration project of real-time work and deeper technical learning.<br />
++          <br />
++          This is my commitment to:<br />
+           - Express shared values<br />
+           - Showcase learning speed and capabilities under ambiguity<br />
+-          - Gain trust & confidence. I do whatever it takes to succeed
++          - Gain trust & confidence. I do whatever it takes to succeed<br />
++          <br />Thank you for your considerations.
+           </p>
+         </div>
+       </motion.section>
+@@ -174,7 +180,7 @@ export default function Personal() {
+         variants={VARIANTS_SECTION}
+         transition={TRANSITION_SECTION}
+       >
+-        <h3 className="mb-5 text-lg font-medium">Selected Projects</h3>
++        <h3 className="mb-5 text-2xl font-medium">Demonstration Projects</h3>
+         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+           {PROJECTS.map((project) => (
+             <div key={project.name} className="space-y-2">
+@@ -190,7 +196,7 @@ export default function Personal() {
+                   {project.name}
+                   <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 transition-all duration-200 group-hover:max-w-full"></span>
+                 </a>
+-                <p className="text-base text-zinc-600 dark:text-zinc-400">
++                <p className="text-base text-zinc-700 dark:text-zinc-300">
+                   {project.description}
+                 </p>
+               </div>
+@@ -203,29 +209,31 @@ export default function Personal() {
+         variants={VARIANTS_SECTION}
+         transition={TRANSITION_SECTION}
+       >
+-        <p className="mb-3 text-zinc-600 dark:text-zinc-400">~42 hours spent on project to-date. <em>(I understand time is not the best metric to measure with software, but this is provided just to give an idea of how long it's taken for me to go from never deploying code to learning and prototyping the different technical concepts below)</em></p>
+-        <h3 className="mb-5 text-lg font-medium">Learning Snapshots</h3>
++        <p className="mb-3 text-zinc-700 dark:text-zinc-400">~46 hours spent on project to-date<br />
++        ( Note 1: <strong>Time</strong><em>, or</em> <strong>time alone</strong><em> at least, is not a great metric to measure with software productivity. I began tracking this simply to show how long it's taken for me to go from never deploying code to learning and prototyping the different technical concepts below. )</em><br />
++        <br />( Note 2: )</p>
++        <h3 className="mb-5 text-2xl font-medium">Learning Snapshots</h3>
+         {(() => {
+           const [isExpanded, setIsExpanded] = useState(false)
+ 
+-          // Filter snapshots for collapsed view - show only Backlog, WIP, and latest Update
+-          const filteredSnapshots = isExpanded 
++          // Define how many snapshots to show initially
++          const visibleCount = 3; // Backlog, WIP, and first Update
++
++          // Create separate arrays for fully visible and partially visible
++          const fullyVisibleSnapshots = isExpanded 
+             ? SNAPSHOT 
+-            : SNAPSHOT.filter(item => 
+-                item.title.startsWith("Backlog") || 
+-                item.title.startsWith("WIP") || 
+-                (item.title.startsWith("Update") && 
+-                  // Find index of the latest update
+-                  SNAPSHOT.findIndex(
+-                    snapshot => snapshot.title.startsWith("Update")
+-                  ) === SNAPSHOT.indexOf(item)
+-                )
+-              )
++            : SNAPSHOT.slice(0, visibleCount);
++            
++          // Get next item to show partially (if not expanded)
++          const peekItem = !isExpanded && SNAPSHOT.length > visibleCount 
++            ? SNAPSHOT[visibleCount] 
++            : null;
+ 
+           return (
+             <>
+               <div className="flex flex-col space-y-2">
+-                {filteredSnapshots.map((item) => (
++                {/* Fully visible snapshots */}
++                {fullyVisibleSnapshots.map((item) => (
+                   <div
+                     className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30"
+                     key={item.id}
+@@ -247,17 +255,59 @@ export default function Personal() {
+                             item.title
+                           )}
+                         </h4>
+-                        <p className="text-zinc-500 dark:text-zinc-400 whitespace-pre-line">
+-                          {item.description}
+-                        </p>
++                        <div className="text-zinc-600 dark:text-zinc-300 whitespace-pre-line" 
++                             dangerouslySetInnerHTML={{ __html: item.description.replace(/\n/g, '<br />') }}>
++                        </div>
+                       </div>
+                     </div>
+                   </div>
+                 ))}
++                
++                {/* Partial view of next item - just a peek */}
++                {peekItem && !isExpanded && (
++                  <div 
++                    className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30"
++                    key={`peek-${peekItem.id}`}
++                  >
++                    <div 
++                      className="relative rounded-[15px] bg-white dark:bg-zinc-950 overflow-hidden"
++                      style={{ maxHeight: '70px' }} // Strict height limit
++                    >
++                      <div className="relative p-4">
++                        {/* Title only */}
++                        <h4 className="font-normal dark:text-zinc-100 truncate">
++                          {peekItem.title.startsWith("Update") ? (
++                            <span style={{ color: '#61AAF2' }}>{peekItem.title}</span>
++                          ) : peekItem.title.startsWith("WIP") ? (
++                            <span style={{ color: '#EBDBBC' }}>{peekItem.title}</span>
++                          ) : peekItem.title.startsWith("Backlog") ? (
++                            <span style={{ color: '#CC785C' }}>{peekItem.title}</span>
++                          ) : (
++                            peekItem.title
++                          )}
++                        </h4>
++                        
++                        {/* First ~10% of content */}
++                        <div 
++                          className="text-zinc-600 dark:text-zinc-300 whitespace-nowrap overflow-hidden text-ellipsis opacity-80 text-sm" 
++                          style={{ maxWidth: '100%' }}
++                        >
++                          {peekItem.description.substring(0, 50).replace(/\n/g, ' ')}...
++                        </div>
++                        
++                        {/* Gradient overlay to cut off abruptly */}
++                        <div 
++                          className="absolute bottom-0 left-0 right-0 h-[40px] bg-gradient-to-t from-white dark:from-zinc-950 to-transparent"
++                          style={{ opacity: 0.9 }}
++                        ></div>
++                      </div>
++                    </div>
++                  </div>
++                )}
+               </div>
+               <button
+                 onClick={() => setIsExpanded(!isExpanded)}
+-                className="mt-4 text-sm text-zinc-500 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-200 transition-colors duration-200"
++                className="mt-4 text-sm text-zinc-600 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-zinc-100 transition-colors duration-200"
+               >
+                 {isExpanded ? "--- collapse ---" : "+++ expand +++"}
+               </button>
+@@ -266,6 +316,15 @@ export default function Personal() {
+         })()}
+       </motion.section>
+ 
++      <motion.section
++        variants={VARIANTS_SECTION}
++        transition={TRANSITION_SECTION}
++        data-parallax-speed="1.5"
++      >
++        <PreviousWorkSection items={PREVIOUS_WORK} />
++      </motion.section>
++      
++
+       {/* Blog section commented out temporarily
+       <motion.section
+         variants={VARIANTS_SECTION}
+@@ -308,8 +367,8 @@ export default function Personal() {
+         variants={VARIANTS_SECTION}
+         transition={TRANSITION_SECTION}
+       >
+-        <h3 className="mb-5 text-lg font-medium">Connect</h3>
+-        <p className="mb-5 text-zinc-600 dark:text-zinc-400">
++        <h3 className="mb-5 text-2xl font-medium">Connect</h3>
++        <p className="mb-5 text-zinc-700 dark:text-zinc-300">
+           Feel free to contact me at{' '}
+           <a className="underline dark:text-zinc-300" href={`mailto:${EMAIL}`}>
+             {EMAIL}
+diff --git a/claude_prompt.txt b/claude_prompt.txt
+index 76b0191..215ffc1 100644
+--- a/claude_prompt.txt
++++ b/claude_prompt.txt
+@@ -1,26 +1 @@
+-I need to implement an expand/collapse feature for the "Learning Snapshots" section on my website's homepage. The feature should:
+-
+-1. On initial page load, only display Backlog, WIP, and the latest Update
+-2. Add an "+++ expand +++" text link below these items
+-3. When clicked, expand to show all updates without jumping the page view
+-4. Add a "--- collapse ---" text link at the bottom when expanded
+-5. When collapsed, return to showing only Backlog, WIP, and latest Update
+-
+-The Learning Snapshots section is currently in my page.tsx file around line 206, where I have an h3 heading "Learning Snapshots" followed by mapping through the SNAPSHOT array from my data.ts file.
+-
+-Important context:
+-- I'm using Next.js 15 with Tailwind CSS
+-- I'm using motion-primitives for animations (motion.section, motion.main, etc.)
+-- My SNAPSHOT data in data.ts has items with titles starting with "Backlog", "WIP", and "Update"
+-- Keep any existing conditional title styling intact
+-- Preserve the existing Spotlight component and styling for each item
+-- Keep the same card styling for each snapshot item
+-
+-Please implement this feature by:
+-1. Adding a useState hook to track expanded state
+-2. Filtering the SNAPSHOT array to show only required items when collapsed
+-3. Adding the expand/collapse buttons with simple styling
+-4. Ensuring the implementation works with my existing animation components
+-5. Preserving all existing styling for the snapshot items
+-
+-I want the simplest implementation that meets these requirements without breaking any existing functionality.
+\ No newline at end of file
++Text file for submitting large Claude Code prompts
+\ No newline at end of file
+diff --git a/components/ui/PreviousWorkSection.tsx b/components/ui/PreviousWorkSection.tsx
+new file mode 100644
+index 0000000..9ed91ee
+--- /dev/null
++++ b/components/ui/PreviousWorkSection.tsx
+@@ -0,0 +1,156 @@
++'use client'
++
++import { useState } from 'react'
++import { motion } from 'motion/react'
++import { XIcon } from 'lucide-react'
++import {
++  MorphingDialog,
++  MorphingDialogTrigger,
++  MorphingDialogContent,
++  MorphingDialogClose,
++  MorphingDialogContainer,
++} from '@/components/ui/morphing-dialog'
++
++type PreviousWorkProps = {
++  items: {
++    id: string
++    title: string
++    description: string
++    imageUrl: string
++    externalUrl: string
++  }[]
++}
++
++function PreviousWorkImage({ src }: { src: string }) {
++  const isImage = src.endsWith('.png') || src.endsWith('.jpg') || src.endsWith('.jpeg') || src.endsWith('.gif') || src.endsWith('.webp')
++  
++  return (
++    <MorphingDialog
++      transition={{
++        type: 'spring',
++        bounce: 0,
++        duration: 0.3,
++      }}
++    >
++      <MorphingDialogTrigger>
++        {isImage ? (
++          <img
++            src={src}
++            alt="Project screenshot"
++            className="aspect-video w-full cursor-zoom-in rounded-xl object-cover"
++          />
++        ) : (
++          <video
++            src={src}
++            autoPlay
++            loop
++            muted
++            className="aspect-video w-full cursor-zoom-in rounded-xl"
++          />
++        )}
++      </MorphingDialogTrigger>
++      <MorphingDialogContainer>
++        <MorphingDialogContent className="relative aspect-video rounded-2xl">
++          {isImage ? (
++            <img
++              src={src}
++              alt="Project screenshot"
++              className="aspect-video h-[50vh] w-full rounded-xl object-contain md:h-[70vh]"
++            />
++          ) : (
++            <video
++              src={src}
++              autoPlay
++              loop
++              muted
++              className="aspect-video h-[50vh] w-full rounded-xl md:h-[70vh]"
++            />
++          )}
++        </MorphingDialogContent>
++        <MorphingDialogClose
++          className="fixed top-6 right-6 h-fit w-fit rounded-full bg-white p-1"
++          variants={{
++            initial: { opacity: 0 },
++            animate: {
++              opacity: 1,
++              transition: { delay: 0.3, duration: 0.1 },
++            },
++            exit: { opacity: 0, transition: { duration: 0 } },
++          }}
++        >
++          <XIcon className="h-5 w-5 text-zinc-500" />
++        </MorphingDialogClose>
++      </MorphingDialogContainer>
++    </MorphingDialog>
++  )
++}
++
++export default function PreviousWorkSection({ items }: PreviousWorkProps) {
++  const [isExpanded, setIsExpanded] = useState(false)
++  
++  // Show only first 4 items plus partial view of next row when collapsed
++  const displayItems = isExpanded ? items : items.slice(0, 4)
++  const peekItems = !isExpanded && items.length > 4 ? items.slice(4, 6) : []
++
++  return (
++    <div>
++      <h3 className="mb-5 text-2xl font-medium">Previous Work</h3>
++      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
++        {displayItems.map((item) => (
++          <div key={item.id} className="space-y-2">
++            <div className="relative">
++              <PreviousWorkImage src={item.imageUrl} />
++            </div>
++            <div className="px-1">
++              <a
++                className="font-base group relative inline-block font-[450] text-zinc-900 dark:text-zinc-50"
++                href={item.externalUrl}
++                target="_blank"
++              >
++                {item.title}
++                <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 transition-all duration-200 group-hover:max-w-full"></span>
++              </a>
++              <p className="text-base text-zinc-700 dark:text-zinc-300">
++                {item.description}
++              </p>
++            </div>
++          </div>
++        ))}
++        
++        {/* Partial view of next row */}
++        {!isExpanded && peekItems.map((item) => (
++          <div 
++            key={`peek-${item.id}`} 
++            className="space-y-2 relative overflow-hidden"
++            style={{ height: '50px' }}
++          >
++            <div className="relative opacity-60">
++              <img 
++                src={item.imageUrl} 
++                alt={item.title}
++                className="aspect-video w-full rounded-xl object-cover"
++                style={{ height: '40px', objectFit: 'cover' }}
++              />
++              <div 
++                className="absolute inset-0 bg-gradient-to-b from-transparent to-white dark:to-zinc-900 opacity-95"
++              ></div>
++            </div>
++            <div className="px-1 truncate opacity-40">
++              <p className="font-[450] text-zinc-900 dark:text-zinc-50 truncate text-xs">
++                {item.title}
++              </p>
++            </div>
++          </div>
++        ))}
++      </div>
++      {items.length > 4 && (
++        <button
++          onClick={() => setIsExpanded(!isExpanded)}
++          className="mt-4 text-sm text-zinc-600 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-zinc-100 transition-colors duration-200"
++        >
++          {isExpanded ? "--- collapse ---" : "+++ expand +++"}
++        </button>
++      )}
++    </div>
++  )
++}
+\ No newline at end of file
+diff --git a/public/code-labs-previous-work-screenshot.webp b/public/code-labs-previous-work-screenshot.webp
+new file mode 100644
+index 0000000..52b69fc
+diff --git a/public/pubgen-ai-previous-work-screenshot.webp b/public/pubgen-ai-previous-work-screenshot.webp
+new file mode 100644
+index 0000000..1546406
+diff --git a/public/pumptrakr-previous-work-screenshot.webp b/public/pumptrakr-previous-work-screenshot.webp
+new file mode 100644
+index 0000000..7be913a
+diff --git a/public/sho-ai-previous-work-screenshot.webp b/public/sho-ai-previous-work-screenshot.webp
+new file mode 100644
+index 0000000..a06cae9
+diff --git a/public/swipesum-previous-work-screenshot.webp b/public/swipesum-previous-work-screenshot.webp
+new file mode 100644
+index 0000000..1121422
+diff --git a/public/youth-coding-league-previous-work-screenshot.webp b/public/youth-coding-league-previous-work-screenshot.webp
+new file mode 100644
+index 0000000..3262a0e

@@ -75,7 +75,7 @@ export function Footer() {
             href="https://www.anthropic.com/company"
             target="blank"
             rel="noopener noreferrer"
-            className="text xs text-white font-bold hover:underline"
+            className="text xs text-black dark:text-white font-bold hover:underline"
           >
             quoted from Anthropic:
           </a>

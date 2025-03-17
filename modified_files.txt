@@ -1,0 +1,12 @@
+a/app/data.ts
+a/app/footer.tsx
+a/app/header.tsx
+a/app/page.tsx
+a/claude_prompt.txt
+a/components/ui/PreviousWorkSection.tsx
+a/public/code-labs-previous-work-screenshot.webp
+a/public/pubgen-ai-previous-work-screenshot.webp
+a/public/pumptrakr-previous-work-screenshot.webp
+a/public/sho-ai-previous-work-screenshot.webp
+a/public/swipesum-previous-work-screenshot.webp
+a/public/youth-coding-league-previous-work-screenshot.webp

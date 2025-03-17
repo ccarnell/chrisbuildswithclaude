@@ -15,6 +15,14 @@ export function Header() {
           >
             Chris Carnell
           </TextEffect>
+          <TextEffect
+            preset="fade"
+            per="char"
+            className="text-zinc-600 dark:text-zinc-500 block mt-1"
+            delay={0.5}
+          >
+            Demonstration v2.0
+          </TextEffect>
         </Link>
       </div>
       <div>

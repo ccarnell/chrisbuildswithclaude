@@ -13,9 +13,11 @@ import {
 } from '@/components/ui/morphing-dialog'
 import Link from 'next/link'
 import { AnimatedBackground } from '@/components/ui/animated-background'
+import PreviousWorkSection from '@/components/ui/PreviousWorkSection'
 import {
   PROJECTS,
   SNAPSHOT,
+  PREVIOUS_WORK,
   BLOG_POSTS,
   EMAIL,
   SOCIAL_LINKS,
@@ -156,16 +158,20 @@ export default function Personal() {
         transition={TRANSITION_SECTION}
       >
         <div className="flex-1">
-          <p className="list-disc ml-4 text-zinc-600 dark:text-zinc-400 whitespace-pre-line">
-          <strong>Idea concept:</strong> March 4th, 2024 at 4:41pm CST
-          <br/><strong>Resume submitted:</strong> received confirmation email March 11, 2025 6:13pm CST
+          <p className="list-disc ml-4 text-zinc-700 dark:text-zinc-300 whitespace-pre-line">
+          <strong>March 4th, 2025 at 4:41pm CST:</strong> Idea concept
+          <br/><strong>March 11, 2025 at 6:13pm CST:</strong> Resume submitted & received confirmation email
           <br /><br />
-          Hi Anthropic. This was built specifically for (and only shared with) you. I've spent a decade with software, collaborating directly with tech- and non-technical founders, UI/UX, devs, and many more to solve problems and build solutions. While I've built low-code automations, can have conversations, and have technical knowledge, my resume and GitHub won't show much past, "Hello World!" From my research, Anthropic appreciates technical capabilities and urgency with rapid internal prototyping. So, to align with the team, I'm using this as a demonstration project for real-/passtime work & more technical learning. Thank you for your considerations.
-          <br /><br />
-          This is my attempt to:<br />
+          Hi Anthropic.<br />
+          This was built specifically for and shared only with <strong><span style={{ color: '#CC785C' }}> you.</span></strong><br />
+          <br />With a decade in software, I've collaborated with founders (technical and non-technical), researchers, UI/UX designers, developers, and GTM teams to solve problems and build solutions. I've built low-code automations and have technical knowledge, but my resume and GitHub won't reflect much past, "Hello World!"<br />
+          <br />While I have deep strategic product management experience, I've been fortunate to grow talented technical teams who I believe you should trust and defer to on their technical expertise—meaning before this Idea Concept on March 4th, I had never personally deployed a project. From my research, Anthropic values technical capabilities and urgency in rapid internal prototyping. To align with the team, I'm using this as a demonstration project of real-time work and deeper technical learning.<br />
+          <br />
+          This is my commitment to:<br />
           - Express shared values<br />
           - Showcase learning speed and capabilities under ambiguity<br />
-          - Gain trust & confidence. I do whatever it takes to succeed
+          - Gain trust & confidence. I do whatever it takes to succeed<br />
+          <br />Thank you for your considerations.
           </p>
         </div>
       </motion.section>
@@ -174,7 +180,7 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-5 text-lg font-medium">Selected Projects</h3>
+        <h3 className="mb-5 text-2xl font-medium">Demonstration Projects</h3>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           {PROJECTS.map((project) => (
             <div key={project.name} className="space-y-2">
@@ -190,7 +196,7 @@ export default function Personal() {
                   {project.name}
                   <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 transition-all duration-200 group-hover:max-w-full"></span>
                 </a>
-                <p className="text-base text-zinc-600 dark:text-zinc-400">
+                <p className="text-base text-zinc-700 dark:text-zinc-300">
                   {project.description}
                 </p>
               </div>
@@ -203,29 +209,31 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <p className="mb-3 text-zinc-600 dark:text-zinc-400">~42 hours spent on project to-date. <em>(I understand time is not the best metric to measure with software, but this is provided just to give an idea of how long it's taken for me to go from never deploying code to learning and prototyping the different technical concepts below)</em></p>
-        <h3 className="mb-5 text-lg font-medium">Learning Snapshots</h3>
+        <p className="mb-3 text-zinc-700 dark:text-zinc-400">~46 hours spent on project to-date<br />
+        ( Note 1: <strong>Time</strong><em>, or</em> <strong>time alone</strong><em> at least, is not a great metric to measure with software productivity. I began tracking this simply to show how long it's taken for me to go from never deploying code to learning and prototyping the different technical concepts below. </em>)<br />
+        <br />( Note 2: <em>This obviously turned into something much more shiny than a quick prototype, but since you only get one first impression, I wanted to shoot for hopefully being more likely a love-at-first-sight thing rather than jumpscare. I hope The Office fans can reminisce cringe with me about the blind date episode with Michael. </em>)</p>
+        <h3 className="mb-5 text-2xl font-medium">Learning Snapshots</h3>
         {(() => {
           const [isExpanded, setIsExpanded] = useState(false)
 
-          // Filter snapshots for collapsed view - show only Backlog, WIP, and latest Update
-          const filteredSnapshots = isExpanded 
+          // Define how many snapshots to show initially
+          const visibleCount = 3; // Backlog, WIP, and first Update
+
+          // Create separate arrays for fully visible and partially visible
+          const fullyVisibleSnapshots = isExpanded 
             ? SNAPSHOT 
-            : SNAPSHOT.filter(item => 
-                item.title.startsWith("Backlog") || 
-                item.title.startsWith("WIP") || 
-                (item.title.startsWith("Update") && 
-                  // Find index of the latest update
-                  SNAPSHOT.findIndex(
-                    snapshot => snapshot.title.startsWith("Update")
-                  ) === SNAPSHOT.indexOf(item)
-                )
-              )
+            : SNAPSHOT.slice(0, visibleCount);
+            
+          // Get next item to show partially (if not expanded)
+          const peekItem = !isExpanded && SNAPSHOT.length > visibleCount 
+            ? SNAPSHOT[visibleCount] 
+            : null;
 
           return (
             <>
               <div className="flex flex-col space-y-2">
-                {filteredSnapshots.map((item) => (
+                {/* Fully visible snapshots */}
+                {fullyVisibleSnapshots.map((item) => (
                   <div
                     className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30"
                     key={item.id}
@@ -247,17 +255,59 @@ export default function Personal() {
                             item.title
                           )}
                         </h4>
-                        <p className="text-zinc-500 dark:text-zinc-400 whitespace-pre-line">
-                          {item.description}
-                        </p>
+                        <div className="text-zinc-600 dark:text-zinc-300 whitespace-pre-line" 
+                             dangerouslySetInnerHTML={{ __html: item.description.replace(/\n/g, '<br />') }}>
+                        </div>
                       </div>
                     </div>
                   </div>
                 ))}
+                
+                {/* Partial view of next item - just a peek */}
+                {peekItem && !isExpanded && (
+                  <div 
+                    className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30"
+                    key={`peek-${peekItem.id}`}
+                  >
+                    <div 
+                      className="relative rounded-[15px] bg-white dark:bg-zinc-950 overflow-hidden"
+                      style={{ maxHeight: '70px' }} // Strict height limit
+                    >
+                      <div className="relative p-4">
+                        {/* Title only */}
+                        <h4 className="font-normal dark:text-zinc-100 truncate">
+                          {peekItem.title.startsWith("Update") ? (
+                            <span style={{ color: '#61AAF2' }}>{peekItem.title}</span>
+                          ) : peekItem.title.startsWith("WIP") ? (
+                            <span style={{ color: '#EBDBBC' }}>{peekItem.title}</span>
+                          ) : peekItem.title.startsWith("Backlog") ? (
+                            <span style={{ color: '#CC785C' }}>{peekItem.title}</span>
+                          ) : (
+                            peekItem.title
+                          )}
+                        </h4>
+                        
+                        {/* First ~10% of content */}
+                        <div 
+                          className="text-zinc-600 dark:text-zinc-300 whitespace-nowrap overflow-hidden text-ellipsis opacity-80 text-sm" 
+                          style={{ maxWidth: '100%' }}
+                        >
+                          {peekItem.description.substring(0, 50).replace(/\n/g, ' ')}...
+                        </div>
+                        
+                        {/* Gradient overlay to cut off abruptly */}
+                        <div 
+                          className="absolute bottom-0 left-0 right-0 h-[40px] bg-gradient-to-t from-white dark:from-zinc-950 to-transparent"
+                          style={{ opacity: 0.9 }}
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
               <button
                 onClick={() => setIsExpanded(!isExpanded)}
-                className="mt-4 text-sm text-zinc-500 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-200 transition-colors duration-200"
+                className="mt-4 text-sm text-zinc-600 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-zinc-100 transition-colors duration-200"
               >
                 {isExpanded ? "--- collapse ---" : "+++ expand +++"}
               </button>
@@ -265,6 +315,15 @@ export default function Personal() {
           )
         })()}
       </motion.section>
+
+      <motion.section
+        variants={VARIANTS_SECTION}
+        transition={TRANSITION_SECTION}
+        data-parallax-speed="1.5"
+      >
+        <PreviousWorkSection items={PREVIOUS_WORK} />
+      </motion.section>
+      
 
       {/* Blog section commented out temporarily
       <motion.section
@@ -308,8 +367,8 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-5 text-lg font-medium">Connect</h3>
-        <p className="mb-5 text-zinc-600 dark:text-zinc-400">
+        <h3 className="mb-5 text-2xl font-medium">Connect</h3>
+        <p className="mb-5 text-zinc-700 dark:text-zinc-300">
           Feel free to contact me at{' '}
           <a className="underline dark:text-zinc-300" href={`mailto:${EMAIL}`}>
             {EMAIL}

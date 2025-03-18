@@ -250,16 +250,14 @@ export default function Personal() {
                     />
                     <div className="relative h-full w-full rounded-[15px] bg-white p-4 dark:bg-zinc-950">
                       <div className="relative w-full">
-                        <h4 className="font-normal dark:text-zinc-100">
-                          {item.title.startsWith("Update") ? (
-                            <span style={{ color: '#61AAF2' }}>{item.title}</span>
-                          ) : item.title.startsWith("WIP") ? (
-                            <span style={{ color: '#EBDBBC' }}>{item.title}</span>
-                          ) : item.title.startsWith("Backlog") ? (
-                            <span style={{ color: '#CC785C' }}>{item.title}</span>
-                          ) : (
-                            item.title
-                          )}
+                        <h4 className={`font-normal truncate ${
+                          item.title.startsWith("WIP") 
+                            ? "text-[#EBDBBC] dark:text-[#EBDBBC]" 
+                            : item.title.startsWith("Backlog") 
+                              ? "text-[#CC785C] dark:text-[#CC785C]" 
+                              : "text-[#61AAF2] dark:text-[#61AAF2]"
+                        }`}>
+                          {item.title}
                         </h4>
                         <div className="text-zinc-600 dark:text-zinc-300 whitespace-pre-line" 
                              dangerouslySetInnerHTML={{ __html: item.description.replace(/\n/g, '<br />') }}>
@@ -281,18 +279,15 @@ export default function Personal() {
                     >
                       <div className="relative p-4">
                         {/* Title only */}
-                        <h4 className="font-normal dark:text-zinc-100 truncate">
-                          {peekItem.title.startsWith("Update") ? (
-                            <span style={{ color: '#61AAF2' }}>{peekItem.title}</span>
-                          ) : peekItem.title.startsWith("WIP") ? (
-                            <span style={{ color: '#EBDBBC' }}>{peekItem.title}</span>
-                          ) : peekItem.title.startsWith("Backlog") ? (
-                            <span style={{ color: '#CC785C' }}>{peekItem.title}</span>
-                          ) : (
-                            peekItem.title
-                          )}
+                        <h4 className={`font-normal truncate ${
+                          peekItem.title.startsWith("WIP") 
+                            ? "text-[#EBDBBC] dark:text-[#EBDBBC]" 
+                            : peekItem.title.startsWith("Backlog") 
+                              ? "text-[#CC785C] dark:text-[#CC785C]" 
+                              : "text-[#61AAF2] dark:text-[#61AAF2]"
+                        }`}>
+                          {peekItem.title}
                         </h4>
-                        
                         {/* First ~10% of content */}
                         <div 
                           className="text-zinc-600 dark:text-zinc-300 whitespace-nowrap overflow-hidden text-ellipsis opacity-80 text-sm" 

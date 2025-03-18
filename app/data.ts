@@ -53,58 +53,84 @@ export const PROJECTS: Project[] = [
 
 export const SNAPSHOT: Snapshot[] = [
   {
-    title: "Backlog: Ideate Update 11",
+    title: "Backlog | Ideate Update 16",
     description: "The initial <strong>Idea Concept</strong> to purchase the domain and learn to setup a local environment, Vercel, and GitHub workflow to deploy was completed on the first day. I then spent some time working through various additional technical functionality for self-interest and to continue showing technical learning.\n\nSince I have applied for the Strategic Product Management position, I am now going to take a step back from the demonstration of quickly learning technical implementation details to showcase more holistic and intentional strategic product management capabilities.\n\nAfter discussing the importance of AI safety and ethics I will:\n1.) Within v2, display past work, tools, and frameworks used for strategic product management\n2.) Begin v3. A prototype. I will showcase managing the strategy of a real product for Anthropic. With my background, I will focus on Anthropic's Economic Index and display systematically going through the process as if I were working within a collaborative team.",
+    id: "snapshot16",
+  },
+  {
+    title: "WIP Update 15: Discuss importance of AI safety and Ethics",
+    description: "Writing narrative",
+    id: "snapshot15",
+  },
+  {
+    title: "3/17 Update 14: Replicating animation and component functionality",
+    description: "Add cover letter and resume links. Use styles and motions from existing codebase",
+    id: "snapshot14",
+  },
+  {
+    title: "3/16 Update 13: Create new component and update Typescript files",
+    description: "Add PreviousWorkSection with past products, projects, and startup company experience",
+    id: "snapshot13",
+  },
+  {
+    title: "3/15 Update 12: Organize branches and break code to stress test",
+    description: "Backup project locally. Create recovery branch. Force commits, resolve merge conflicts, and recover deleted repos",
+    id: "snapshot12",
+  },
+
+  {
+    title: "3/14 Update 11: Add Expand/Collapse functionality",
+    description: "Work with Claude Code for better UI/UX.",
     id: "snapshot11",
   },
   {
-    title: "WIP Update 10: Discuss importance of AI safety and Ethics",
-    description: "Writing narrative",
+    title: "3/12 Update 10: Update components and addional Typescript files. Add analytics",
+    description: "Utilize Claude Code to better understand codebase. Add tel: and sms: functionality (Edit: removed per Claude's recommendation)",
     id: "snapshot10",
   },
   {
-    title: "Update 9: Add new component, animation, and analytics",
-    description: "Continued to work with Claude Code. Added Previous Work section with a few products and startup founders I've worked with.",
+    title: "3/12 Update 9: Update animations and content",
+    description: "Update motion-primitive animations and other styling in Typescript files. Add Anthropic accent colors. Don't change the entire color palette after discussing with Claude that it would probably raise some ethical concerns with trademark/brand identity and potential confusion. Completely understandable",
     id: "snapshot9",
   },
   {
-    title: "Update 8: Update Typescript files and styling",
-    description: "Updated motion-primitive animations and other styling in Typescript files. Added Anthropic accent colors, but didn't change the entire color palette after discussing with Claude that it would probably raise some ethical concerns with trademark/brand identity and potential confusion. Completely understandable",
+    title: "3/11 Update 8: Update Typescript files",
+    description: "Update Learning Snapshots for better readability. Learn additional Git commands and functionality",
     id: "snapshot8",
   },
   {
-    title: "Update 7: Claude Code",
-    description: "On Windows PC today, so setup WSL. Generated Anthropic API key and setup Claude Code. Holding off on integrating into VS Code. Made first changes with Claude Code: changed constants, variables, text, commented out the blog and committed updates",
+    title: "3/10 Update 7: Incorporate Claude Code",
+    description: "On Windows PC today—setup WSL. Generate Anthropic API key and setup Claude Code. Hold off on VS Code integration for now. Make first changes with Claude Code: update constants, variables, text, comment out the blog and commit",
     id: "snapshot7",
   },
   {
-    title: "Update 6: When to take a breather",
-    description: "Ran into some npm Git, Next.js, command-line and environment file issues while trying to setup MongoDB with a v3. A database isn't critical right now—decided to overwrite v2. Wanted at least a small win—completed some easier tasks: updated favicon, and created custom HTML email sig using /public to host SVG icons",
+    title: "3/7 Update 6: When to take a breather",
+    description: "Start to add MongoDB with another Vercel boilerplate. Work through npm, Git, Next.js, command-line, and environment file issues. Since a database isn't critical right now, change course. Overwrite v2. Achieve at least a small win—complete simpler tasks: update favicon, and create custom HTML email sig. Use /public to host SVG icons",
     id: "snapshot6",
   },
   {
-    title: "Update 5: Folders, files, and functions",
-    description: "Reviewed pages, public, styles, components, package.json and navigated making updates to mainly Typescript files. Learning more about Next.js and Tailwind. Changed some initial text from boilerplate. Added Anthropic's mission to footer",
+    title: "3/7 Update 5: Folders, files, and functions",
+    description: "Review /app, /data, /footer, /header, /layout, /page, /public, /components, /package.json, and review CSS styles. Update strictly string/text in Typescript files. Learn more about Next.js and Tailwind. Add Anthropic's mission to footer",
     id: "snapshot5",
   },
   {
-  title: "Update 4: Packages and dependencies",
-  description: "Learned difference between local and global packages. Resolved depency issues",
-  id: "snapshot4",
+    title: "3/6 Update: Packages and dependencies",
+    description: "Learn difference between local and global packages. Resolve depency issues",
+    id: "snapshot4",
   },
   {
-    title: "Update 3: Git workflows",
-    description: "Moved static site to new v1 Vercel project and created v1 branch in GitHub to keep versioning records. Kept main branch for most updated project. Learned clone, add, commmit, push flow for v2 on Vercel and GitHub",
+    title: "3/6 Update 3: Git workflows",
+    description: "Move static site to new v1 Vercel project and create v1 branch in GitHub to keep versioning records. Keep main branch for most update-to-date project. Learn clone, add, commmit, push flow for v2 on Vercel and GitHub",
     id: "snapshot3",
   },
   {
-    title: "Update 2: Email forward",
-    description: "Set ImprovMX & added SPF records in GoDaddy to setup Gmail's SMTP for personal domain",
+    title: "3/5 Update 2: Email forward",
+    description: "Set ImprovMX & add SPF records in GoDaddy to setup Gmail SMTP for personal domain",
     id: "snapshot2",
   },  
   {
-    title: "Update 1: Environment setup, local host, and deploy",
-    description: "Setup domain via Cloudflare, deployed a boilerplate static project via Vercel, updated DNS and verified SSL. Setup GitHub, installed Git, node.js, etc, and setup VS Code. Learned to deploy and test localhost",
+    title: "3/4 Update 1: Environment setup, local host, and deploy",
+    description: "Setup domain via Cloudflare. Deploy boilerplate static project via Vercel. Update DNS and verify SSL. Setup GitHub, install Git, node.js, etc, and setup VS Code. Learn to deploy and test localhost",
     id: "snapshot1",
   },
 ]

@@ -94,7 +94,7 @@ export default function PreviousWorkSection({ items }: PreviousWorkProps) {
 
   return (
     <div>
-      <h3 className="mb-5 text-2xl font-medium">Previous Work: A few from 50+</h3>
+      <h3 className="mb-5 text-2xl font-medium">Previous Work Samples</h3>
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
         {displayItems.map((item) => (
           <div key={item.id} className="space-y-2">

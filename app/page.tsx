@@ -250,7 +250,7 @@ export default function Personal() {
                     />
                     <div className="relative h-full w-full rounded-[15px] bg-white p-4 dark:bg-zinc-950">
                       <div className="relative w-full">
-                        <h4 className={`font-normal truncate ${
+                        <h4 className={`font-normal break-words ${
                           item.title.startsWith("WIP") 
                             ? "text-[#EBDBBC] dark:text-[#EBDBBC]" 
                             : item.title.startsWith("Backlog") 
@@ -279,7 +279,7 @@ export default function Personal() {
                     >
                       <div className="relative p-4">
                         {/* Title only */}
-                        <h4 className={`font-normal truncate ${
+                        <h4 className={`font-normal break-words ${
                           peekItem.title.startsWith("WIP") 
                             ? "text-[#EBDBBC] dark:text-[#EBDBBC]" 
                             : peekItem.title.startsWith("Backlog") 

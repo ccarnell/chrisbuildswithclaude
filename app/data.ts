@@ -34,10 +34,10 @@ type SocialLink = {
 
 export const PROJECTS: Project[] = [
   {
-    name: 'Version 2 (current version)',
+    name: 'Version 2',
     description:
       'Deployed new Vercel boilerplate. Began working with Next.js, Typescript, MongoDB, and setup Claude Code via Anthropic API. Gave it some fancy clothes before submitting my resume.',
-    link: 'https://chrisbuildswithclaude.com',
+    link: '',
     video: '/v2-chrisbuildswithclaude-project-image.webp',
     id: 'project2',
   },
@@ -53,13 +53,18 @@ export const PROJECTS: Project[] = [
 
 export const SNAPSHOT: Snapshot[] = [
   {
-    title: "Backlog | Ideate Update 16",
+    title: "Backlog | Ideate Update X",
     description: "The initial <strong>Idea Concept</strong> to purchase the domain and learn to setup a local environment, Vercel, and GitHub workflow to deploy was completed on the first day. I then spent some time working through various additional technical functionality for self-interest and to continue showing technical learning.\n\nSince I have applied for the Strategic Product Management position, I am now going to take a step back from the demonstration of quickly learning technical implementation details to showcase more holistic and intentional strategic product management capabilities.\n\nAfter discussing the importance of AI safety and ethics I will:\n1.) Within v2, display past work, tools, and frameworks used for strategic product management\n2.) Begin v3. A prototype. I will showcase managing the strategy of a real product for Anthropic. With my background, I will focus on Anthropic's Economic Index and display systematically going through the process as if I were working within a collaborative team.",
+    id: "snapshot17",
+  },
+  {
+    title: "WIP Update 16: Discuss importance of AI safety and Ethics",
+    description: "Writing narrative",
     id: "snapshot16",
   },
   {
-    title: "WIP Update 15: Discuss importance of AI safety and Ethics",
-    description: "Writing narrative",
+    title: "3/18 Update 15: Mobile responsiveness and Previous Work Samples",
+    description: "Updated the view to be more friendly on mobile and added a couple more work samples",
     id: "snapshot15",
   },
   {
@@ -115,7 +120,7 @@ export const SNAPSHOT: Snapshot[] = [
   },
   {
     title: "3/6 Update: Packages and dependencies",
-    description: "Learn difference between local and global packages. Resolve depency issues",
+    description: "Learn difference between local and global packages. Resolve dependency issues",
     id: "snapshot4",
   },
   {
@@ -178,6 +183,20 @@ export const PREVIOUS_WORK: PreviousWork[] = [
     imageUrl: "/youth-coding-league-previous-work-screenshot.webp",
     externalUrl: "https://www.youthcodingleague.com/"
   },
+  {
+    id: "previouswork7",
+    title: "Vizient",
+    description: "Developed training program for nation's largest healthcare GPO",
+    imageUrl: "/vizient-previous-work-screenshot.webp",
+    externalUrl: "https://www.vizientinc.com/"
+  },
+  {
+    id: "previouswork8",
+    title: "Supreme Rice",
+    description: "Real-time ticketing and reconciliation for rice harvesting logistics",
+    imageUrl: "/supreme-rice-previous-work-screenshot.webp",
+    externalUrl: "https://supremerice.com/"
+  }
 ]
 
 export const BLOG_POSTS: BlogPost[] = [

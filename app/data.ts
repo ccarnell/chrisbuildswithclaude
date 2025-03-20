@@ -34,7 +34,15 @@ type SocialLink = {
 
 export const PROJECTS: Project[] = [
   {
-    name: 'Version 2',
+    name: 'Version 0.21 (new page)',
+    description:
+      'Added AI Safety & Ethics page to showcase product management methodology with a 14-day exploration project focusing on AI safety principles, applications, and governance frameworks.',
+    link: '/ai-safety-ethics',
+    video: '/ai-safety-and-ethics-project-image.webp',
+    id: 'project3',
+  },
+  {
+    name: 'Version 0.2 (home page)',
     description:
       'Deployed new Vercel boilerplate. Began working with Next.js, Typescript, MongoDB, and setup Claude Code via Anthropic API. Gave it some fancy clothes before submitting my resume.',
     link: '',
@@ -42,7 +50,7 @@ export const PROJECTS: Project[] = [
     id: 'project2',
   },
   {
-    name: 'Version 1',
+    name: 'Version 0.1',
     description:
       'Simply deployed my first Next.js app via Vercel to hosted domain purchased through Cloudflare to learn programming environment setup and GitHub workflow. Moving on to v2 quickly.',
     link: 'https://v1.chrisbuildswithclaude.com',
@@ -59,7 +67,7 @@ export const SNAPSHOT: Snapshot[] = [
   },
   {
     title: "WIP Update 16: Discuss importance of AI safety and Ethics",
-    description: "Writing narrative",
+    description: "Structuring project",
     id: "snapshot16",
   },
   {

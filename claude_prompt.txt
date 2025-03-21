@@ -1,10 +1,1 @@
-I notice two issues with my AI Safety & Ethics page:
-1. The width is still constrained despite having a custom layout.tsx file
-2. There's a duplicate header showing "Chris Carnell, Demonstration Project v2.0" twice
-
-Please examine my existing /app/ai-safety-ethics/layout.tsx file and modify it to:
-1. Properly extend the root layout without duplicating header content
-2. Override any width constraints (max-width classes, container divs, etc.)
-3. Maintain the overall design aesthetic while allowing the page to use more horizontal space
-
-Show how the layout.tsx file should be structured to correctly inherit from the parent layout while overriding only the width constraints. Explain which parts of the parent layout should be kept and which should be replaced.
+Claude Code prompts

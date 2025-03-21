@@ -333,238 +333,209 @@ export default function AiSafetyEthics() {
     { 
       day: 1, 
       title: 'Project Setup', 
-      status: 'in-progress',
+      status: 'completed',
       tasks: [
         {
           id: 'task1-1',
-          title: 'Structure 1',
+          title: 'Framework 1',
           description: 'Setup tracking and visualization tool in Next.js project for transparency.'
         },
         {
           id: 'task1-2',
-          title: 'Structure 2',
-          description: 'Create Timeline component showing 14-day plan.'
+          title: 'Planning 1',
+          description: 'Create Timeline component with Milestones and Tasks showing 8-day plan.'
         },
         {
           id: 'task1-3',
-          title: 'Structure 3',
+          title: 'Framework 2',
           description: 'Add very simple kanban board for task visualization.'
         },
         {
           id: 'task1-4',
-          title: 'Structure 4',
+          title: 'Framework 3',
           description: 'Deploy initial version to website.'
         },
         {
           id: 'task1-5',
-          title: 'Scope 1',
-          description: 'Define project scope, constraints, and success criteria.'
+          title: 'Planning 2',
+          description: 'Determine success criteria.'
         },
         {
           id: 'task1-6',
-          title: 'Scope 2',
-          description: 'Establish tripwire(s) and bookend(s) triggers.'
+          title: 'Operations 1',
+          description: 'Create project processes and workflows.'
         },
         {
           id: 'task1-7',
-          title: 'Scope 3',
-          description: 'Consensus on reflection time-period and methodology for end of project.'
+          title: 'Planning 3',
+          description: 'Define tripwires and bookends for triggering events.'
+        },
+        {
+          id: 'task1-8',
+          title: 'Planning 4',
+          description: 'Set reflection methodology.'
         }
       ]
     },
     { 
       day: 3, 
-      title: 'Define AI Safety Principles', 
-      status: 'not-started',
+      title: 'Discovery & Research', 
+      status: 'in-progress',
       tasks: [
         {
           id: 'task2-1',
-          title: 'Research existing AI safety frameworks',
-          description: 'Compile and analyze prominent frameworks from academic and industry sources.'
+          title: 'Research 1',
+          description: 'Review AI safety and ethical traits critical to Anthropic.'
         },
         {
           id: 'task2-2',
-          title: 'Identify key theoretical concepts',
-          description: 'Extract foundational principles that appear across multiple frameworks.'
+          title: 'Research 2',
+          description: 'Research current societal dimensions and governance approaches.'
         },
         {
           id: 'task2-3',
-          title: 'Map intersection of safety and ethics concerns',
-          description: 'Create visualization showing relationship between technical safety and ethical considerations.'
+          title: 'Evaluate 1',
+          description: 'Document key principles from major, reputable and authoritative organizations.'
         },
         {
           id: 'task2-4',
-          title: 'Draft working definitions',
-          description: 'Develop clear, operational definitions for key terms and concepts.'
+          title: 'Evaluate 2',
+          description: 'Conduct discussions with research teams.'
         },
         {
           id: 'task2-5',
-          title: 'Identify measurement challenges',
-          description: 'Document difficulties in quantifying and evaluating abstract safety concepts.'
+          title: 'Evaluate 3',
+          description: 'Conduct discussions with policy teams.'
+        },
+        {
+          id: 'task2-6',
+          title: 'Evaluate 4',
+          description: 'Conduct discussions with engineering teams.'
+        },
+        {
+          id: 'task2-7',
+          title: 'Discovery 1',
+          description: 'Identify problems specific to developers and calculate TAM/SAM/SOM.'
+        },
+        {
+          id: 'task2-8',
+          title: 'Discovery 2',
+          description: 'Identify problems specific to organizational leaders and calculate TAM/SAM/SOM.'
+        },
+        {
+          id: 'task2-9',
+          title: 'Disocvery 3',
+          description: 'Identify problems specific to policymakers and calculate TAM/SAM/SOM.'
         }
       ]
     },
     { 
-      day: 5, 
-      title: 'Map Effectiveness Scale', 
+      day: 4 & 5, 
+      title: 'Business Modeling & Problem/Solution Fit', 
       status: 'not-started',
       tasks: [
         {
           id: 'task3-1',
-          title: 'Define effectiveness criteria',
-          description: 'Establish measurable indicators for evaluating AI safety measures.'
+          title: 'Synthesize 1',
+          description: 'Analyze customer segments with archetypes.'
         },
         {
           id: 'task3-2',
-          title: 'Create evaluation rubric',
-          description: 'Develop scoring system and assessment methodology.'
+          title: 'Synthesize 2',
+          description: 'Analyze customer hiring, firing, and tradeoff criteria.'
         },
         {
           id: 'task3-3',
-          title: 'Identify benchmark examples',
-          description: 'Select representative cases demonstrating different effectiveness levels.'
+          title: 'Modeling 1',
+          description: 'Sketch lean canvas.'
         },
         {
           id: 'task3-4',
-          title: 'Test scale with historical cases',
-          description: 'Apply effectiveness scale to documented AI incidents and safety successes.'
+          title: 'Modeling 2',
+          description: 'Run fermi estimates for revenue models.'
         },
         {
           id: 'task3-5',
-          title: 'Refine scale based on feedback',
-          description: 'Incorporate stakeholder input to improve evaluation framework.'
+          title: 'Modeling 3',
+          description: 'Identify potential business model innovations.'
         }
       ]
     },
     { 
-      day: 8, 
-      title: 'Case Studies Analysis', 
+      day: 6-7, 
+      title: 'Rapid Prototype', 
       status: 'not-started',
       tasks: [
         {
           id: 'task4-1',
-          title: 'Identify representative case studies',
-          description: 'Select diverse examples spanning different AI applications and safety challenges.'
+          title: 'Solution Design 1',
+          description: 'After determining best problem/customer - flesh out user story board and journey map.'
         },
         {
           id: 'task4-2',
-          title: 'Apply effectiveness scale to cases',
-          description: 'Evaluate selected cases using the developed measurement framework.'
+          title: 'Customer Development 1',
+          description: 'Validate flows with potential early adopters - make adjustments as necessary.'
         },
         {
           id: 'task4-3',
-          title: 'Document success patterns',
-          description: 'Identify common elements in highly effective safety implementations.'
+          title: 'Customer Development 2',
+          description: 'Task groom and narrow in on minimum desireable viable feasiable product. Move all other cards to below v0.1.'
         },
         {
           id: 'task4-4',
-          title: 'Analyze failure modes',
-          description: 'Categorize and examine patterns in safety breakdowns.'
+          title: 'Solution Design 2',
+          description: 'Gather feedback from engineering, research, and policy teams.'
         },
         {
           id: 'task4-5',
-          title: 'Extract practical lessons',
-          description: 'Derive actionable insights from case analysis.'
-        }
+          title: 'Solution Design 3',
+          description: 'Determine tools necessary for MDVFP.'
+        },
+        {
+          id: 'task4-6',
+          title: 'Solution Design 4',
+          description: 'Build prototype v0.1.'
+        },
       ]
     },
     { 
-      day: 11, 
-      title: 'Governance Framework', 
+      day: 8, 
+      title: 'Solution/Customer & Product/Market Fit', 
       status: 'not-started',
       tasks: [
         {
           id: 'task5-1',
-          title: 'Research existing governance models',
-          description: 'Survey approaches from technology, healthcare, finance and other high-risk domains.'
+          title: 'Go-to-market 1',
+          description: 'Work with GTM to determine resource capacity.'
         },
         {
           id: 'task5-2',
-          title: 'Identify key governance components',
-          description: 'Outline essential elements of effective AI safety governance.'
+          title: 'Go-to-market 2',
+          description: 'Develop initial testing plan and required feedback.'
         },
         {
           id: 'task5-3',
-          title: 'Draft layered governance framework',
-          description: 'Design model addressing organizational, technical and procedural layers.'
+          title: 'Go-to-market 3',
+          description: 'Determine pass/go, successful/failure, and/or tripwire/bookend for trial.'
         },
         {
           id: 'task5-4',
-          title: 'Map stakeholder responsibilities',
-          description: 'Define roles and accountabilities across the governance structure.'
+          title: 'Operations 1',
+          description: 'Complete self-assessments and peer reviews with Effectiveness Scale.'
         },
         {
           id: 'task5-5',
-          title: 'Develop implementation roadmap',
-          description: 'Create phased approach for adopting governance framework.'
-        }
+          title: 'Operations 2',
+          description: 'Begin reflection with evaluating what went well and areas for improvement.'
+        },
+        {
+          id: 'task5-5',
+          title: 'Operations 3',
+          description: 'Evaluate assessments and review and create plan of action to update Standard Operating Procedures.'
+        },
       ]
     },
-    { 
-      day: 13, 
-      title: 'Final Synthesis', 
-      status: 'not-started',
-      tasks: [
-        {
-          id: 'task6-1',
-          title: 'Integrate findings across work streams',
-          description: 'Connect insights from principles, effectiveness scale, case studies and governance.'
-        },
-        {
-          id: 'task6-2',
-          title: 'Draft comprehensive report',
-          description: 'Compile findings, methodology, analysis and recommendations.'
-        },
-        {
-          id: 'task6-3',
-          title: 'Create executive summary',
-          description: 'Prepare concise overview highlighting key insights and actionable recommendations.'
-        },
-        {
-          id: 'task6-4',
-          title: 'Develop presentation materials',
-          description: 'Design slides and supporting visuals for stakeholder communication.'
-        },
-        {
-          id: 'task6-5',
-          title: 'Prepare implementation guidelines',
-          description: 'Create practical guidance for applying findings in real-world contexts.'
-        }
       ]
-    },
-    { 
-      day: 14, 
-      title: 'Reflection', 
-      status: 'not-started',
-      tasks: [
-        {
-          id: 'task7-1',
-          title: 'Conduct project retrospective',
-          description: 'Evaluate process, outcomes and lessons learned.'
-        },
-        {
-          id: 'task7-2',
-          title: 'Document limitations and constraints',
-          description: 'Acknowledge boundaries of findings and remaining open questions.'
-        },
-        {
-          id: 'task7-3',
-          title: 'Identify future research directions',
-          description: 'Outline promising areas for additional exploration.'
-        },
-        {
-          id: 'task7-4',
-          title: 'Share findings with broader community',
-          description: 'Prepare materials for knowledge sharing beyond immediate stakeholders.'
-        },
-        {
-          id: 'task7-5',
-          title: 'Develop continued learning plan',
-          description: 'Create structure for ongoing monitoring and incorporation of new insights.'
-        }
-      ]
-    }
-  ]
 
   return (
     <motion.main
@@ -580,8 +551,8 @@ export default function AiSafetyEthics() {
         className="text-center"
       >
         <h1 className="text-4xl md:text-5xl font-bold mb-4">AI Safety & Ethics</h1>
-        <p className="text-lg md:text-xl text-zinc-700 dark:text-zinc-300 max-w-3xl mx-auto">
-          A 14-day journey through AI safety principles, applications, and governance frameworks
+        <p className="text-lg md:text-xl text-zinc-700 text-decoration: dark:text-zinc-300 max-w-3xl mx-auto">
+        An 8-day journey to prototype for AI safety engineering, applications, and governance
         </p>
       </motion.section>
       
@@ -608,7 +579,7 @@ export default function AiSafetyEthics() {
                   </div>
                   <div>
                     <dt className="font-medium text-zinc-900 dark:text-zinc-100">Purpose</dt>
-                    <dd className="text-zinc-700 dark:text-zinc-300">To discuss and showcase AI safety principles and their practical applications</dd>
+                    <dd className="text-zinc-700 dark:text-zinc-300">Review and solve for AI safety and ethics applications</dd>
                   </div>
                   <div>
                     <dt className="font-medium text-zinc-900 dark:text-zinc-100">Target</dt>
@@ -628,7 +599,7 @@ export default function AiSafetyEthics() {
                   </div>
                   <div>
                     <dt className="font-medium text-zinc-900 dark:text-zinc-100">Bookend</dt>
-                    <dd className="text-zinc-700 dark:text-zinc-300">Adverse: Inconclusive findings require transparency and open questions for areas needing further research.<br /><br />Success: Identification of a problem worth developing a lean canvans, business modeling, fermi estimate for feasibility</dd>
+                    <dd className="text-zinc-700 dark:text-zinc-300">Adverse: Inconclusive findings require transparency and open questions for areas needing further research.<br />Success: Identification of a problem worth developing a lean canvans, business modeling, fermi estimate for feasibility</dd>
                   </div>
                 </dl>
               </div>
@@ -638,26 +609,34 @@ export default function AiSafetyEthics() {
                 {/* Objectives */}
                 <div>
                   <h3 className="text-lg font-medium mb-4">Key Objectives</h3>
-                  <ul className="space-y-2 text-zinc-700 dark:text-zinc-300">
+                  <ul className="space-y-1 text-zinc-700 dark:text-zinc-300">
                     <li className="flex items-start">
                       <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
-                      <span>Establish theoretical foundations of AI safety and ethics</span>
+                      <span>Research AI safety and ethics' foundations and governance</span>
                     </li>
                     <li className="flex items-start">
                       <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
-                      <span>Analyze practical applications</span>
+                      <span>Explore dev, org leadership, and policymaker domains</span>
                     </li>
                     <li className="flex items-start">
                       <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
-                      <span>Apply the Effectiveness Scale</span>
+                      <span>Conduct Customer Discovery and competitive analysis</span>
                     </li>
                     <li className="flex items-start">
                       <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
-                      <span>Explore governance frameworks</span>
+                      <span>Calculate TAM, SAM, SOM and identify early adopters</span>
                     </li>
                     <li className="flex items-start">
                       <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
-                      <span>Synthesize Insights</span>
+                      <span>Identify, quantify, design, and build MDVFP</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
+                      <span>Introduce Effectiveness Scale</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
+                      <span>Work with GTM to for initial testing</span>
                     </li>
                   </ul>
                 </div>
@@ -665,22 +644,34 @@ export default function AiSafetyEthics() {
                 {/* Methodology */}
                 <div>
                   <h3 className="text-lg font-medium mb-4">Methodologies</h3>
-                  <ul className="space-y-2 text-zinc-700 dark:text-zinc-300">
+                  <ul className="space-y-1 text-zinc-700 dark:text-zinc-300">
                     <li className="flex items-start">
                       <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
-                      <span>ABC123 prioritization</span>
+                      <span>Customer Development with Lean Canvas</span>
                     </li>
                     <li className="flex items-start">
                       <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
-                      <span>Story point complexity estimation</span>
+                      <span>Fermi estimates for revenue modeling</span>
                     </li>
                     <li className="flex items-start">
                       <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
-                      <span>Kanban workflow management</span>
+                      <span>Ten Types of Innovation Frameworks</span>
                     </li>
                     <li className="flex items-start">
                       <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
-                      <span>14-day sprint</span>
+                      <span>Strategic Group Analysis for competitive landscape</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
+                      <span>User Stories and Journey Mapping for Solution Design</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
+                      <span>Kanban for workflow management</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
+                      <span>Continuous Innovation for rapid prototying and feedback</span>
                     </li>
                   </ul>
                 </div>

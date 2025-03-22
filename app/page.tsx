@@ -19,7 +19,7 @@ import {
   PROJECTS,
   SNAPSHOT,
   PREVIOUS_WORK,
-  BLOG_POSTS,
+  /*BLOG_POSTS,*/
   EMAIL,
   SOCIAL_LINKS,
   PDF_LINKS
@@ -161,18 +161,12 @@ export default function Personal() {
       >
         <div className="flex-1">
           <p className="list-disc ml-4 text-zinc-700 dark:text-zinc-300 whitespace-pre-line">
-          <strong>March 4th, 2025 at 4:41pm CST:</strong> Idea concept
-          <br/><strong>March 11, 2025 at 6:13pm CST:</strong> Resume submitted
-          </p>
-          
-          <div className="mt-2 mb-4">
-            <PdfViewerSection pdfLinks={PDF_LINKS} />
-          </div>
-          
-          <p className="list-disc ml-4 text-zinc-700 dark:text-zinc-300 whitespace-pre-line">
           Hi Anthropic.<br />
           This was built specifically for and shared only with <strong><span style={{ color: '#CC785C' }}> you.</span></strong><br />
           <br />Until March 4th, despite over a decade in tech, my resume and GitHub didn't require much past "Hello World!"<br />
+          
+          <br /><strong>March 4th, 2025 at 4:41pm CST:</strong> Idea concept
+          <br /><strong>March 11, 2025 at 6:13pm CST:</strong> Resume submitted<br />
           <br />I've worked with non-technical founders to Fortune 500s in strategic product and program management—from the whiteboard to the White House.<br />
           <br />
           This real-time learning project is to align with Anthropic starting now, rather than waiting. This is my commitment to:<br />
@@ -191,38 +185,96 @@ export default function Personal() {
         transition={TRANSITION_SECTION}
       >
         <h3 className="mb-5 text-2xl font-medium">Demonstration Projects</h3>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-          {PROJECTS.map((project) => (
-            <div key={project.name} className="space-y-2">
-              <div className="relative rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
-                <ProjectVideo src={project.video} />
+        {(() => {
+          const [isExpanded, setIsExpanded] = useState(false)
+          
+          // Define how many projects to show initially
+          const visibleCount = 2;
+          
+          // Create separate arrays for fully visible and peek item
+          const fullyVisibleProjects = isExpanded 
+            ? PROJECTS 
+            : PROJECTS.slice(0, visibleCount);
+            
+          // Get next item to show partially (if not expanded)
+          const peekItem = !isExpanded && PROJECTS.length > visibleCount 
+            ? PROJECTS[visibleCount] 
+            : null;
+          
+          return (
+            <>
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                {fullyVisibleProjects.map((project) => (
+                  <div key={project.name} className="space-y-2">
+                    <div className="relative rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
+                      <ProjectVideo src={project.video} />
+                    </div>
+                    <div className="px-1">
+                      {project.link.startsWith('/') ? (
+                        <Link
+                          className="font-base group relative inline-block font-[450] text-zinc-900 dark:text-zinc-50"
+                          href={project.link}
+                        >
+                          {project.name}
+                          <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 transition-all duration-200 group-hover:max-w-full"></span>
+                        </Link>
+                      ) : (
+                        <a
+                          className="font-base group relative inline-block font-[450] text-zinc-900 dark:text-zinc-50"
+                          href={project.link}
+                          target="_blank"
+                        >
+                          {project.name}
+                          <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 transition-all duration-200 group-hover:max-w-full"></span>
+                        </a>
+                      )}
+                      <p className="text-base text-zinc-700 dark:text-zinc-300">
+                        {project.description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
               </div>
-              <div className="px-1">
-                {project.link.startsWith('/') ? (
-                  <Link
-                    className="font-base group relative inline-block font-[450] text-zinc-900 dark:text-zinc-50"
-                    href={project.link}
+              
+              {/* Partial view of next item - just a peek */}
+              {peekItem && !isExpanded && (
+                <div 
+                  className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30"
+                  key={`peek-${peekItem.id}`}
+                >
+                  <div 
+                    className="relative rounded-[15px] bg-white dark:bg-zinc-950 overflow-hidden"
+                    style={{ maxHeight: '160px' }} // Strict height limit
                   >
-                    {project.name}
-                    <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 transition-all duration-200 group-hover:max-w-full"></span>
-                  </Link>
-                ) : (
-                  <a
-                    className="font-base group relative inline-block font-[450] text-zinc-900 dark:text-zinc-50"
-                    href={project.link}
-                    target="_blank"
-                  >
-                    {project.name}
-                    <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 transition-all duration-200 group-hover:max-w-full"></span>
-                  </a>
-                )}
-                <p className="text-base text-zinc-700 dark:text-zinc-300">
-                  {project.description}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
+                    <div className="relative p-4">
+                      {/* Title and partial description */}
+                      <h4 className="font-medium text-zinc-900 dark:text-zinc-100 mb-2">{peekItem.name}</h4>
+                      <p className="text-zinc-600 dark:text-zinc-300 whitespace-nowrap overflow-hidden text-ellipsis opacity-80 text-sm">
+                        {peekItem.description.substring(0, 80)}...
+                      </p>
+                        
+                      {/* Gradient overlay to cut off abruptly */}
+                      <div 
+                        className="absolute bottom-0 left-0 right-0 h-[80px] bg-gradient-to-t from-white dark:from-zinc-950 to-transparent"
+                        style={{ opacity: 0.9 }}
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              )}
+              
+              {/* Only show button if there are more projects to display */}
+              {PROJECTS.length > visibleCount && (
+                <button
+                  onClick={() => setIsExpanded(!isExpanded)}
+                  className="mt-4 text-sm text-zinc-600 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-zinc-100 transition-colors duration-200"
+                >
+                  {isExpanded ? "--- collapse ---" : "+++ expand +++"}
+                </button>
+              )}
+            </>
+          )
+        })()}
       </motion.section>
 
       <motion.section

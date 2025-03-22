@@ -1,6 +1,7 @@
 'use client'
 import { TextEffect } from '@/components/ui/text-effect'
 import Link from 'next/link'
+import { PDF_LINKS } from './data'
 
 export function Header() {
   return (
@@ -25,8 +26,18 @@ export function Header() {
           </TextEffect>
         </Link>
       </div>
-      <div>
-          {/*
+      <div className="flex space-x-3">
+        {PDF_LINKS.map((pdfLink) => (
+          <Link 
+            key={pdfLink.label} 
+            href={pdfLink.path} 
+            className="text-sm py-1 px-3 bg-zinc-100 dark:bg-zinc-800 rounded-full text-zinc-600 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors"
+            target="_blank"
+          >
+            {pdfLink.label}
+          </Link>
+        ))}
+        {/*
           <TextEffect
             preset="fade"
             per="char"

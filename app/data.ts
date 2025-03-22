@@ -34,15 +34,15 @@ type SocialLink = {
 
 export const PROJECTS: Project[] = [
   {
-    name: 'Version 0.21 (new page)',
+    name: 'Version 0.21 (WIP 16)',
     description:
-      'Added AI Safety & Ethics page to showcase product management methodology with a 14-day exploration project focusing on AI safety principles, applications, and governance frameworks.',
+      'Added AI Safety & Ethics page: 8-day strategic product management for AI safety and ethics applications for devs, organizational leaders, and polymakers.',
     link: '/ai-safety-ethics',
     video: '/ai-safety-and-ethics-project-image.webp',
     id: 'project3',
   },
   {
-    name: 'Version 0.2 (home page)',
+    name: 'Version 0.2 (this Home page)',
     description:
       'Deployed new Vercel boilerplate. Began working with Next.js, Typescript, MongoDB, and setup Claude Code via Anthropic API. Gave it some fancy clothes before submitting my resume.',
     link: '',
@@ -66,8 +66,8 @@ export const SNAPSHOT: Snapshot[] = [
     id: "snapshot17",
   },
   {
-    title: "WIP Update 16: Discuss importance of AI safety and Ethics",
-    description: "Structuring project",
+    title: "WIP Update 16: AI Safety & Ethics prototype and prospectus",
+    description: "Currently working on v0.21 Milestones. 👉 <a href='/ai-safety-ethics' class='text-[#EBDBBC] hover:text-[#CC785C] underline transition-colors'>Click here to view the AI Safety & Ethics page</a>",
     id: "snapshot16",
   },
   {
@@ -207,7 +207,7 @@ export const PREVIOUS_WORK: PreviousWork[] = [
   }
 ]
 
-export const BLOG_POSTS: BlogPost[] = [
+/*export const BLOG_POSTS: BlogPost[] = [
   {
     title: 'What is chrisbuildswithclaude.com?',
     description: 'An evergreen, versioned project',
@@ -221,7 +221,7 @@ export const BLOG_POSTS: BlogPost[] = [
     link: '/blog/the-reason-i-exited-the-company-i-co-founded-after-10-years',
     uid: 'blog-2',
   },
-]
+  */
 
 export const SOCIAL_LINKS: SocialLink[] = [
   {

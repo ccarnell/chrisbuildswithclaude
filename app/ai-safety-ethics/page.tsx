@@ -50,15 +50,19 @@ function VerticalTimeline({ startDate, milestones }: VerticalTimelineProps) {
   // Calculate what day of the project we're on (1-indexed)
   const daysSinceStart = Math.floor((today.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)) + 1
   
-  // Find the current milestone (or default to first milestone if before start date)
+  // Find the current milestone (or default to WIP milestone)
   const currentMilestoneIndex = Math.max(
     0,
     milestones.findIndex(m => m.day >= daysSinceStart) - 1
   )
   
-  const [selectedMilestoneIndex, setSelectedMilestoneIndex] = useState(
-    currentMilestoneIndex >= 0 ? currentMilestoneIndex : 0
-  )
+  // Find the "in-progress" milestone index or default to the current one
+  const findInProgressIndex = () => {
+    const wipIndex = milestones.findIndex(m => m.status === 'in-progress')
+    return wipIndex >= 0 ? wipIndex : (currentMilestoneIndex >= 0 ? currentMilestoneIndex : 0)
+  }
+  
+  const [selectedMilestoneIndex, setSelectedMilestoneIndex] = useState(findInProgressIndex)
   
   // For desktop hover functionality
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
@@ -67,10 +71,28 @@ function VerticalTimeline({ startDate, milestones }: VerticalTimelineProps) {
     return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
   }
   
+  // Format day display 
+  const formatDayDisplay = (day: number): string => {
+    return `Day ${day}`
+  }
+  
   // Get date for a specific day
   const getDateForDay = (day: number): string => {
     const date = new Date(startDate)
-    date.setDate(startDate.getDate() + day - 1)
+    // Using a lookup to match specific days to specific dates
+    if (day === 1) { // Day 1 is Mar 21
+      date.setFullYear(2025, 2, 21) // Month is 0-indexed, so 2 = March
+    } else if (day === 3) { // Day 3 is Mar 22
+      date.setFullYear(2025, 2, 22)
+    } else if (day === 4) { // Day 4 is Mar 24
+      date.setFullYear(2025, 2, 24)
+    } else if (day === 6) { // Day 6 is Mar 26
+      date.setFullYear(2025, 2, 26)
+    } else if (day === 8) { // Day 8 is Mar 27
+      date.setFullYear(2025, 2, 27)
+    } else {
+      date.setDate(startDate.getDate() + day - 1)
+    }
     return formatDate(date)
   }
   
@@ -86,7 +108,15 @@ function VerticalTimeline({ startDate, milestones }: VerticalTimelineProps) {
   }
   
   // Determine which index to show (hover takes precedence on desktop)
-  const activeIndex = hoveredIndex !== null ? hoveredIndex : selectedMilestoneIndex
+  // For WIP milestone, we only allow interaction with completed or in-progress milestones
+  const isInteractive = (index: number) => {
+    const status = milestones[index]?.status
+    return status === 'completed' || status === 'in-progress'
+  }
+  
+  const activeIndex = hoveredIndex !== null && isInteractive(hoveredIndex) 
+    ? hoveredIndex 
+    : isInteractive(selectedMilestoneIndex) ? selectedMilestoneIndex : findInProgressIndex()
 
   return (
     <div className="mb-10 w-full">
@@ -95,17 +125,17 @@ function VerticalTimeline({ startDate, milestones }: VerticalTimelineProps) {
         <div className="grid grid-cols-12 gap-6">
           {/* Timeline sidebar - standalone */}
           <div className="col-span-4">
+            <div className="rounded-lg overflow-hidden border border-zinc-200 dark:border-zinc-700">
             {milestones.map((milestone, index) => (
               <div 
                 key={index}
-                onClick={() => index === 0 ? setSelectedMilestoneIndex(index) : null}
-                // Comment out hover functionality to hide tasks
-                // onMouseEnter={() => setHoveredIndex(index)}
-                // onMouseLeave={() => setHoveredIndex(null)}
-                className={`relative mb-3 p-4 rounded-lg cursor-pointer transition-colors duration-200 ${
+                onClick={() => isInteractive(index) ? setSelectedMilestoneIndex(index) : null}
+                onMouseEnter={() => isInteractive(index) ? setHoveredIndex(index) : null}
+                onMouseLeave={() => setHoveredIndex(null)}
+                className={`relative mb-0 p-4 rounded-none ${isInteractive(index) ? 'cursor-pointer' : 'cursor-not-allowed opacity-70'} transition-colors duration-200 bg-white dark:bg-zinc-900 shadow-sm ${
                   index === activeIndex 
-                    ? 'bg-white dark:bg-zinc-900 shadow-sm' 
-                    : 'bg-zinc-100 dark:bg-zinc-800/50'
+                    ? 'ring-2 ring-zinc-200 dark:ring-zinc-700' 
+                    : ''
                 }`}
               >
                 <div className="flex items-start">
@@ -123,7 +153,7 @@ function VerticalTimeline({ startDate, milestones }: VerticalTimelineProps) {
                   {/* Milestone details */}
                   <div className="ml-4">
                     <p className="text-sm text-zinc-500 dark:text-zinc-400">
-                      Day {milestone.day} • {getDateForDay(milestone.day)}
+                      {formatDayDisplay(milestone.day)} • {getDateForDay(milestone.day)}
                     </p>
                     <h4 className={`text-lg font-medium ${
                       index === activeIndex ? 'text-zinc-900 dark:text-zinc-100' : 'text-zinc-700 dark:text-zinc-300'
@@ -134,23 +164,25 @@ function VerticalTimeline({ startDate, milestones }: VerticalTimelineProps) {
                 </div>
               </div>
             ))}
+            </div>
           </div>
           
           {/* Tasks (desktop) - standalone */}
           <div className="col-span-8">
             <div className="bg-white dark:bg-zinc-900 rounded-lg shadow-sm p-6">
-                {/* Tasks header removed as requested */}
-              <div className="space-y-4">
+              
+              {/* Tasks list */}
+              <div className="grid grid-cols-1 gap-4">
                 {/* Ensure we have valid tasks to display */}
                 {activeIndex >= 0 && milestones[activeIndex]?.tasks?.map((task) => (
                   <div 
                     key={task.id}
-                    className="p-4 border border-zinc-200 dark:border-zinc-700 rounded-lg hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors duration-200"
+                    className="flex flex-col h-full p-4 border border-zinc-200 dark:border-zinc-700 rounded-lg hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors duration-200"
                   >
                     <h4 className="font-medium text-zinc-900 dark:text-zinc-100">
                       {task.title}
                     </h4>
-                    <p className="text-zinc-700 dark:text-zinc-300 mt-2 text-sm">
+                    <p className="text-zinc-700 dark:text-zinc-300 mt-2 text-base flex-grow">
                       {task.description}
                     </p>
                   </div>
@@ -171,10 +203,10 @@ function VerticalTimeline({ startDate, milestones }: VerticalTimelineProps) {
             >
               {/* Milestone heading (clickable) */}
               <div 
-                className={`py-4 px-4 cursor-pointer ${
+                className={`py-4 px-4 ${isInteractive(index) ? 'cursor-pointer' : 'cursor-not-allowed opacity-70'} ${
                   index === selectedMilestoneIndex ? 'bg-white dark:bg-zinc-900' : 'bg-zinc-100 dark:bg-zinc-800/50'
                 }`}
-                onClick={() => index === 0 ? setSelectedMilestoneIndex(prevIndex => prevIndex === index ? -1 : index) : null}
+                onClick={() => isInteractive(index) ? setSelectedMilestoneIndex(prevIndex => prevIndex === index ? -1 : index) : null}
               >
                 <div className="flex items-start">
                   {/* Date & milestone circle */}
@@ -191,7 +223,7 @@ function VerticalTimeline({ startDate, milestones }: VerticalTimelineProps) {
                   {/* Milestone details */}
                   <div className="ml-4 flex-1">
                     <p className="text-sm text-zinc-500 dark:text-zinc-400">
-                      Day {milestone.day} • {getDateForDay(milestone.day)}
+                      {formatDayDisplay(milestone.day)} • {getDateForDay(milestone.day)}
                     </p>
                     <h4 className={`text-lg font-medium ${
                       index === selectedMilestoneIndex ? 'text-zinc-900 dark:text-zinc-100' : 'text-zinc-700 dark:text-zinc-300'
@@ -223,16 +255,16 @@ function VerticalTimeline({ startDate, milestones }: VerticalTimelineProps) {
               {/* Tasks (collapsible) */}
               {index === selectedMilestoneIndex && milestone.tasks && (
                 <div className="bg-white dark:bg-zinc-900 p-4 border-t border-zinc-200 dark:border-zinc-700">
-                  <div className="space-y-4">
+                  <div className="grid grid-cols-1 gap-4">
                     {milestone.tasks.map((task) => (
                       <div 
                         key={task.id}
-                        className="p-4 border border-zinc-200 dark:border-zinc-700 rounded-lg hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors duration-200"
+                        className="flex flex-col h-full p-4 border border-zinc-200 dark:border-zinc-700 rounded-lg hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors duration-200"
                       >
                         <h4 className="font-medium text-zinc-900 dark:text-zinc-100">
                           {task.title}
                         </h4>
-                        <p className="text-zinc-700 dark:text-zinc-300 mt-2 text-sm">
+                        <p className="text-zinc-700 dark:text-zinc-300 mt-2 text-base flex-grow">
                           {task.description}
                         </p>
                       </div>
@@ -245,40 +277,6 @@ function VerticalTimeline({ startDate, milestones }: VerticalTimelineProps) {
         </div>
       </div>
 
-      {/* Project Management Section */}
-      <motion.section
-        variants={VARIANTS_SECTION}
-        transition={TRANSITION_SECTION}
-        className="mt-16"
-      >
-        <h2 className="text-2xl font-medium mb-6">Project Management</h2>
-        <div className="flex flex-col items-center justify-center p-10 border-2 border-dashed border-zinc-300 dark:border-zinc-700 rounded-xl">
-          <div className="flex flex-col items-center space-y-4">
-            {/* Retro GIFs stacked vertically */}
-           {/* <img 
-              src="http://textfiles.com/underconstruction/HeartlandPrairie1139notusingconstructionbar.gif" 
-              alt="Under Construction" 
-              className="max-w-full h-auto"
-            />
-            <img 
-              src="http://textfiles.com/underconstruction/HeHeartlandPark2601underconstructionbar9.gif" 
-              alt="Under Construction" 
-              className="max-w-full h-auto"
-            />
-            <img 
-              src="http://textfiles.com/underconstruction/CaCapitolHill1114Under_Construction.gif" 
-              alt="Under Construction" 
-              className="max-w-full h-auto"
-            />
-            <img 
-              src="http://textfiles.com/underconstruction/deafatlanticconstruct16.gif" 
-              alt="Under Construction" 
-              className="max-w-full h-auto"
-            />
-            */}
-          </div>
-        </div>
-      </motion.section>
     </div>
   )
 }
@@ -331,7 +329,7 @@ export default function AiSafetyEthics() {
   // Define our milestones with tasks
   const milestones: Milestone[] = [
     { 
-      day: 1, 
+      day: 1, // Day 1
       title: 'Project Setup', 
       status: 'completed',
       tasks: [
@@ -343,22 +341,17 @@ export default function AiSafetyEthics() {
         {
           id: 'task1-2',
           title: 'Planning 1',
-          description: 'Create Timeline component with Milestones and Tasks showing 8-day plan.'
+          description: 'Finalize Project overview, key objectives, methodologies, collaborators, Tripwire, and Bookend.'
         },
         {
           id: 'task1-3',
           title: 'Framework 2',
-          description: 'Add very simple kanban board for task visualization.'
-        },
-        {
-          id: 'task1-4',
-          title: 'Framework 3',
-          description: 'Deploy initial version to website.'
+          description: 'Deploy initial Product Overview to website.'
         },
         {
           id: 'task1-5',
           title: 'Planning 2',
-          description: 'Determine success criteria.'
+          description: 'Create Project Timeline component, Milestones, and Tasks.'
         },
         {
           id: 'task1-6',
@@ -372,7 +365,7 @@ export default function AiSafetyEthics() {
         },
         {
           id: 'task1-8',
-          title: 'Planning 4',
+          title: 'Planning 3',
           description: 'Set reflection methodology.'
         }
       ]
@@ -400,37 +393,32 @@ export default function AiSafetyEthics() {
         {
           id: 'task2-4',
           title: 'Evaluate 2',
-          description: 'Conduct discussions with research teams.'
+          description: 'Conduct discussions with researching, policy, and engineering teams.'
         },
         {
           id: 'task2-5',
-          title: 'Evaluate 3',
-          description: 'Conduct discussions with policy teams.'
+          title: 'Operations 1',
+          description: 'Create documentation templates for reporting.'
         },
         {
           id: 'task2-6',
-          title: 'Evaluate 4',
-          description: 'Conduct discussions with engineering teams.'
+          title: 'Operations 2',
+          description: 'Establish progress tracking and visibility.'
         },
         {
           id: 'task2-7',
-          title: 'Discovery 1',
-          description: 'Identify problems specific to developers and calculate TAM/SAM/SOM.'
+          title: 'Operations 3',
+          description: 'Set communication channels and schedules.'
         },
         {
           id: 'task2-8',
-          title: 'Discovery 2',
-          description: 'Identify problems specific to organizational leaders and calculate TAM/SAM/SOM.'
-        },
-        {
-          id: 'task2-9',
-          title: 'Disocvery 3',
-          description: 'Identify problems specific to policymakers and calculate TAM/SAM/SOM.'
+          title: 'Operations 4',
+          description: 'Define escalation procedures for challenges.'
         }
       ]
     },
     { 
-      day: 4 & 5, 
+      day: 4, // Day 4
       title: 'Business Modeling & Problem/Solution Fit', 
       status: 'not-started',
       tasks: [
@@ -462,7 +450,7 @@ export default function AiSafetyEthics() {
       ]
     },
     { 
-      day: 6-7, 
+      day: 6, // Day 6
       title: 'Rapid Prototype', 
       status: 'not-started',
       tasks: [
@@ -529,7 +517,7 @@ export default function AiSafetyEthics() {
           description: 'Begin reflection with evaluating what went well and areas for improvement.'
         },
         {
-          id: 'task5-5',
+          id: 'task5-6',
           title: 'Operations 3',
           description: 'Evaluate assessments and review and create plan of action to update Standard Operating Procedures.'
         },
@@ -569,9 +557,10 @@ export default function AiSafetyEthics() {
           <div className="relative h-full w-full rounded-[15px] bg-white p-4 md:p-6 dark:bg-zinc-950">
             <h2 className="text-2xl font-medium mb-6">Product Overview</h2>
             
-            <div className="space-y-8">
-              {/* Project details */}
-              <div>
+            {/* Three-column layout for better space usage */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+              {/* Project details in first column */}
+              <div className="lg:col-span-1">
                 <dl className="space-y-4">
                   <div>
                     <dt className="font-medium text-zinc-900 dark:text-zinc-100">Project Title</dt>
@@ -587,94 +576,83 @@ export default function AiSafetyEthics() {
                       <FormattedText text="AI developers | Organizational leaders | Policymakers" />
                     </dd>
                   </div>
+                </dl>
+              </div>
+              
+              {/* Objectives column */}
+              <div className="lg:col-span-1">
+                <h3 className="text-lg font-medium mb-4">Key Objectives</h3>
+                <ul className="space-y-2 text-zinc-700 dark:text-zinc-300">
+                  <li className="flex items-start">
+                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
+                    <span>Research AI safety and ethics' foundations and governance</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
+                    <span>Explore dev, org leadership, and policymaker domains</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
+                    <span>Conduct Customer Discovery and competitive analysis</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
+                    <span>Calculate TAM, SAM, SOM and identify early adopters</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
+                    <span>Identify, quantify, design, and build MDVFP</span>
+                  </li>
+                </ul>
+              </div>
+                
+              {/* Methodology column */}
+              <div className="lg:col-span-1">
+                <h3 className="text-lg font-medium mb-4">Methodologies</h3>
+                <ul className="space-y-2 text-zinc-700 dark:text-zinc-300">
+                  <li className="flex items-start">
+                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
+                    <span>Customer Development with Lean Canvas</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
+                    <span>Fermi estimates for revenue modeling</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
+                    <span>Ten Types of Innovation Frameworks</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
+                    <span>User Stories and Journey Mapping</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
+                    <span>Kanban for workflow management</span>
+                  </li>
+                </ul>
+              </div>
+              
+              {/* Additional details that expand full width */}
+              <div className="lg:col-span-3 pt-4 border-t border-zinc-200 dark:border-zinc-800 mt-4">
+                <dl className="space-y-4">
                   <div>
                     <dt className="font-medium text-zinc-900 dark:text-zinc-100">Collaborators</dt>
                     <dd className="text-zinc-700 dark:text-zinc-300">
                       <FormattedText text="Research (Anthropic whitepapers + Deep Research) | Policy (policymaking.ai) | Engineering (Claude Code) | UI/UX (Claude) | Communications (Claude) | Strategic Product Manager (Chris Carnell)" />
                     </dd>
                   </div>
-                  <div>
-                    <dt className="font-medium text-zinc-900 dark:text-zinc-100">Tripwire</dt>
-                    <dd className="text-zinc-700 dark:text-zinc-300">If 2 days pass without completing A-priority task; signals potential timeline/scope issues requiring immediate communications and reassessment to either break problems down further or consider the depth and breadth of our continued work</dd>
-                  </div>
-                  <div>
-                    <dt className="font-medium text-zinc-900 dark:text-zinc-100">Bookend</dt>
-                    <dd className="text-zinc-700 dark:text-zinc-300">Adverse: Inconclusive findings require transparency and open questions for areas needing further research.<br />Success: Identification of a problem worth developing a lean canvans, business modeling, fermi estimate for feasibility</dd>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <dt className="font-medium text-zinc-900 dark:text-zinc-100">Tripwire</dt>
+                      <dd className="text-zinc-700 dark:text-zinc-300">If 2 days pass without completing A-priority task; signals potential timeline/scope issues requiring immediate communications and reassessment to either break problems down further or consider the depth and breadth of our continued work</dd>
+                    </div>
+                    <div>
+                      <dt className="font-medium text-zinc-900 dark:text-zinc-100">Bookend</dt>
+                      <dd className="text-zinc-700 dark:text-zinc-300">Adverse: Inconclusive findings require transparency and open questions for areas needing further research.<br />Success: Identification of a problem worth developing a lean canvans, business modeling, fermi estimate for feasibility</dd>
+                    </div>
                   </div>
                 </dl>
-              </div>
-              
-              {/* Objectives and Methodology */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {/* Objectives */}
-                <div>
-                  <h3 className="text-lg font-medium mb-4">Key Objectives</h3>
-                  <ul className="space-y-1 text-zinc-700 dark:text-zinc-300">
-                    <li className="flex items-start">
-                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
-                      <span>Research AI safety and ethics' foundations and governance</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
-                      <span>Explore dev, org leadership, and policymaker domains</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
-                      <span>Conduct Customer Discovery and competitive analysis</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
-                      <span>Calculate TAM, SAM, SOM and identify early adopters</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
-                      <span>Identify, quantify, design, and build MDVFP</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
-                      <span>Introduce Effectiveness Scale</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
-                      <span>Work with GTM to for initial testing</span>
-                    </li>
-                  </ul>
-                </div>
-                
-                {/* Methodology */}
-                <div>
-                  <h3 className="text-lg font-medium mb-4">Methodologies</h3>
-                  <ul className="space-y-1 text-zinc-700 dark:text-zinc-300">
-                    <li className="flex items-start">
-                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
-                      <span>Customer Development with Lean Canvas</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
-                      <span>Fermi estimates for revenue modeling</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
-                      <span>Ten Types of Innovation Frameworks</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
-                      <span>Strategic Group Analysis for competitive landscape</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
-                      <span>User Stories and Journey Mapping for Solution Design</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
-                      <span>Kanban for workflow management</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
-                      <span>Continuous Innovation for rapid prototying and feedback</span>
-                    </li>
-                  </ul>
-                </div>
               </div>
             </div>
           </div>

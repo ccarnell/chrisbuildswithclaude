@@ -236,28 +236,39 @@ export default function Personal() {
                 ))}
               </div>
               
-              {/* Partial view of next item - just a peek */}
+              {/* Partial view of next items - just a peek within the grid */}
               {peekItem && !isExpanded && (
-                <div 
-                  className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30"
-                  key={`peek-${peekItem.id}`}
-                >
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 mt-6">
                   <div 
-                    className="relative rounded-[15px] bg-white dark:bg-zinc-950 overflow-hidden"
-                    style={{ maxHeight: '160px' }} // Strict height limit
+                    className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30"
+                    key={`peek-${peekItem.id}`}
                   >
-                    <div className="relative p-4">
-                      {/* Title and partial description */}
-                      <h4 className="font-medium text-zinc-900 dark:text-zinc-100 mb-2">{peekItem.name}</h4>
-                      <p className="text-zinc-600 dark:text-zinc-300 whitespace-nowrap overflow-hidden text-ellipsis opacity-80 text-sm">
-                        {peekItem.description.substring(0, 80)}...
-                      </p>
-                        
-                      {/* Gradient overlay to cut off abruptly */}
-                      <div 
-                        className="absolute bottom-0 left-0 right-0 h-[80px] bg-gradient-to-t from-white dark:from-zinc-950 to-transparent"
-                        style={{ opacity: 0.9 }}
-                      ></div>
+                    <div 
+                      className="relative rounded-[15px] bg-white dark:bg-zinc-950 overflow-hidden"
+                      style={{ maxHeight: '110px' }} // Strict height limit
+                    >
+                      <div className="relative p-4">
+                        {/* Title and partial description */}
+                        <h4 className="font-medium text-zinc-900 dark:text-zinc-100 mb-2">{peekItem.name}</h4>
+                        <p className="text-zinc-600 dark:text-zinc-300 whitespace-nowrap overflow-hidden text-ellipsis opacity-80 text-sm">
+                          {peekItem.description.substring(0, 60)}...
+                        </p>
+                          
+                        {/* Gradient overlay to cut off abruptly */}
+                        <div 
+                          className="absolute bottom-0 left-0 right-0 h-[60px] bg-gradient-to-t from-white dark:from-zinc-950 to-transparent"
+                          style={{ opacity: 0.9 }}
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Additional peek placeholder to maintain grid layout */}
+                  <div className="relative overflow-hidden rounded-2xl bg-zinc-300/10 p-[1px] dark:bg-zinc-600/10">
+                    <div className="relative rounded-[15px] bg-white/50 dark:bg-zinc-950/50 overflow-hidden h-[110px]">
+                      <div className="h-full w-full flex items-center justify-center">
+                        <span className="text-sm text-zinc-400 dark:text-zinc-600">+{PROJECTS.length - visibleCount - 1} more</span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -350,12 +361,13 @@ export default function Personal() {
                         }`}>
                           {peekItem.title}
                         </h4>
-                        {/* First ~10% of content */}
+                        {/* First ~10% of content - stripped of HTML tags */}
                         <div 
                           className="text-zinc-600 dark:text-zinc-300 whitespace-nowrap overflow-hidden text-ellipsis opacity-80 text-sm" 
                           style={{ maxWidth: '100%' }}
                         >
-                          {peekItem.description.substring(0, 50).replace(/\n/g, ' ')}...
+                          {/* Strip HTML tags and get plain text */}
+                          {peekItem.description.replace(/<[^>]*>/g, '').substring(0, 50).replace(/\n/g, ' ')}...
                         </div>
                         
                         {/* Gradient overlay to cut off abruptly */}

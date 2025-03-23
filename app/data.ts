@@ -34,25 +34,33 @@ type SocialLink = {
 
 export const PROJECTS: Project[] = [
   {
-    name: 'Version 0.21 (WIP 16)',
+    name: 'v0.22: Economic Index Tool (WIP)',
     description:
-      'Added AI Safety & Ethics page: 8-day strategic product management for AI safety and ethics applications for devs, organizational leaders, and polymakers.',
+      'Trigger v0.21 Success Bookend → Strategic pivot: AI Safety & Ethics Discovery + Anthropic\'s Economic Index + leverage personal econ dev expertise.',
+    link: '/economic-index',
+    video: '/economic-index-tool-project-image.webp',
+    id: 'project4',
+  },
+  {
+    name: 'v0.21: AI Safety & Ethics page (pivoted)',
+    description:
+      'Add AI Safety & Ethics roadmap: 8-day strategic product management for AI Safety & Ethics prototype for devs, organizational leaders, and polymakers.',
     link: '/ai-safety-ethics',
     video: '/ai-safety-and-ethics-project-image.webp',
     id: 'project3',
   },
   {
-    name: 'Version 0.2 (this Home page)',
+    name: 'v0.2: CBWC landing page (current)',
     description:
-      'Deployed new Vercel boilerplate. Began working with Next.js, Typescript, MongoDB, and setup Claude Code via Anthropic API. Gave it some fancy clothes before submitting my resume.',
+      'Deploy new Vercel boilerplate. Begin work with Next.js, Typescript, MongoDB, and setup Claude Code via Anthropic API. Give it some fancy clothes and submit resume.',
     link: '',
     video: '/v2-chrisbuildswithclaude-project-image.webp',
     id: 'project2',
   },
   {
-    name: 'Version 0.1',
+    name: 'v0.1: Deploy first app prod (archived)',
     description:
-      'Simply deployed my first Next.js app via Vercel to hosted domain purchased through Cloudflare to learn programming environment setup and GitHub workflow. Moving on to v2 quickly.',
+      'Simply deploy first Next.js app via Vercel to domain through Cloudflare. Learn programming environment setup and GitHub workflow. Move to v2 quickly.',
     link: 'https://v1.chrisbuildswithclaude.com',
     video: '/v1-chrisbuildswithclaude-project-image.png',
     id: 'project1',
@@ -61,13 +69,23 @@ export const PROJECTS: Project[] = [
 
 export const SNAPSHOT: Snapshot[] = [
   {
-    title: "Backlog | Ideate Update X",
-    description: "The initial <strong>Idea Concept</strong> to purchase the domain and learn to setup a local environment, Vercel, and GitHub workflow to deploy was completed on the first day. I then spent some time working through various additional technical functionality for self-interest and to continue showing technical learning.\n\nSince I have applied for the Strategic Product Management position, I am now going to take a step back from the demonstration of quickly learning technical implementation details to showcase more holistic and intentional strategic product management capabilities.\n\nAfter discussing the importance of AI safety and ethics I will:\n1.) Within v2, display past work, tools, and frameworks used for strategic product management\n2.) Begin v3. A prototype. I will showcase managing the strategy of a real product for Anthropic. With my background, I will focus on Anthropic's Economic Index and display systematically going through the process as if I were working within a collaborative team.",
+    title: "Backlog | ESSENCE: Economic Strategy System for Ethical Navigation & Commercial Engagement",
+    description: "The initial <strong>Idea Concept</strong>, domain purchase, and demo to learn local environment setup, Vercel, and GitHub deployment was completed Day One. Additional technical functionality was explored for self-interest and to document learning agility.\n\nTo align more with the position's responsibilities, I will now demonstrate strategic product management capabilities.\n\nAfter the 6-day sprint is complete for the Geographic Economic Index Tool, the documentation will be left here for showcasing, but I will be moving on to an even more comprehensive (2-4 week) strategic workflow.",
+    id: "snapshot19",
+  },
+  {
+    title: "WIP Update 21: Strategic Pivot to GEO Economic Index Tool",
+    description: "AI Safety & Ethics research complete. Pivot after Success Bookend triggered.\n 🎉 <a href='/economic-index' class='text-[#EBDBBC] underline transition-colors'>Click here to view the Economic Index project</a>",
+    id: "snapshot18",
+  },
+  {
+    title: "3/21 Update 17: AI Safety & Ethics - Day 2",
+    description: "Complete Disovery & Research for AI Safety & Ethics",
     id: "snapshot17",
   },
   {
-    title: "WIP Update 16: AI Safety & Ethics prototype and prospectus",
-    description: "Currently working on v0.21 Milestones. 👉 <a href='/ai-safety-ethics' class='text-[#EBDBBC] hover:text-[#CC785C] underline transition-colors'>Click here to view the AI Safety & Ethics page</a>",
+    title: "3/19 Update 16: AI Safety & Ethics - Day 1",
+    description: "Set up project structure for v0.21\n 🎉 <a href='/ai-safety-ethics' class='text-[#61AAF2] underline transition-colors'>Click here to view the AI Safety & Ethics page</a>",
     id: "snapshot16",
   },
   {
@@ -133,7 +151,7 @@ export const SNAPSHOT: Snapshot[] = [
   },
   {
     title: "3/6 Update 3: Git workflows",
-    description: "Move static site to new v1 Vercel project and create v1 branch in GitHub to keep versioning records. Keep main branch for most update-to-date project. Learn clone, add, commmit, push flow for v2 on Vercel and GitHub",
+    description: "Move static site to new v1 Vercel project and create v1 branch in GitHub to keep versioning records. Keep main branch for most update-to-date project. Learn clone, add, commmit, push flow for v2 on Vercel and GitHub.\n 🎉 <a href='/' class='text-[#61AAF2] underline transition-colors'>Click here to view v0.2</a>",
     id: "snapshot3",
   },
   {

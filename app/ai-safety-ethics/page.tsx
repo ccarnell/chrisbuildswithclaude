@@ -3,6 +3,8 @@ import { motion } from 'motion/react'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Spotlight } from '@/components/ui/spotlight'
+import { MatrixPlaceholder } from '@/components/ui/MatrixPlaceholder'
+import { ProjectTimeline } from '@/components/ui/ProjectTimeline'
 
 // Define animation variants for sections
 const VARIANTS_CONTAINER = {
@@ -24,262 +26,6 @@ const TRANSITION_SECTION = {
   duration: 0.3,
 }
 
-// Timeline component types
-type Task = {
-  id: string
-  title: string
-  description: string
-}
-
-type Milestone = {
-  day: number
-  title: string
-  status: 'completed' | 'in-progress' | 'not-started'
-  tasks: Task[]
-}
-
-type VerticalTimelineProps = {
-  startDate: Date
-  milestones: Milestone[]
-}
-
-// Vertical Timeline component to visualize the 14-day plan
-function VerticalTimeline({ startDate, milestones }: VerticalTimelineProps) {
-  const today = new Date()
-  
-  // Calculate what day of the project we're on (1-indexed)
-  const daysSinceStart = Math.floor((today.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)) + 1
-  
-  // Find the current milestone (or default to WIP milestone)
-  const currentMilestoneIndex = Math.max(
-    0,
-    milestones.findIndex(m => m.day >= daysSinceStart) - 1
-  )
-  
-  // Find the "in-progress" milestone index or default to the current one
-  const findInProgressIndex = () => {
-    const wipIndex = milestones.findIndex(m => m.status === 'in-progress')
-    return wipIndex >= 0 ? wipIndex : (currentMilestoneIndex >= 0 ? currentMilestoneIndex : 0)
-  }
-  
-  const [selectedMilestoneIndex, setSelectedMilestoneIndex] = useState(findInProgressIndex)
-  
-  // For desktop hover functionality
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
-  
-  const formatDate = (date: Date): string => {
-    return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
-  }
-  
-  // Format day display 
-  const formatDayDisplay = (day: number): string => {
-    return `Day ${day}`
-  }
-  
-  // Get date for a specific day
-  const getDateForDay = (day: number): string => {
-    const date = new Date(startDate)
-    // Using a lookup to match specific days to specific dates
-    if (day === 1) { // Day 1 is Mar 21
-      date.setFullYear(2025, 2, 21) // Month is 0-indexed, so 2 = March
-    } else if (day === 3) { // Day 3 is Mar 22
-      date.setFullYear(2025, 2, 22)
-    } else if (day === 4) { // Day 4 is Mar 24
-      date.setFullYear(2025, 2, 24)
-    } else if (day === 6) { // Day 6 is Mar 26
-      date.setFullYear(2025, 2, 26)
-    } else if (day === 8) { // Day 8 is Mar 27
-      date.setFullYear(2025, 2, 27)
-    } else {
-      date.setDate(startDate.getDate() + day - 1)
-    }
-    return formatDate(date)
-  }
-  
-  const getStatusColor = (status: Milestone['status']) => {
-    switch(status) {
-      case 'completed':
-        return 'bg-[#61AAF2] dark:bg-[#61AAF2]' // Blue for completed
-      case 'in-progress':
-        return 'bg-[#EBDBBC] dark:bg-[#EBDBBC]' // Tan for in progress
-      case 'not-started':
-        return 'bg-[#CC785C] dark:bg-[#CC785C]' // Orange for not started
-    }
-  }
-  
-  // Determine which index to show (hover takes precedence on desktop)
-  // For WIP milestone, we only allow interaction with completed or in-progress milestones
-  const isInteractive = (index: number) => {
-    const status = milestones[index]?.status
-    return status === 'completed' || status === 'in-progress'
-  }
-  
-  const activeIndex = hoveredIndex !== null && isInteractive(hoveredIndex) 
-    ? hoveredIndex 
-    : isInteractive(selectedMilestoneIndex) ? selectedMilestoneIndex : findInProgressIndex()
-
-  return (
-    <div className="mb-10 w-full">
-      {/* Desktop layout - two separate sections */}
-      <div className="hidden lg:block space-y-6">
-        <div className="grid grid-cols-12 gap-6">
-          {/* Timeline sidebar - standalone */}
-          <div className="col-span-4">
-            <div className="rounded-lg overflow-hidden border border-zinc-200 dark:border-zinc-700">
-            {milestones.map((milestone, index) => (
-              <div 
-                key={index}
-                onClick={() => isInteractive(index) ? setSelectedMilestoneIndex(index) : null}
-                onMouseEnter={() => isInteractive(index) ? setHoveredIndex(index) : null}
-                onMouseLeave={() => setHoveredIndex(null)}
-                className={`relative mb-0 p-4 rounded-none ${isInteractive(index) ? 'cursor-pointer' : 'cursor-not-allowed opacity-70'} transition-colors duration-200 bg-white dark:bg-zinc-900 shadow-sm ${
-                  index === activeIndex 
-                    ? 'ring-2 ring-zinc-200 dark:ring-zinc-700' 
-                    : ''
-                }`}
-              >
-                <div className="flex items-start">
-                  {/* Date & milestone circle */}
-                  <div 
-                    className={`flex items-center justify-center w-8 h-8 rounded-full transition-colors duration-200 ${
-                      index === activeIndex 
-                        ? 'ring-2 ring-white dark:ring-zinc-900'
-                        : ''
-                    } ${getStatusColor(milestone.status)}`}
-                  >
-                    <span className="text-xs font-medium text-white">{milestone.day}</span>
-                  </div>
-                  
-                  {/* Milestone details */}
-                  <div className="ml-4">
-                    <p className="text-sm text-zinc-500 dark:text-zinc-400">
-                      {formatDayDisplay(milestone.day)} • {getDateForDay(milestone.day)}
-                    </p>
-                    <h4 className={`text-lg font-medium ${
-                      index === activeIndex ? 'text-zinc-900 dark:text-zinc-100' : 'text-zinc-700 dark:text-zinc-300'
-                    }`}>
-                      {milestone.title}
-                    </h4>
-                  </div>
-                </div>
-              </div>
-            ))}
-            </div>
-          </div>
-          
-          {/* Tasks (desktop) - standalone */}
-          <div className="col-span-8">
-            <div className="bg-white dark:bg-zinc-900 rounded-lg shadow-sm p-6">
-              
-              {/* Tasks list */}
-              <div className="grid grid-cols-1 gap-4">
-                {/* Ensure we have valid tasks to display */}
-                {activeIndex >= 0 && milestones[activeIndex]?.tasks?.map((task) => (
-                  <div 
-                    key={task.id}
-                    className="flex flex-col h-full p-4 border border-zinc-200 dark:border-zinc-700 rounded-lg hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors duration-200"
-                  >
-                    <h4 className="font-medium text-zinc-900 dark:text-zinc-100">
-                      {task.title}
-                    </h4>
-                    <p className="text-zinc-700 dark:text-zinc-300 mt-2 text-base flex-grow">
-                      {task.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      {/* Mobile layout (accordion style) */}
-      <div className="lg:hidden space-y-6">
-        <div className="space-y-4">
-          {milestones.map((milestone, index) => (
-            <div key={index} 
-              className="border border-zinc-200 dark:border-zinc-700 rounded-lg overflow-hidden shadow-sm"
-              id={`milestone-${index}`}
-            >
-              {/* Milestone heading (clickable) */}
-              <div 
-                className={`py-4 px-4 ${isInteractive(index) ? 'cursor-pointer' : 'cursor-not-allowed opacity-70'} ${
-                  index === selectedMilestoneIndex ? 'bg-white dark:bg-zinc-900' : 'bg-zinc-100 dark:bg-zinc-800/50'
-                }`}
-                onClick={() => isInteractive(index) ? setSelectedMilestoneIndex(prevIndex => prevIndex === index ? -1 : index) : null}
-              >
-                <div className="flex items-start">
-                  {/* Date & milestone circle */}
-                  <div 
-                    className={`flex items-center justify-center w-8 h-8 rounded-full ${
-                      index === selectedMilestoneIndex 
-                        ? 'ring-2 ring-white dark:ring-zinc-900' 
-                        : ''
-                    } ${getStatusColor(milestone.status)}`}
-                  >
-                    <span className="text-xs font-medium text-white">{milestone.day}</span>
-                  </div>
-                  
-                  {/* Milestone details */}
-                  <div className="ml-4 flex-1">
-                    <p className="text-sm text-zinc-500 dark:text-zinc-400">
-                      {formatDayDisplay(milestone.day)} • {getDateForDay(milestone.day)}
-                    </p>
-                    <h4 className={`text-lg font-medium ${
-                      index === selectedMilestoneIndex ? 'text-zinc-900 dark:text-zinc-100' : 'text-zinc-700 dark:text-zinc-300'
-                    }`}>
-                      {milestone.title}
-                    </h4>
-                  </div>
-                  
-                  {/* Expand/collapse indicator */}
-                  <div className="ml-2 self-center">
-                    <svg 
-                      xmlns="http://www.w3.org/2000/svg" 
-                      width="20" 
-                      height="20" 
-                      viewBox="0 0 24 24" 
-                      fill="none" 
-                      stroke="currentColor" 
-                      strokeWidth="2" 
-                      strokeLinecap="round" 
-                      strokeLinejoin="round"
-                      className={`transition-transform duration-200 ${index === selectedMilestoneIndex ? 'rotate-180' : ''}`}
-                    >
-                      <path d="m6 9 6 6 6-6"/>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Tasks (collapsible) */}
-              {index === selectedMilestoneIndex && milestone.tasks && (
-                <div className="bg-white dark:bg-zinc-900 p-4 border-t border-zinc-200 dark:border-zinc-700">
-                  <div className="grid grid-cols-1 gap-4">
-                    {milestone.tasks.map((task) => (
-                      <div 
-                        key={task.id}
-                        className="flex flex-col h-full p-4 border border-zinc-200 dark:border-zinc-700 rounded-lg hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors duration-200"
-                      >
-                        <h4 className="font-medium text-zinc-900 dark:text-zinc-100">
-                          {task.title}
-                        </h4>
-                        <p className="text-zinc-700 dark:text-zinc-300 mt-2 text-base flex-grow">
-                          {task.description}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
-
-    </div>
-  )
-}
 
 // Format text with commas, handling line wrapping
 function FormattedText({ text }: { text: string }) {
@@ -322,73 +68,118 @@ export default function AiSafetyEthics() {
     })
   }
   
-  // Set the start date to today for the timeline component
-  const today = new Date()
-  const startDate = new Date(today)
+  // Strategic Pivot Data
+  const strategicPivotData = {
+    title: "Strategic Pivot: From AI Safety & Ethics Prospectus to Geographic Economic Index Tool",
+    rationale: [
+      "While working through Discovery & Research for the AI Safety & Ethics (v0.21) project, it became clear that incorporating Anthropic's Economic Index presented an opportunity to create more direct value by:",
+      "1. Building on Anthropic's existing research rather than creating a parallel framework",
+      "2. Creating a tool with potential dual value: public economic visualization and internal sales targeting",
+      "3. Leveraging my expertise building ecosystems alongside the planned strategic product management demonstration"
+    ],
+    preservedElements: "We triggered our successful Bookend by identifying a concept that could showcase additional strategic product management frameworks and even further, incorporate real-world data and potential value to Anthropic - the ethical dimensions and governance framework developed here will integrate directly into the Economic Index tool as a critical layer of analysis.",
+    ctaText: "View Strategic Pivot",
+    ctaLink: "/economic-index"
+  }
+  
+  // Decision Matrix Data
+  const decisionMatrixData = {
+    title: "Product Evolution Decision Matrix",
+    xAxis: "Alignment with Anthropic Research",
+    yAxis: "Leverages My Expertise",
+    quadrants: [
+      {
+        position: "upperLeft",
+        title: "Regional Economic Dashboard",
+        description: "Leverages your expertise but less connected to Anthropic's research",
+        selected: false
+      },
+      {
+        position: "upperRight",
+        title: "Economic Index Geographic Tool",
+        description: "Combines Anthropic research with your economic development expertise",
+        selected: true // This is the selected approach
+      },
+      {
+        position: "lowerLeft",
+        title: "Generic AI Demo",
+        description: "Neither maximizes alignment nor leverages your unique skills",
+        selected: false
+      },
+      {
+        position: "lowerRight",
+        title: "Pure AI Safety Framework",
+        description: "Aligned with Anthropic's values but doesn't maximize your unique background",
+        selected: false
+      }
+    ]
+  }
   
   // Define our milestones with tasks
-  const milestones: Milestone[] = [
+  const milestones = [
     { 
       day: 1, // Day 1
       title: 'Project Setup', 
-      status: 'completed',
+      date: 'Mar 21',
+      status: 'Complete' as const,
       tasks: [
         {
           id: 'task1-1',
           title: 'Framework 1',
-          description: 'Setup tracking and visualization tool in Next.js project for transparency.'
+          description: '✅ Setup tracking and visualization tool in Next.js project for transparency.'
         },
         {
           id: 'task1-2',
           title: 'Planning 1',
-          description: 'Finalize Project overview, key objectives, methodologies, collaborators, Tripwire, and Bookend.'
+          description: '✅ Finalize Project overview, key objectives, methodologies, collaborators, Tripwire, and Bookend.'
         },
         {
           id: 'task1-3',
           title: 'Framework 2',
-          description: 'Deploy initial Product Overview to website.'
+          description: '✅ Deploy initial Product Overview to website.'
         },
         {
           id: 'task1-5',
           title: 'Planning 2',
-          description: 'Create Project Timeline component, Milestones, and Tasks.'
+          description: '✅ Create Project Timeline component, Milestones, and Tasks.'
         },
         {
           id: 'task1-6',
           title: 'Operations 1',
-          description: 'Create project processes and workflows.'
+          description: '✅ Create project processes and workflows.'
         },
         {
           id: 'task1-7',
           title: 'Planning 3',
-          description: 'Define tripwires and bookends for triggering events.'
+          description: '✅ Define tripwires and bookends for triggering events.'
         },
         {
           id: 'task1-8',
           title: 'Planning 3',
-          description: 'Set reflection methodology.'
+          description: '✅ Set reflection methodology.'
         }
       ]
     },
     { 
       day: 3, 
       title: 'Discovery & Research', 
-      status: 'in-progress',
+      date: 'Mar 22',
+      status: 'Complete' as const,
       tasks: [
         {
           id: 'task2-1',
           title: 'Research 1',
-          description: 'Review AI safety and ethical traits critical to Anthropic.'
+          description: '✅ Review AI safety and ethical traits critical to Anthropic.'
         },
         {
           id: 'task2-2',
           title: 'Research 2',
-          description: 'Research current societal dimensions and governance approaches.'
+          description: '✅ Research current societal dimensions and governance approaches.'
         },
         {
           id: 'task2-3',
           title: 'Evaluate 1',
-          description: 'Document key principles from major, reputable and authoritative organizations.'
+          description: '✅ Document key principles from major, reputable and authoritative organizations.'
         },
         {
           id: 'task2-4',
@@ -414,13 +205,19 @@ export default function AiSafetyEthics() {
           id: 'task2-8',
           title: 'Operations 4',
           description: 'Define escalation procedures for challenges.'
+        },
+        {
+          id: 'task2-9',
+          title: 'Strategic Pivot Decision',
+          description: '✅ Incorporating lessons learned within AI Safety & Ethics and pivoting to Geographic Economic Index Tool. Visit the Economic Index Tool to see the new approach.'
         }
       ]
     },
     { 
       day: 4, // Day 4
       title: 'Business Modeling & Problem/Solution Fit', 
-      status: 'not-started',
+      date: 'Mar 24',
+      status: 'Backlog' as const,
       tasks: [
         {
           id: 'task3-1',
@@ -452,7 +249,8 @@ export default function AiSafetyEthics() {
     { 
       day: 6, // Day 6
       title: 'Rapid Prototype', 
-      status: 'not-started',
+      date: 'Mar 26',
+      status: 'Backlog' as const,
       tasks: [
         {
           id: 'task4-1',
@@ -467,7 +265,7 @@ export default function AiSafetyEthics() {
         {
           id: 'task4-3',
           title: 'Customer Development 2',
-          description: 'Task groom and narrow in on minimum desireable viable feasiable product. Move all other cards to below v0.1.'
+          description: 'Task groom and narrow in on minimum desirable viable feasible product. Move all other cards to below v0.1.'
         },
         {
           id: 'task4-4',
@@ -489,7 +287,8 @@ export default function AiSafetyEthics() {
     { 
       day: 8, 
       title: 'Solution/Customer & Product/Market Fit', 
-      status: 'not-started',
+      date: 'Mar 27',
+      status: 'Backlog' as const,
       tasks: [
         {
           id: 'task5-1',
@@ -523,7 +322,7 @@ export default function AiSafetyEthics() {
         },
       ]
     },
-      ]
+  ]
 
   return (
     <motion.main
@@ -544,7 +343,86 @@ export default function AiSafetyEthics() {
         </p>
       </motion.section>
       
-      {/* Product Overview Section */}
+      {/* Strategic Pivot Section */}
+      <motion.div
+        variants={VARIANTS_SECTION}
+        transition={TRANSITION_SECTION}
+      >
+        <div className="relative overflow-hidden rounded-2xl bg-[#61AAF2]/50 p-[1px] dark:bg-[#61AAF2]/60 mb-12">
+          <Spotlight
+            className="from-zinc-900 via-zinc-800 to-zinc-700 blur-2xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50"
+            size={64}
+          />
+          <div className="relative h-full w-full rounded-[15px] bg-[#61AAF2]/10 p-4 md:p-6 dark:bg-[#61AAF2]/20">
+            <div className="flex items-center mb-6">
+              <div className="bg-[#61AAF2] text-white p-2 rounded-full mr-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                </svg>
+              </div>
+              <div className="text-2xl font-medium text-[#61AAF2]">Strategic Pivot</div>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Rationale Section */}
+              <div>
+                <h3 className="text-xl font-medium mb-4 text-[#61AAF2]">Rationale</h3>
+                <div className="space-y-4 mb-6">
+                  {/* First item without bullet since it's the introduction */}
+                  <p className="text-zinc-700 dark:text-zinc-300">{strategicPivotData.rationale[0]}</p>
+                  
+                  {/* Numbered items without bullets */}
+                  <div className="ml-4 space-y-2">
+                    {strategicPivotData.rationale.slice(1).map((point, index) => (
+                      <p key={index} className="text-zinc-700 dark:text-zinc-300">{point}</p>
+                    ))}
+                  </div>
+                </div>
+                
+                <div className="mt-6">
+                  <h3 className="text-xl font-medium mb-2 text-[#61AAF2]">Insights Gained</h3>
+                  <p className="text-zinc-700 dark:text-zinc-300 mb-6">{strategicPivotData.preservedElements}</p>
+                
+                  <Link
+                    href={strategicPivotData.ctaLink}
+                    className="inline-flex items-center rounded-lg bg-[#61AAF2] px-4 py-2 text-sm font-medium text-white hover:bg-[#4090e0] transition-colors duration-200"
+                  >
+                    {strategicPivotData.ctaText}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="ml-1"
+                    >
+                      <path d="M5 12h14"></path>
+                      <path d="m12 5 7 7-7 7"></path>
+                    </svg>
+                  </Link>
+                </div>
+              </div>
+              
+              {/* Decision Matrix */}
+              <div>
+                <h3 className="text-xl font-medium mb-4 text-[#61AAF2]">{decisionMatrixData.title}</h3>
+                <img
+                  src="/decision-matrix-mockup-graphic.svg"
+                  alt="Product Evolution Decision Matrix showing the Economic Index Geographic Tool as the selected approach"
+                  className="w-full rounded-lg border border-zinc-200 dark:border-zinc-700"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+      
+      {/* Product Overview Section - dimmed to indicate historical context */}
       <motion.section
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
@@ -554,8 +432,8 @@ export default function AiSafetyEthics() {
             className="from-zinc-900 via-zinc-800 to-zinc-700 blur-2xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50"
             size={64}
           />
-          <div className="relative h-full w-full rounded-[15px] bg-white p-4 md:p-6 dark:bg-zinc-950">
-            <h2 className="text-2xl font-medium mb-6">Product Overview</h2>
+          <div className="relative h-full w-full rounded-[15px] bg-white/80 p-4 md:p-6 dark:bg-zinc-950/80 opacity-75">
+            <h2 className="text-2xl font-medium mb-6 text-zinc-700 dark:text-zinc-300">Product Overview</h2>
             
             {/* Three-column layout for better space usage */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
@@ -649,7 +527,10 @@ export default function AiSafetyEthics() {
                     </div>
                     <div>
                       <dt className="font-medium text-zinc-900 dark:text-zinc-100">Bookend</dt>
-                      <dd className="text-zinc-700 dark:text-zinc-300">Adverse: Inconclusive findings require transparency and open questions for areas needing further research.<br />Success: Identification of a problem worth developing a lean canvans, business modeling, fermi estimate for feasibility</dd>
+                      <dd className="text-zinc-700 dark:text-zinc-300">
+                        <span>Adverse: Inconclusive findings require transparency and open questions for areas needing further research.</span><br />
+                        <span className="text-green-600 dark:text-green-400 font-medium">Success: Identification of a problem worth developing a lean canvas, business modeling, fermi estimate for feasibility</span>
+                      </dd>
                     </div>
                   </div>
                 </dl>
@@ -664,8 +545,11 @@ export default function AiSafetyEthics() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h2 className="text-2xl font-medium mb-6">Project Timeline</h2>
-        <VerticalTimeline startDate={startDate} milestones={milestones} />
+        <ProjectTimeline 
+          milestones={milestones} 
+          currentPhase="Discovery & Research"
+          title="Project Timeline"
+        />
       </motion.section>
       
       {/* Navigation Links */}

@@ -1,1 +1,214 @@
-Claude Code prompts
+/*
+COMPREHENSIVE PROJECT UPDATE: AI SAFETY PIVOT TO ECONOMIC INDEX
+
+I need help implementing several updates to my web application to showcase a strategic product pivot from AI Safety & Ethics to an Anthropic Economic Index Geographic Tool. This involves:
+
+1. Adding a Strategic Pivot section to the existing AI Safety & Ethics page
+2. Creating a new Economic Index Product page
+3. Implementing visualizations including a 2x2 decision matrix
+4. Updating navigation and structure to reflect this pivot
+
+My site uses Next.js with TypeScript and Tailwind CSS.
+
+PART 1: ADD STRATEGIC PIVOT SECTION TO AI SAFETY PAGE
+-----------------------------------------------------
+Add a prominent section at the top of the AI Safety & Ethics page that explains the strategic pivot.
+
+Location: At the top of the AI Safety page content, before existing content.
+
+Content:
+- Header: "Strategic Pivot: From AI Safety Framework to Economic Index Impact Tool"
+- Explanation of the pivot rationale
+- 2x2 Decision matrix visualization
+- "What's Preserved" section explaining how this work relates to the new direction
+- Call-to-action button linking to the new Economic Index page
+
+PART 2: CREATE ECONOMIC INDEX PRODUCT PAGE
+------------------------------------------
+Create a new page following similar structure to the AI Safety page but focused on the Economic Index project.
+
+Requirements:
+- URL path: /economic-index
+- Similar navigation/header/footer to other pages
+- Include Project Timeline component with new milestones
+- Create Strategic Dashboard section at the top
+- Include product vision, decision framework, and concept sections
+
+PART 3: CREATE VISUALIZATIONS
+-----------------------------
+Implement the following visualizations:
+
+1. Product Evolution Decision Matrix (2x2 grid)
+   - X-axis: "Alignment with Anthropic Research" (Low to High)
+   - Y-axis: "Leverages My Expertise" (Low to High)
+   - 4 options in quadrants (as detailed below)
+   - Highlight selected approach in upper right
+
+2. Product Development Timeline
+   - Similar to existing Timeline component
+   - Show 4 milestones with dates
+   - Allow expansion to show tasks
+
+3. Simple Dashboard Wireframe 
+   - Mockup of the geographic visualization tool
+   - Doesn't need to be functional, just visually representative
+
+PART 4: NAVIGATION & STRUCTURE UPDATES
+--------------------------------------
+Update navigation to:
+- Keep AI Safety page accessible
+- Add prominent link to new Economic Index page
+- Update homepage to reference the strategic pivot
+
+DETAILED SPECIFICATIONS
+----------------------
+Below are detailed specifications for each component:
+*/
+
+// SPECIFICATIONS: STRATEGIC PIVOT SECTION
+// ---------------------------------------
+// This should be added to the existing AI Safety page
+
+const strategicPivotSection = {
+  title: "Strategic Pivot: From AI Safety Framework to Economic Index Impact Tool",
+  rationale: [
+    "After deeper research into Anthropic's recent publications, I discovered their Economic Index work connecting AI impact to specific occupational roles. This presented an opportunity to create more direct value by:",
+    "1. Building on Anthropic's existing research rather than creating a parallel framework",
+    "2. Creating a tool with dual value: public economic visualization and internal sales targeting",
+    "3. Leveraging my economic development expertise more effectively"
+  ],
+  preservedElements: "This initial AI Safety & Ethics work isn't wasted - the ethical dimensions and governance framework developed here will integrate directly into the Economic Index tool as a critical layer of analysis.",
+  ctaText: "View the Economic Index Project",
+  ctaLink: "/economic-index"
+};
+
+// SPECIFICATIONS: DECISION MATRIX VISUALIZATION
+// ---------------------------------------------
+// This is for the 2x2 matrix to be included in both pages
+
+const decisionMatrixData = {
+  title: "Product Evolution Decision Matrix",
+  xAxis: "Alignment with Anthropic Research",
+  yAxis: "Leverages My Expertise",
+  quadrants: [
+    {
+      position: "upperLeft",
+      title: "Regional Economic Dashboard",
+      description: "Leverages your expertise but less connected to Anthropic's research",
+      selected: false
+    },
+    {
+      position: "upperRight",
+      title: "Economic Index Geographic Tool",
+      description: "Combines Anthropic research with your economic development expertise",
+      selected: true // This is the selected approach
+    },
+    {
+      position: "lowerLeft",
+      title: "Generic AI Demo",
+      description: "Neither maximizes alignment nor leverages your unique skills",
+      selected: false
+    },
+    {
+      position: "lowerRight",
+      title: "Pure AI Safety Framework",
+      description: "Aligned with Anthropic's values but doesn't maximize your unique background",
+      selected: false
+    }
+  ]
+};
+
+// SPECIFICATIONS: ECONOMIC INDEX PAGE
+// ----------------------------------
+// Content for the new Economic Index page
+
+const economicIndexPage = {
+  title: "Anthropic Economic Index Geographic Tool",
+  subtitle: "A Strategic Product Demonstration",
+  executiveSummary: "This tool maps the geographic concentration of occupations identified in Anthropic's Economic Index research, overlaid with AI ethics considerations from UNESCO's framework. It serves both as a public resource and as a potential internal sales targeting tool for Anthropic.",
+  productVision: {
+    title: "Product Vision",
+    description: "A data visualization tool that answers:",
+    bulletPoints: [
+      "Where are the occupations most impacted by AI (from Anthropic's research) geographically concentrated?",
+      "What ethical considerations are most relevant to these specific occupational clusters?",
+      "Which regions present the highest-value opportunities for Anthropic's solutions?"
+    ]
+  },
+  strategicFramework: {
+    title: "Strategic Decision Framework",
+    criteria: [
+      "Direct alignment with Anthropic research",
+      "Demonstrable value to multiple stakeholders",
+      "Feasibility within technical constraints",
+      "Ethical implications of implementation"
+    ]
+  },
+  currentPhase: "Strategic Foundation & Product Definition",
+  timelineMilestones: [
+    {
+      day: "Day 1-2",
+      date: "Mar 23-24",
+      title: "Strategic Foundation & Product Definition",
+      tasks: [
+        "Create product overview with problem statement, user personas, value proposition",
+        "Document strategic pivot rationale (AI Safety → Economic Index)",
+        "Develop data strategy connecting BLS/Census data with UNESCO AI Ethics framework",
+        "Define success metrics and evaluation criteria"
+      ]
+    },
+    {
+      day: "Day 3-4",
+      date: "Mar 25-26",
+      title: "Product Conceptualization & Framework",
+      tasks: [
+        "Create wireframes/mockups of Economic Index geographic dashboard with ethics dimension",
+        "Document key features and prioritization rationale",
+        "Develop user stories for key personas (Anthropic sales teams, policymakers, etc.)",
+        "Create visualization of product strategy framework and methodologies"
+      ]
+    },
+    {
+      day: "Day 5-6",
+      date: "Mar 27-28",
+      title: "Prototype & Validation",
+      tasks: [
+        "Create data visualization showing occupational concentrations with ethics overlay",
+        "Implement basic filtering of ethical dimensions by geography",
+        "Develop validation framework and user testing approach",
+        "Outline future roadmap and 2-week sprint plan for full implementation"
+      ]
+    },
+  ]
+};
+
+// IMPLEMENTATION TASKS
+// -------------------
+// Please help with the following implementation tasks:
+
+/*
+1. Create a DecisionMatrix component that renders the 2x2 matrix visualization
+   - Should take the decisionMatrixData as props
+   - Match the dark theme of the site
+   - Highlight the selected option with our blue color
+
+2. Create a StrategicPivotSection component for the AI Safety page
+   - Include the Decision Matrix
+   - Format the rationale points as a bulleted list
+   - Include a prominent CTA button linking to the new page
+
+3. Create the new EconomicIndex page
+   - Follow the same structure as the AI Safety page
+   - Implement the Timeline component with the new milestones
+   - Include the Decision Matrix
+   - Add a simple wireframe mockup of the geographic dashboard
+
+4. Update navigation to include the new page
+   - Add link in appropriate places
+   - Keep existing structure intact
+
+5. Give special attention to making everything mobile-responsive
+   - Decision matrix should be especially careful on small screens
+
+Please generate the necessary TypeScript/React components, and provide instructions on where each file should be placed in the project structure.
+*/

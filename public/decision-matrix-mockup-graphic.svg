@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+  <!-- Background -->
+  <rect width="1280" height="720" fill="#1e1e1e" />
+  
+  <!-- Axes lines - outside the boxes -->
+  <line x1="100" y1="650" x2="100" y2="50" stroke="#444" stroke-width="2" /> <!-- Y-axis -->
+  <line x1="100" y1="650" x2="1180" y2="650" stroke="#444" stroke-width="2" /> <!-- X-axis -->
+  
+  <!-- Axis labels -->
+  <text x="640" y="700" text-anchor="middle" fill="#fff" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="24" class="text-lg font-medium">Alignment with Anthropic Research</text>
+  <text x="50" y="350" text-anchor="middle" fill="#fff" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="24" transform="rotate(-90, 50, 350)" class="text-lg font-medium">Leverage my Expertise</text>
+  
+  <!-- Low/High labels -->
+  <text x="100" y="680" text-anchor="middle" fill="#9b9b9b" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" class="text-base text-gray-400">Low</text>
+  <text x="1180" y="680" text-anchor="middle" fill="#9b9b9b" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" class="text-base text-gray-400">High</text>
+  <text x="70" y="50" text-anchor="middle" fill="#9b9b9b" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" class="text-base text-gray-400">High</text>
+  
+  <!-- Larger boxes with minimal spacing -->
+  <!-- Upper left -->
+  <rect x="130" y="60" width="510" height="280" rx="6" fill="#2c2c2c" />
+  <text x="385" y="145" text-anchor="middle" fill="#fff" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="30" font-weight="500" class="text-2xl font-medium">Regional Economic Dashboard</text>
+  <text x="385" y="210" text-anchor="middle" fill="#9b9b9b" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="24" class="text-lg text-gray-400">Leverages my expertise but less</text>
+  <text x="385" y="250" text-anchor="middle" fill="#9b9b9b" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="24" class="text-lg text-gray-400">connected to Anthropic's research</text>
+  
+  <!-- Upper right - SELECTED with blue highlight -->
+  <rect x="650" y="60" width="510" height="280" rx="6" fill="#0284c7" />
+  <text x="905" y="145" text-anchor="middle" fill="#fff" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="30" font-weight="500" class="text-2xl font-medium">Economic Index Geographic Tool</text>
+  <text x="905" y="210" text-anchor="middle" fill="#f8fafc" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="24" class="text-lg text-gray-100">Combines Anthropic research with my</text>
+  <text x="905" y="250" text-anchor="middle" fill="#f8fafc" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="24" class="text-lg text-gray-100">economic development expertise</text>
+  
+  <!-- Lower left -->
+  <rect x="130" y="350" width="510" height="280" rx="6" fill="#2c2c2c" />
+  <text x="385" y="435" text-anchor="middle" fill="#fff" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="30" font-weight="500" class="text-2xl font-medium">Generic AI Demo</text>
+  <text x="385" y="500" text-anchor="middle" fill="#9b9b9b" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="24" class="text-lg text-gray-400">Neither maximizes alignment nor</text>
+  <text x="385" y="540" text-anchor="middle" fill="#9b9b9b" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="24" class="text-lg text-gray-400">leverages my unique skills</text>
+  
+  <!-- Lower right -->
+  <rect x="650" y="350" width="510" height="280" rx="6" fill="#2c2c2c" />
+  <text x="905" y="435" text-anchor="middle" fill="#fff" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="30" font-weight="500" class="text-2xl font-medium">Pure AI Safety Framework</text>
+  <text x="905" y="500" text-anchor="middle" fill="#9b9b9b" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="24" class="text-lg text-gray-400">Aligned with Anthropic's values but</text>
+  <text x="905" y="540" text-anchor="middle" fill="#9b9b9b" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="24" class="text-lg text-gray-400">doesn't maximize my unique background</text>
+</svg>

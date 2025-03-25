@@ -22,10 +22,11 @@ type ProjectTimelineProps = {
   milestones: Milestone[]
   currentPhase?: string
   title?: string
+  defaultOpenIndex?: number
 }
 
-export function ProjectTimeline({ milestones, currentPhase, title = "Project Timeline" }: ProjectTimelineProps) {
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(0) // First milestone expanded by default
+export function ProjectTimeline({ milestones, currentPhase, title = "Project Timeline", defaultOpenIndex = 0 }: ProjectTimelineProps) {
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(defaultOpenIndex) // Use the provided default index
   
   const toggleExpanded = (index: number) => {
     if (expandedIndex === index) {

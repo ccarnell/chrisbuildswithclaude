@@ -1,214 +1,60 @@
 /*
-COMPREHENSIVE PROJECT UPDATE: AI SAFETY PIVOT TO ECONOMIC INDEX
+COMPREHENSIVE PROJECT UPDATE: GEOGRAPHIC ECONOMIC INDEX TOOL
 
-I need help implementing several updates to my web application to showcase a strategic product pivot from AI Safety & Ethics to an Anthropic Economic Index Geographic Tool. This involves:
+I need help implementing several updates to my web application to showcase an Anthropic Economic Index Geographic Tool. This involves:
 
-1. Adding a Strategic Pivot section to the existing AI Safety & Ethics page
-2. Creating a new Economic Index Product page
-3. Implementing visualizations including a 2x2 decision matrix
-4. Updating navigation and structure to reflect this pivot
+1. Adding Product Overview Component based off the AI Safety & Ethics page that can be reusable, plus updating the Geographic Economic Index Tool with this component while keeping both pages data intact.
+2. Add remaining content for Economic Index page.
+3. 
+4. Adjusting the Product Concept on the Economic Index page for mobile view because the text and graphics overlap the borders.
 
-My site uses Next.js with TypeScript and Tailwind CSS.
-
-PART 1: ADD STRATEGIC PIVOT SECTION TO AI SAFETY PAGE
------------------------------------------------------
-Add a prominent section at the top of the AI Safety & Ethics page that explains the strategic pivot.
-
-Location: At the top of the AI Safety page content, before existing content.
-
-Content:
-- Header: "Strategic Pivot: From AI Safety Framework to Economic Index Impact Tool"
-- Explanation of the pivot rationale
-- 2x2 Decision matrix visualization
-- "What's Preserved" section explaining how this work relates to the new direction
-- Call-to-action button linking to the new Economic Index page
-
-PART 2: CREATE ECONOMIC INDEX PRODUCT PAGE
-------------------------------------------
-Create a new page following similar structure to the AI Safety page but focused on the Economic Index project.
-
-Requirements:
-- URL path: /economic-index
-- Similar navigation/header/footer to other pages
-- Include Project Timeline component with new milestones
-- Create Strategic Dashboard section at the top
-- Include product vision, decision framework, and concept sections
-
-PART 3: CREATE VISUALIZATIONS
------------------------------
-Implement the following visualizations:
-
-1. Product Evolution Decision Matrix (2x2 grid)
-   - X-axis: "Alignment with Anthropic Research" (Low to High)
-   - Y-axis: "Leverages My Expertise" (Low to High)
-   - 4 options in quadrants (as detailed below)
-   - Highlight selected approach in upper right
-
-2. Product Development Timeline
-   - Similar to existing Timeline component
-   - Show 4 milestones with dates
-   - Allow expansion to show tasks
-
-3. Simple Dashboard Wireframe 
-   - Mockup of the geographic visualization tool
-   - Doesn't need to be functional, just visually representative
-
-PART 4: NAVIGATION & STRUCTURE UPDATES
---------------------------------------
-Update navigation to:
-- Keep AI Safety page accessible
-- Add prominent link to new Economic Index page
-- Update homepage to reference the strategic pivot
-
-DETAILED SPECIFICATIONS
-----------------------
-Below are detailed specifications for each component:
+My site uses Next.js, TypeScript, Tailwind CSS, and motion-primitives.
 */
 
-// SPECIFICATIONS: STRATEGIC PIVOT SECTION
-// ---------------------------------------
-// This should be added to the existing AI Safety page
+//PART 1: CREATE PRODUCT OVERVIEW COMPONENT
+//-----------------------------------------------------
+//Use the current layout of the Product Overview section on the AI Safety & Ethics page to create a new component, then replace the current code on the AI Safety & Ethics page and Economic Index page with the new component while keeping the same content for each.
 
-const strategicPivotSection = {
-  title: "Strategic Pivot: From AI Safety Framework to Economic Index Impact Tool",
-  rationale: [
-    "After deeper research into Anthropic's recent publications, I discovered their Economic Index work connecting AI impact to specific occupational roles. This presented an opportunity to create more direct value by:",
-    "1. Building on Anthropic's existing research rather than creating a parallel framework",
-    "2. Creating a tool with dual value: public economic visualization and internal sales targeting",
-    "3. Leveraging my economic development expertise more effectively"
-  ],
-  preservedElements: "This initial AI Safety & Ethics work isn't wasted - the ethical dimensions and governance framework developed here will integrate directly into the Economic Index tool as a critical layer of analysis.",
-  ctaText: "View the Economic Index Project",
-  ctaLink: "/economic-index"
-};
+/*
+Location: In the middle of the AI Safety page content, after Strategic Pivot but before Project Timeline.
 
-// SPECIFICATIONS: DECISION MATRIX VISUALIZATION
-// ---------------------------------------------
-// This is for the 2x2 matrix to be included in both pages
+Content:
+- Make sure each Product Overview has: Project Title (string), Purpose (string), Target (string), Key Objectives (string bulleted list), Methodologies (string bulleted list), Collaborators (string), Tripwire (string), Bookend (string)
+- For the Target and Collaborators sections, ensure that whenever there is a forced wraparound for text that splits a phrase between two commas, that we instead end the line after the space of the comma before the forced break and start the new line with the beginning character of the next word. {{Example: Target for AI Safety & Ethics includes AI developers, Organizational leaders, and Policymakers. The there is a forced wraparound of the text because of screen size that would otherwise cause 'Organizational' and 'leaders' to be on two separate lines, we should instead end the first line with 'AI developers, ' go to the next line and begin with 'Organization leaders'.}}
+- The bulleted lists for both Key Objectives and Methodologies could have a little bit less space between each bullet so that the lists are not so tall.
+- For Bookend, 'Adverse:' should always be the first item and it should be on the first line. There should always be a 'Success:' item on a new line after the Adverse string.
+- The Product Overview on the current AI Safety & Ethics page has an intentional dim on it to indicate that the project is closed out. That is not the default font color. Please keep the dim on that page, but make the component default and text on the Economic Index page the default of the rest of the text on the pages.
+*/
 
-const decisionMatrixData = {
-  title: "Product Evolution Decision Matrix",
-  xAxis: "Alignment with Anthropic Research",
-  yAxis: "Leverages My Expertise",
-  quadrants: [
-    {
-      position: "upperLeft",
-      title: "Regional Economic Dashboard",
-      description: "Leverages your expertise but less connected to Anthropic's research",
-      selected: false
-    },
-    {
-      position: "upperRight",
-      title: "Economic Index Geographic Tool",
-      description: "Combines Anthropic research with your economic development expertise",
-      selected: true // This is the selected approach
-    },
-    {
-      position: "lowerLeft",
-      title: "Generic AI Demo",
-      description: "Neither maximizes alignment nor leverages your unique skills",
-      selected: false
-    },
-    {
-      position: "lowerRight",
-      title: "Pure AI Safety Framework",
-      description: "Aligned with Anthropic's values but doesn't maximize your unique background",
-      selected: false
-    }
-  ]
-};
+//PART 2: UPDATE ECONOMIC INDEX PAGE
+//------------------------------------------
+//Add text to Product Overview and Project Timeline
 
-// SPECIFICATIONS: ECONOMIC INDEX PAGE
-// ----------------------------------
-// Content for the new Economic Index page
-
-const economicIndexPage = {
-  title: "Anthropic Economic Index Geographic Tool",
-  subtitle: "A Strategic Product Demonstration",
-  executiveSummary: "This tool maps the geographic concentration of occupations identified in Anthropic's Economic Index research, overlaid with AI ethics considerations from UNESCO's framework. It serves both as a public resource and as a potential internal sales targeting tool for Anthropic.",
-  productVision: {
-    title: "Product Vision",
-    description: "A data visualization tool that answers:",
-    bulletPoints: [
-      "Where are the occupations most impacted by AI (from Anthropic's research) geographically concentrated?",
-      "What ethical considerations are most relevant to these specific occupational clusters?",
-      "Which regions present the highest-value opportunities for Anthropic's solutions?"
-    ]
-  },
-  strategicFramework: {
-    title: "Strategic Decision Framework",
-    criteria: [
-      "Direct alignment with Anthropic research",
-      "Demonstrable value to multiple stakeholders",
-      "Feasibility within technical constraints",
-      "Ethical implications of implementation"
-    ]
-  },
-  currentPhase: "Strategic Foundation & Product Definition",
-  timelineMilestones: [
-    {
-      day: "Day 1-2",
-      date: "Mar 23-24",
-      title: "Strategic Foundation & Product Definition",
-      tasks: [
-        "Create product overview with problem statement, user personas, value proposition",
-        "Document strategic pivot rationale (AI Safety → Economic Index)",
-        "Develop data strategy connecting BLS/Census data with UNESCO AI Ethics framework",
-        "Define success metrics and evaluation criteria"
-      ]
-    },
-    {
-      day: "Day 3-4",
-      date: "Mar 25-26",
-      title: "Product Conceptualization & Framework",
-      tasks: [
-        "Create wireframes/mockups of Economic Index geographic dashboard with ethics dimension",
-        "Document key features and prioritization rationale",
-        "Develop user stories for key personas (Anthropic sales teams, policymakers, etc.)",
-        "Create visualization of product strategy framework and methodologies"
-      ]
-    },
-    {
-      day: "Day 5-6",
-      date: "Mar 27-28",
-      title: "Prototype & Validation",
-      tasks: [
-        "Create data visualization showing occupational concentrations with ethics overlay",
-        "Implement basic filtering of ethical dimensions by geography",
-        "Develop validation framework and user testing approach",
-        "Outline future roadmap and 2-week sprint plan for full implementation"
-      ]
-    },
-  ]
-};
+/*
+Requirements:
+- Product Overview > Collaborators: Research (Anthropic Economic Index team), Policy (policymaking.ai), Engineering (Claude Code), UI/UX (Claude), Strategic Product Management (Chris Carnell)
+- Product Overview > Tripwire: The proposed solution was a geographical view. After mapping data to plot, gather insights on if any other visualization type may be more necessary."
+- Product Overview > Bookend: "Adverse: Flourish integration is too difficult within 6-days. Input static infographic", "Success: Anthropic Economic Index Research team identifies project as valuable input for ongoing research."
+- Product Timeline > Update Current Phase to Framework Design & Prototype Development
+- Product Timeline > Strategic Foundation, Product Definition and Conceptualization: Add green emoji checkmark to three of the remaining four Tasks. Leave 'Begin mapping between..." without a checkmark.
+- Product Timeline > Strategic Foundation, Product Definition and Conceptualization: Update Status to Complete
+- Product Timeline> Framework Design and Prototype Development: Update Status to WIP
+- Product Timeline > Framework Design and Prototype Development: Add the following tasks - "Download Anthropic's Economic Index data via Huggingface and review", "Gather BLS occupational codes data by GEO (determine type)", "Create JOIN for overlap of Economic Index and BLS occupational codes", "Define breakdown and/or combinations that will be mapped geographically", "Prepare data for Flourish", "Build first GEO data visualization", "Add explanatory elements to visualization", "Create Methodology and Limitations components"
+- Product Timeline > Validation Framework and Final Documentation: Add the following tasks - "Finalize functional prototype display", "Finalize test criteria with internal users", "Work with GTM to plan for distribution and gathering feedback", "Set bookend for analysis", "Complete reflection of project", "Develop plans for next sprint"
+*/
 
 // IMPLEMENTATION TASKS
 // -------------------
 // Please help with the following implementation tasks:
 
 /*
-1. Create a DecisionMatrix component that renders the 2x2 matrix visualization
-   - Should take the decisionMatrixData as props
-   - Match the dark theme of the site
-   - Highlight the selected option with our blue color
+1. Create Product Overview Component and update both AI Safety & Ethics and Economic Index Pages
 
-2. Create a StrategicPivotSection component for the AI Safety page
-   - Include the Decision Matrix
-   - Format the rationale points as a bulleted list
-   - Include a prominent CTA button linking to the new page
+2. Commit changes to GitHub
 
-3. Create the new EconomicIndex page
-   - Follow the same structure as the AI Safety page
-   - Implement the Timeline component with the new milestones
-   - Include the Decision Matrix
-   - Add a simple wireframe mockup of the geographic dashboard
+3. Update Economic Index Page
 
-4. Update navigation to include the new page
-   - Add link in appropriate places
-   - Keep existing structure intact
+4. Commit changes to GitHub
 
-5. Give special attention to making everything mobile-responsive
-   - Decision matrix should be especially careful on small screens
-
-Please generate the necessary TypeScript/React components, and provide instructions on where each file should be placed in the project structure.
+Give special attention to making everything mobile-responsive. Please generate the necessary TypeScript/React components, and provide instructions on where each file should be placed in the project structure.
 */

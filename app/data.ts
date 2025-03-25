@@ -71,10 +71,35 @@ export const SNAPSHOT: Snapshot[] = [
   {
     title: "Backlog | ESSENCE: Economic Strategy System for Ethical Navigation & Commercial Engagement",
     description: "The initial <strong>Idea Concept</strong>, domain purchase, and demo to learn local environment setup, Vercel, and GitHub deployment was completed Day One. Additional technical functionality was explored for self-interest and to document learning agility.\n\nTo align more with the position's responsibilities, I will now demonstrate strategic product management capabilities.\n\nAfter the 6-day sprint is complete for the Geographic Economic Index Tool, the documentation will be left here for showcasing, but I will be moving on to an even more comprehensive (2-4 week) strategic workflow.",
+    id: "snapshot24",
+  },
+  {
+    title: "Backlog: v0.22 Validation Framework and Final Documentation",
+    description: "After completing the working prototype phase, we will need to create validation framework and final documentation for the Geographic Economic Index Tool.",
+    id: "snapshot23",
+  },
+  {
+    title: "WIP Update 22: Geographic Economic Index Tool Day 3",
+    description: "Begin to learn Flourish and explore NLP for mapping UNESCO ethical considerations to occupational categories. Tripwire hit - compare/contrast data visualization types\n 🎉 <a href='/economic-index' class='text-[#EBDBBC] underline transition-colors'>Click here to view the Economic Index project</a>",
+    id: "snapshot22",
+  },
+  {
+    title: "3/25 Update 21: Geographic Economic Index Tool - Day 3",
+    description: "Clone Anthropic's Economic Index Python project and run locally. Input BLS occupational data and create Python script to JOIN Anthropic's percentages with BLS' MSA's",
+    id: "snapshot21",
+  },
+  {
+    title: "3/22 Update 20: Begin ideation for v0.22",
+    description: "Begin v0.22 product roadmap. Begin draft of user stories for economic developers and sales teams.",
+    id: "snapshot20",
+  },
+  {
+    title: "3/22 Update 19: Add new Geographic Economic Index Tool page",
+    description: "Create multiple new components to reuse for potential future products. Add Geographic Economic Index Tool page with Product Overview, Product Concept, and Project Timeline",
     id: "snapshot19",
   },
   {
-    title: "WIP Update 21: Strategic Pivot to GEO Economic Index Tool",
+    title: "3/22 Update 18: Strategic Pivot to GEO Economic Index Tool",
     description: "AI Safety & Ethics research complete. Pivot after Success Bookend triggered.\n 🎉 <a href='/economic-index' class='text-[#EBDBBC] underline transition-colors'>Click here to view the Economic Index project</a>",
     id: "snapshot18",
   },

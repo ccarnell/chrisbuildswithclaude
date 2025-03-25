@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { Spotlight } from '@/components/ui/spotlight'
 import { MatrixPlaceholder } from '@/components/ui/MatrixPlaceholder'
 import { ProjectTimeline } from '@/components/ui/ProjectTimeline'
+import { ProductOverview } from '@/components/ui/ProductOverview'
 
 // Define animation variants for sections
 const VARIANTS_CONTAINER = {
@@ -24,26 +25,6 @@ const VARIANTS_SECTION = {
 
 const TRANSITION_SECTION = {
   duration: 0.3,
-}
-
-
-// Format text with commas, handling line wrapping
-function FormattedText({ text }: { text: string }) {
-  // Split text by the pipe character
-  const segments = text.split('|').map(segment => segment.trim())
-  
-  return (
-    <span className="break-words hyphens-auto">
-      {segments.map((segment, index) => (
-        <span key={index} className="inline-block">
-          {segment}
-          {index < segments.length - 1 && (
-            <span className="inline-block mr-1">,</span>
-          )}
-        </span>
-      ))}
-    </span>
-  )
 }
 
 export default function AiSafetyEthics() {
@@ -427,117 +408,32 @@ export default function AiSafetyEthics() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <div className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30">
-          <Spotlight
-            className="from-zinc-900 via-zinc-800 to-zinc-700 blur-2xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50"
-            size={64}
-          />
-          <div className="relative h-full w-full rounded-[15px] bg-white/80 p-4 md:p-6 dark:bg-zinc-950/80 opacity-75">
-            <h2 className="text-2xl font-medium mb-6 text-zinc-700 dark:text-zinc-300">Product Overview</h2>
-            
-            {/* Three-column layout for better space usage */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
-              {/* Project details in first column */}
-              <div className="lg:col-span-1">
-                <dl className="space-y-4">
-                  <div>
-                    <dt className="font-medium text-zinc-900 dark:text-zinc-100">Project Title</dt>
-                    <dd className="text-zinc-700 dark:text-zinc-300">AI Safety & Ethics Prospectus</dd>
-                  </div>
-                  <div>
-                    <dt className="font-medium text-zinc-900 dark:text-zinc-100">Purpose</dt>
-                    <dd className="text-zinc-700 dark:text-zinc-300">Review and solve for AI safety and ethics applications</dd>
-                  </div>
-                  <div>
-                    <dt className="font-medium text-zinc-900 dark:text-zinc-100">Target</dt>
-                    <dd className="text-zinc-700 dark:text-zinc-300">
-                      <FormattedText text="AI developers | Organizational leaders | Policymakers" />
-                    </dd>
-                  </div>
-                </dl>
-              </div>
-              
-              {/* Objectives column */}
-              <div className="lg:col-span-1">
-                <h3 className="text-lg font-medium mb-4">Key Objectives</h3>
-                <ul className="space-y-2 text-zinc-700 dark:text-zinc-300">
-                  <li className="flex items-start">
-                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
-                    <span>Research AI safety and ethics' foundations and governance</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
-                    <span>Explore dev, org leadership, and policymaker domains</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
-                    <span>Conduct Customer Discovery and competitive analysis</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
-                    <span>Calculate TAM, SAM, SOM and identify early adopters</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
-                    <span>Identify, quantify, design, and build MDVFP</span>
-                  </li>
-                </ul>
-              </div>
-                
-              {/* Methodology column */}
-              <div className="lg:col-span-1">
-                <h3 className="text-lg font-medium mb-4">Methodologies</h3>
-                <ul className="space-y-2 text-zinc-700 dark:text-zinc-300">
-                  <li className="flex items-start">
-                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
-                    <span>Customer Development with Lean Canvas</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
-                    <span>Fermi estimates for revenue modeling</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
-                    <span>Ten Types of Innovation Frameworks</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
-                    <span>User Stories and Journey Mapping</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
-                    <span>Kanban for workflow management</span>
-                  </li>
-                </ul>
-              </div>
-              
-              {/* Additional details that expand full width */}
-              <div className="lg:col-span-3 pt-4 border-t border-zinc-200 dark:border-zinc-800 mt-4">
-                <dl className="space-y-4">
-                  <div>
-                    <dt className="font-medium text-zinc-900 dark:text-zinc-100">Collaborators</dt>
-                    <dd className="text-zinc-700 dark:text-zinc-300">
-                      <FormattedText text="Research (Anthropic whitepapers + Deep Research) | Policy (policymaking.ai) | Engineering (Claude Code) | UI/UX (Claude) | Communications (Claude) | Strategic Product Manager (Chris Carnell)" />
-                    </dd>
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <dt className="font-medium text-zinc-900 dark:text-zinc-100">Tripwire</dt>
-                      <dd className="text-zinc-700 dark:text-zinc-300">If 2 days pass without completing A-priority task; signals potential timeline/scope issues requiring immediate communications and reassessment to either break problems down further or consider the depth and breadth of our continued work</dd>
-                    </div>
-                    <div>
-                      <dt className="font-medium text-zinc-900 dark:text-zinc-100">Bookend</dt>
-                      <dd className="text-zinc-700 dark:text-zinc-300">
-                        <span>Adverse: Inconclusive findings require transparency and open questions for areas needing further research.</span><br />
-                        <span className="text-green-600 dark:text-green-400 font-medium">Success: Identification of a problem worth developing a lean canvas, business modeling, fermi estimate for feasibility</span>
-                      </dd>
-                    </div>
-                  </div>
-                </dl>
-              </div>
-            </div>
-          </div>
-        </div>
+        <ProductOverview
+          title="AI Safety & Ethics Prospectus"
+          purpose="Review and solve for AI safety and ethics applications"
+          target="AI developers | Organizational leaders | Policymakers"
+          keyObjectives={[
+            "Research AI safety and ethics' foundations and governance",
+            "Explore dev, org leadership, and policymaker domains",
+            "Conduct Customer Discovery and competitive analysis",
+            "Calculate TAM, SAM, SOM and identify early adopters",
+            "Identify, quantify, design, and build MDVFP"
+          ]}
+          methodologies={[
+            "Customer Development with Lean Canvas",
+            "Fermi estimates for revenue modeling",
+            "Ten Types of Innovation Frameworks",
+            "User Stories and Journey Mapping",
+            "Kanban for workflow management"
+          ]}
+          collaborators="Research (Anthropic whitepapers + Deep Research) | Policy (policymaking.ai) | Engineering (Claude Code) | UI/UX (Claude) | Communications (Claude) | Strategic Product Manager (Chris Carnell)"
+          tripwire="If 2 days pass without completing A-priority task; signals potential timeline/scope issues requiring immediate communications and reassessment to either break problems down further or consider the depth and breadth of our continued work"
+          bookend={{
+            adverse: "Inconclusive findings require transparency and open questions for areas needing further research.",
+            success: "Identification of a problem worth developing a lean canvas, business modeling, fermi estimate for feasibility"
+          }}
+          isDimmed={true}
+        />
       </motion.section>
       
       {/* Timeline Section */}

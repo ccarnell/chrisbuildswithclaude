@@ -7,25 +7,7 @@ import { Spotlight } from '@/components/ui/spotlight'
 import { MatrixPlaceholder } from '@/components/ui/MatrixPlaceholder'
 import { ProjectTimeline } from '@/components/ui/ProjectTimeline'
 import { DashboardWireframe } from '@/components/ui/DashboardWireframe'
-
-// Format text with commas, handling line wrapping
-function FormattedText({ text }: { text: string }) {
-  // Split text by the pipe character
-  const segments = text.split('|').map(segment => segment.trim())
-  
-  return (
-    <span className="break-words hyphens-auto">
-      {segments.map((segment, index) => (
-        <span key={index} className="inline-block">
-          {segment}
-          {index < segments.length - 1 && (
-            <span className="inline-block mr-1">,</span>
-          )}
-        </span>
-      ))}
-    </span>
-  )
-}
+import { ProductOverview } from '@/components/ui/ProductOverview'
 
 // Define animation variants for sections
 const VARIANTS_CONTAINER = {
@@ -108,7 +90,7 @@ export default function EconomicIndex() {
       day: "Day 1-2",
       date: "Mar 23-24",
       title: "Strategic Foundation, Product Definition and Conceptualization",
-      status: "WIP" as const,
+      status: "Complete" as const,
       tasks: [
         {
           title: "✅ Write content for Home Page projects and snapshots sections for strategic pivot from AI Safety (v0.21) to Economic Index Tool (v0.22)"
@@ -138,13 +120,13 @@ export default function EconomicIndex() {
           title: "✅ Run tests and push commit for Day 1"
         },
         {
-          title: "Add to v0.22 Product Overview: collaborators, tripwire, and bookends"
+          title: "✅ Add to v0.22 Product Overview: collaborators, tripwire, and bookends"
         },
         {
-          title: "Create data strategy plan for connecting occupations to ethical dimensions"
+          title: "✅ Create data strategy plan for connecting occupations to ethical dimensions"
         },
         {
-          title: "Draft user stories and journey mapping for economic developers and sales teams"
+          title: "✅ Draft user stories and journey mapping for economic developers and sales teams"
         },
         {
           title: "Begin mapping between occupational categories and ethical considerations"
@@ -155,11 +137,32 @@ export default function EconomicIndex() {
       day: "Day 3-4",
       date: "Mar 25-26",
       title: "Framework Design and Prototype Development",
-      status: "Backlog" as const,
+      status: "WIP" as const,
       tasks: [
         {
-          title: "Framework Design & Prototype Development tasks (see Claude chat: 3a419cd1)"
+          title: "✅ Download Anthropic's Economic Index data via Huggingface and review"
         },
+        {
+          title: "✅ Gather BLS occupational codes data by GEO (determine type)"
+        },
+        {
+          title: "✅ Create JOIN for overlap of Economic Index and BLS occupational codes"
+        },
+        {
+          title: "✅ Define breakdown and/or combinations that will be mapped geographically"
+        },
+        {
+          title: "✅ Prepare data for Flourish"
+        },
+        {
+          title: "✅ Build first GEO data visualization"
+        },
+        {
+          title: "Add explanatory elements to visualization"
+        },
+        {
+          title: "Create Methodology and Limitations components"
+        }
       ]
     },
     {
@@ -169,8 +172,23 @@ export default function EconomicIndex() {
       status: "Backlog" as const,
       tasks: [
         {
-          title: "Validation Framework and Final Documentation tasks"
+          title: "Finalize functional prototype display"
         },
+        {
+          title: "Finalize test criteria with internal users"
+        },
+        {
+          title: "Work with GTM to plan for distribution and gathering feedback"
+        },
+        {
+          title: "Set bookend for analysis"
+        },
+        {
+          title: "Complete reflection of project"
+        },
+        {
+          title: "Develop plans for next sprint"
+        }
       ]
     }
   ]
@@ -198,92 +216,35 @@ export default function EconomicIndex() {
       <motion.section
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
+        className="mb-8"
       >
-        <div className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30 mb-8">
-          <Spotlight
-            className="from-zinc-900 via-zinc-800 to-zinc-700 blur-2xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50"
-            size={64}
-          />
-          <div className="relative h-full w-full rounded-[15px] bg-white p-4 md:p-6 dark:bg-zinc-950">
-            <h2 className="text-2xl font-medium mb-6">Product Overview</h2>
-            
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
-              {/* Project details in first column */}
-              <div className="lg:col-span-1">
-                <dl className="space-y-4">
-                  <div>
-                    <dt className="font-medium text-zinc-900 dark:text-zinc-100">Project Title</dt>
-                    <dd className="text-zinc-700 dark:text-zinc-300">Geographic Economic Index Tool</dd>
-                  </div>
-                  <div>
-                    <dt className="font-medium text-zinc-900 dark:text-zinc-100">Purpose</dt>
-                    <dd className="text-zinc-700 dark:text-zinc-300">Map Economic Index occupations to GEO. Overlay with UNESCO AI Ethics framework</dd>
-                  </div>
-                  <div>
-                    <dt className="font-medium text-zinc-900 dark:text-zinc-100">Target</dt>
-                    <dd className="text-zinc-700 dark:text-zinc-300">
-                      <FormattedText text="Economic developers, Anthropic sales teams, Organizational leaders, Researchers" />
-                    </dd>
-                  </div>
-                </dl>
-              </div>
-              
-              {/* Objectives column */}
-              <div className="lg:col-span-1">
-                <h3 className="text-lg font-medium mb-4">Key Objectives</h3>
-                <ul className="space-y-2 text-zinc-700 dark:text-zinc-300">
-                  <li className="flex items-start">
-                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
-                    <span>Map geographic distribution of occupations from Economic Index</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
-                    <span>Visualize geographic concentration of occupations from Economic Index</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
-                    <span>Connect UNESCO AI Ethics framework of scenario dilemmas & suggested responses </span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
-                    <span>Introduce economic development tool for potential AI job displacement planning</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
-                    <span>Provide Anthropic internal Sales teams potential hypertargeted segments</span>
-                  </li>
-                </ul>
-              </div>
-                
-              {/* Methodology column */}
-              <div className="lg:col-span-1">
-                <h3 className="text-lg font-medium mb-4">Tools & Methodologies</h3>
-                <ul className="space-y-2 text-zinc-700 dark:text-zinc-300">
-                  <li className="flex items-start">
-                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
-                    <span>Anthropic's Economic Index, UNESCO AI Ethics framework, BLS & Census data</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
-                    <span>Customer development with Lean Canvas and Ten Types of Innovation frameworks</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
-                    <span>Continuous Innovation framework with Fermi estimates for revenue modeling</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
-                    <span>User Stories and Journey Mapping, and Kanban for workflow management</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-800 dark:bg-white mt-2 mr-2"></span>
-                    <span>Flourish, Kaggle</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
+        <ProductOverview
+          title="Geographic Economic Index Tool"
+          purpose="Map Economic Index occupations to GEO. Overlay with UNESCO AI Ethics framework"
+          target="Economic developers | Anthropic sales teams | Organizational leaders | Researchers"
+          keyObjectives={[
+            "Map geographic distribution of occupations from Economic Index",
+            "Visualize geographic concentration of occupations from Economic Index",
+            "Connect UNESCO AI Ethics framework of scenario dilemmas & suggested responses",
+            "Introduce economic development tool for potential AI job displacement planning",
+            "Provide Anthropic internal Sales teams potential hypertargeted segments"
+          ]}
+          methodologies={[
+            "Anthropic's Economic Index, UNESCO AI Ethics framework, BLS & Census data",
+            "Customer development with Lean Canvas and Ten Types of Innovation frameworks",
+            "Continuous Innovation framework with Fermi estimates for revenue modeling",
+            "User Stories and Journey Mapping, and Kanban for workflow management",
+            "Flourish, Kaggle"
+          ]}
+          collaborators="Research (Anthropic Economic Index team) | Policy (policymaking.ai) | Engineering (Claude Code) | UI/UX (Claude) | Strategic Product Management (Chris Carnell)"
+          tripwire="The proposed solution was a geographical view. After mapping data to plot, gather insights on if any other visualization type may be more necessary."
+          bookend={{
+            adverse: "Flourish integration is too difficult within 6-days. Input static infographic",
+            success: "Anthropic Economic Index Research team identifies project as valuable input for ongoing research."
+          }}
+          isDimmed={false}
+          successColorOverride={false}
+        />
       </motion.section>
 
       {/* Executive Summary & Dashboard */}
@@ -314,7 +275,8 @@ export default function EconomicIndex() {
       >
         <ProjectTimeline 
           milestones={timelineMilestones}
-          currentPhase="Strategic Foundation, Product Definition and Conceptualization"
+          currentPhase="Framework Design and Prototype Development"
+          defaultOpenIndex={1}
         />
       </motion.section>
       

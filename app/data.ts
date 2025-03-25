@@ -36,7 +36,7 @@ export const PROJECTS: Project[] = [
   {
     name: 'v0.22: Economic Index Tool (WIP)',
     description:
-      'Trigger v0.21 Success Bookend → Strategic pivot: AI Safety & Ethics Discovery + Anthropic\'s Economic Index + leverage personal econ dev expertise.',
+      'Trigger v0.21 Success Bookend → Strategic pivot: AI Safety & Ethics Discovery + Anthropic\'s Economic Index + leverage personal econonomic development expertise.',
     link: '/economic-index',
     video: '/economic-index-tool-project-image.webp',
     id: 'project4',
@@ -50,7 +50,7 @@ export const PROJECTS: Project[] = [
     id: 'project3',
   },
   {
-    name: 'v0.2: CBWC landing page (current)',
+    name: 'v0.2: chribuildswithclaude landing page (current)',
     description:
       'Deploy new Vercel boilerplate. Begin work with Next.js, Typescript, MongoDB, and setup Claude Code via Anthropic API. Give it some fancy clothes and submit resume.',
     link: '',

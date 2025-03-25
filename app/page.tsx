@@ -189,7 +189,7 @@ export default function Personal() {
           const [isExpanded, setIsExpanded] = useState(false)
           
           // Define how many projects to show initially
-          const visibleCount = 2;
+          const visibleCount = 1;
           
           // Create separate arrays for fully visible and peek item
           const fullyVisibleProjects = isExpanded 
@@ -203,7 +203,7 @@ export default function Personal() {
           
           return (
             <>
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+              <div className="grid grid-cols-1 gap-6">
                 {fullyVisibleProjects.map((project) => (
                   <div key={project.name} className="space-y-2">
                     <div className="relative rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
@@ -238,7 +238,7 @@ export default function Personal() {
               
               {/* Partial view of next items - just a peek within the grid */}
               {peekItem && !isExpanded && (
-                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 mt-6">
+                <div className="grid grid-cols-1 gap-6 mt-6">
                   <div 
                     className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30"
                     key={`peek-${peekItem.id}`}
@@ -263,13 +263,9 @@ export default function Personal() {
                     </div>
                   </div>
                   
-                  {/* Additional peek placeholder to maintain grid layout */}
-                  <div className="relative overflow-hidden rounded-2xl bg-zinc-300/10 p-[1px] dark:bg-zinc-600/10">
-                    <div className="relative rounded-[15px] bg-white/50 dark:bg-zinc-950/50 overflow-hidden h-[110px]">
-                      <div className="h-full w-full flex items-center justify-center">
-                        <span className="text-sm text-zinc-400 dark:text-zinc-600">+{PROJECTS.length - visibleCount - 1} more</span>
-                      </div>
-                    </div>
+                  {/* Peek placeholder showing the count of remaining items */}
+                  <div className="mt-2 text-center">
+                    <span className="text-sm text-zinc-500 dark:text-zinc-400">+{PROJECTS.length - visibleCount - 1} more projects</span>
                   </div>
                 </div>
               )}

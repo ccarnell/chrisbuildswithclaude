@@ -454,28 +454,52 @@ export default function AiSafetyEthics() {
         transition={TRANSITION_SECTION}
         className="flex justify-between items-center"
       >
-        {/* Back to Home Link */}
-        <Link 
-          href="/" 
-          className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors duration-200 flex items-center"
-        >
-          <svg 
-            xmlns="http://www.w3.org/2000/svg" 
-            width="20" 
-            height="20" 
-            viewBox="0 0 24 24" 
-            fill="none" 
-            stroke="currentColor" 
-            strokeWidth="2" 
-            strokeLinecap="round" 
-            strokeLinejoin="round"
-            className="mr-1"
+        {/* Left side links */}
+        <div className="flex space-x-4">
+          <Link 
+            href="/" 
+            className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors duration-200 flex items-center"
           >
-            <path d="M19 12H5"></path>
-            <path d="M12 19l-7-7 7-7"></path>
-          </svg>
-          Back to Home
-        </Link>
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              width="20" 
+              height="20" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="currentColor" 
+              strokeWidth="2" 
+              strokeLinecap="round" 
+              strokeLinejoin="round"
+              className="mr-1"
+            >
+              <path d="M19 12H5"></path>
+              <path d="M12 19l-7-7 7-7"></path>
+            </svg>
+            Back to Home
+          </Link>
+          
+          <Link 
+            href="/economic-index" 
+            className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors duration-200 flex items-center"
+          >
+            Go to Economic Index
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              width="20" 
+              height="20" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="currentColor" 
+              strokeWidth="2" 
+              strokeLinecap="round" 
+              strokeLinejoin="round"
+              className="ml-1"
+            >
+              <path d="M5 12h14"></path>
+              <path d="m12 5 7 7-7 7"></path>
+            </svg>
+          </Link>
+        </div>
         
         {/* Back to Top Button */}
         <button
@@ -501,37 +525,6 @@ export default function AiSafetyEthics() {
         </button>
       </motion.section>
       
-      {/* Floating Back to Top button (only shows when scrolled down) */}
-      {showScrollTop && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed bottom-8 right-8 z-50"
-        >
-          <button
-            onClick={scrollToTop}
-            className="p-3 bg-zinc-100 dark:bg-zinc-800 rounded-full shadow-md hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors duration-200"
-            aria-label="Back to top"
-          >
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              width="24" 
-              height="24" 
-              viewBox="0 0 24 24" 
-              fill="none" 
-              stroke="currentColor" 
-              strokeWidth="2" 
-              strokeLinecap="round" 
-              strokeLinejoin="round"
-              className="text-zinc-600 dark:text-zinc-400"
-            >
-              <path d="M12 19V5"></path>
-              <path d="M5 12l7-7 7 7"></path>
-            </svg>
-          </button>
-        </motion.div>
-      )}
     </motion.main>
   )
 }

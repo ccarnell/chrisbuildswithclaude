@@ -26,12 +26,12 @@ export function Header() {
           </TextEffect>
         </Link>
       </div>
-      <div className="flex space-x-3">
+      <div className="flex space-x-2">
         {PDF_LINKS.map((pdfLink) => (
           <Link 
             key={pdfLink.label} 
             href={pdfLink.path} 
-            className="text-sm py-1 px-3 bg-zinc-100 dark:bg-zinc-800 rounded-full text-zinc-600 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors"
+            className="text-xs sm:text-sm py-1 px-2 sm:px-3 bg-zinc-100 dark:bg-zinc-800 rounded-full text-zinc-600 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors text-center whitespace-nowrap flex items-center justify-center min-w-[80px]"
             target="_blank"
           >
             {pdfLink.label}

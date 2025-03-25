@@ -257,11 +257,11 @@ export default function EconomicIndex() {
             className="from-zinc-900 via-zinc-800 to-zinc-700 blur-2xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50"
             size={64}
           />
-          <div className="relative h-full w-full rounded-[15px] bg-white p-4 md:p-6 dark:bg-zinc-950">
-            <h2 className="text-2xl font-medium mb-6">Product Concept</h2>
+          <div className="relative h-full w-full rounded-[15px] bg-white p-3 sm:p-4 md:p-6 dark:bg-zinc-950 overflow-hidden">
+            <h2 className="text-xl sm:text-2xl font-medium mb-4 sm:mb-6">Product Concept</h2>
             
             {/* Dashboard Wireframe only */}
-            <div>
+            <div className="overflow-x-hidden">
               <DashboardWireframe />
             </div>
           </div>
@@ -357,37 +357,6 @@ export default function EconomicIndex() {
         </button>
       </motion.section>
       
-      {/* Floating Back to Top button (only shows when scrolled down) */}
-      {showScrollTop && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed bottom-8 right-8 z-50"
-        >
-          <button
-            onClick={scrollToTop}
-            className="p-3 bg-zinc-100 dark:bg-zinc-800 rounded-full shadow-md hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors duration-200"
-            aria-label="Back to top"
-          >
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              width="24" 
-              height="24" 
-              viewBox="0 0 24 24" 
-              fill="none" 
-              stroke="currentColor" 
-              strokeWidth="2" 
-              strokeLinecap="round" 
-              strokeLinejoin="round"
-              className="text-zinc-600 dark:text-zinc-400"
-            >
-              <path d="M12 19V5"></path>
-              <path d="M5 12l7-7 7 7"></path>
-            </svg>
-          </button>
-        </motion.div>
-      )}
     </motion.main>
   )
 }

@@ -38,7 +38,7 @@ export const PROJECTS: Project[] = [
     description:
       'Trigger v0.21 Success Bookend → Strategic pivot: AI Safety & Ethics Discovery + Anthropic\'s Economic Index + leverage personal econonomic development expertise.',
     link: '/economic-index',
-    video: '/economic-index-tool-project-image.webp',
+    video: '/geographic-economic-index-tool-project-image.webp',
     id: 'project4',
   },
   {
@@ -79,8 +79,13 @@ export const SNAPSHOT: Snapshot[] = [
     id: "snapshot23",
   },
   {
-    title: "WIP Update 22: Geographic Economic Index Tool Day 3",
-    description: "Begin to learn Flourish and explore NLP for mapping UNESCO ethical considerations to occupational categories. Tripwire hit - compare/contrast data visualization types\n 🎉 <a href='/economic-index' class='text-[#EBDBBC] underline transition-colors'>Click here to view the Economic Index project</a>",
+    title: "WIP Update 23: OOO 3/27",
+    description: "Begin wrapup of v0.22 on 3/28",
+    id: "snapshot23a",
+  },
+  {
+    title: "3/26 Update 22: Geographic Economic Index Tool - Day 4",
+    description: "Move to Datawrapper for simplicity to add choropleth mapping Economic Index to occupational codes by MSA and create new Economic_MSA_Index, Economic_Occupation_Index, and log10 and z-scores for both MSA's and occupations. The rest of the data can be later utilized or shared with Anthropic. The current mock prototype has been pushed to prod.\n 🎉 <a href='/economic-index' class='text-[#61AAF2] underline transition-colors'>Click here to view the Economic Index project</a>",
     id: "snapshot22",
   },
   {

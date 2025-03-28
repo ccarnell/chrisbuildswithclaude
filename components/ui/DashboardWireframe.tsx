@@ -26,6 +26,28 @@ export function DashboardWireframe() {
       window.removeEventListener('message', handleDatawrapperMessage)
     }
   }, [])
+  
+  // Handle loading the Datawrapper script when the component is mounted
+  useEffect(() => {
+    // For the visualization
+    const script = document.createElement('script')
+    script.src = 'https://datawrapper.dwcdn.net/aD2yT/embed.js'
+    script.async = true
+    script.defer = true
+    script.charset = 'utf-8'
+    
+    const targetEl = document.getElementById('datawrapper-vis-aD2yT')
+    if (targetEl) {
+      targetEl.innerHTML = ''; // Clear previous content
+      targetEl.appendChild(script)
+    }
+    
+    return () => {
+      if (targetEl && script.parentNode) {
+        script.parentNode.removeChild(script)
+      }
+    }
+  }, [])
 
   return (
     <div className="rounded-lg border border-zinc-200 dark:border-zinc-700 p-2 sm:p-4 bg-white dark:bg-zinc-900">
@@ -36,19 +58,20 @@ export function DashboardWireframe() {
         <div className="h-8 sm:h-10 w-full rounded bg-zinc-100 dark:bg-zinc-800"></div>
       </div>
       
-      {/* Datawrapper embed - title comes from within the iframe */}
+      {/* Datawrapper embed - single visualization */}
       <div className="mb-6">
-        <iframe 
-          title="Economic Index Data" 
-          aria-label="Map" 
-          id="datawrapper-chart-aD2yT" 
-          src="https://datawrapper.dwcdn.net/aD2yT/1/" 
-          scrolling="no" 
-          frameBorder="0" 
-          style={{ width: 0, minWidth: '100%', border: 'none' }} 
-          height="416" 
-          data-external="1"
-        />
+        <div className="overflow-hidden rounded-md">
+          <div style={{minHeight: "416px"}} id="datawrapper-vis-aD2yT">
+            <noscript><img src="https://datawrapper.dwcdn.net/aD2yT/full.png" alt="Weighted Economic Index by MSA" /></noscript>
+          </div>
+        </div>
+      </div>
+      
+      {/* Formula explanation */}
+      <div className="mb-6 text-sm text-zinc-600 dark:text-zinc-400">
+        <p className="mb-2">Weighted Economic Index by MSA calculation: Economic_MSA_Score = Σ (Employment_i / Total_MSA_Employment) × Economic_Index_i</p>
+        {/* <p className="mb-2">Log10 Economic Index by MSA calculation: Log10_Economic_MSA_Score = log10(Economic_MSA_Score)</p> */}
+        <p className="font-bold italic">DISCLAIMER: THESE VISUALIZATION ARE SPECIFICALLY FOR DEMONSTRATION PURPOSES ONLY. THE UNDERLYING DATA IS PRELIMINARY, HAS BEEN USER-MODEFIED, AND WILL NOT REFLECT FINAL RESULTS.</p>
       </div>
       
       <div className="grid grid-cols-12 gap-3 sm:gap-4">

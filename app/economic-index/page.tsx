@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'motion/react'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { Spotlight } from '@/components/ui/spotlight'
 import { MatrixPlaceholder } from '@/components/ui/MatrixPlaceholder'
@@ -30,7 +30,7 @@ const TRANSITION_SECTION = {
 }
 
 export default function EconomicIndex() {
-  // State for scrolling to top
+  // State for scrolling to top button
   const [showScrollTop, setShowScrollTop] = useState(false)
   
   // Check scroll position to show/hide scroll to top button
@@ -137,7 +137,7 @@ export default function EconomicIndex() {
       day: "Day 3-4",
       date: "Mar 25-26",
       title: "Framework Design and Prototype Development",
-      status: "WIP" as const,
+      status: "Complete" as const,
       tasks: [
         {
           title: "✅ Download Anthropic's Economic Index data via Huggingface and review"
@@ -169,7 +169,7 @@ export default function EconomicIndex() {
       day: "Day 5-6",
       date: "Mar 27-28",
       title: "Validation Framework and Final Documentation",
-      status: "Backlog" as const,
+      status: "WIP" as const,
       tasks: [
         {
           title: "Finalize functional prototype display"
@@ -226,7 +226,7 @@ export default function EconomicIndex() {
             "Map geographic distribution of occupations from Economic Index",
             "Visualize geographic concentration of occupations from Economic Index",
             "Connect UNESCO AI Ethics framework of scenario dilemmas & suggested responses",
-            "Introduce economic development tool for potential AI job displacement planning",
+            "Introduce economic development tool for potential AI job automation and augmentation planning",
             "Provide Anthropic internal Sales teams potential hypertargeted segments"
           ]}
           methodologies={[
@@ -234,7 +234,7 @@ export default function EconomicIndex() {
             "Customer development with Lean Canvas and Ten Types of Innovation frameworks",
             "Continuous Innovation framework with Fermi estimates for revenue modeling",
             "User Stories and Journey Mapping, and Kanban for workflow management",
-            "Flourish, Kaggle"
+            "Flourish, Kaggle, DataWrapper"
           ]}
           collaborators="Research (Anthropic Economic Index team) | Policy (policymaking.ai) | Engineering (Claude Code) | UI/UX (Claude) | Strategic Product Management (Chris Carnell)"
           tripwire="The proposed solution was a geographical view. After mapping data to plot, gather insights on if any other visualization type may be more necessary."
@@ -260,7 +260,7 @@ export default function EconomicIndex() {
           <div className="relative h-full w-full rounded-[15px] bg-white p-3 sm:p-4 md:p-6 dark:bg-zinc-950 overflow-hidden">
             <h2 className="text-xl sm:text-2xl font-medium mb-4 sm:mb-6">Product Concept</h2>
             
-            {/* Dashboard Wireframe only */}
+            {/* Dashboard Wireframe with integrated carousel */}
             <div className="overflow-x-hidden">
               <DashboardWireframe />
             </div>
@@ -275,8 +275,8 @@ export default function EconomicIndex() {
       >
         <ProjectTimeline 
           milestones={timelineMilestones}
-          currentPhase="Framework Design and Prototype Development"
-          defaultOpenIndex={1}
+          currentPhase="Validation Framework and Final Documentation"
+          defaultOpenIndex={2}
         />
       </motion.section>
       

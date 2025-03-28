@@ -79,7 +79,7 @@ export const SNAPSHOT: Snapshot[] = [
     id: "snapshot23",
   },
   {
-    title: "WIP Update 23: OOO 3/27",
+    title: "WIP Update 23: Out of Office 3/27",
     description: "Begin wrapup of v0.22 on 3/28",
     id: "snapshot23a",
   },

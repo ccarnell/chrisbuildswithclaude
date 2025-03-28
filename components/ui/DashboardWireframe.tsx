@@ -26,55 +26,59 @@ export function DashboardWireframe() {
       window.removeEventListener('message', handleDatawrapperMessage)
     }
   }, [])
-  
-  // Handle loading the Datawrapper script when the component is mounted
-  useEffect(() => {
-    // For the visualization
-    const script = document.createElement('script')
-    script.src = 'https://datawrapper.dwcdn.net/aD2yT/embed.js'
-    script.async = true
-    script.defer = true
-    script.charset = 'utf-8'
-    
-    const targetEl = document.getElementById('datawrapper-vis-aD2yT')
-    if (targetEl) {
-      targetEl.innerHTML = ''; // Clear previous content
-      targetEl.appendChild(script)
-    }
-    
-    return () => {
-      if (targetEl && script.parentNode) {
-        script.parentNode.removeChild(script)
-      }
-    }
-  }, [])
 
   return (
     <div className="rounded-lg border border-zinc-200 dark:border-zinc-700 p-2 sm:p-4 bg-white dark:bg-zinc-900">
-      {/* Top controls moved to top */}
-      <div className="mb-4 flex flex-wrap sm:flex-nowrap gap-2">
-        <div className="h-8 sm:h-10 w-20 sm:w-24 rounded bg-zinc-100 dark:bg-zinc-800"></div>
-        <div className="h-8 sm:h-10 w-20 sm:w-24 rounded bg-zinc-100 dark:bg-zinc-800"></div>
-        <div className="h-8 sm:h-10 w-full rounded bg-zinc-100 dark:bg-zinc-800"></div>
-      </div>
+      {/* Section heading */}
+      <h3 className="text-lg font-medium mb-4">Geographic Economic Index Visualization</h3>
       
-      {/* Datawrapper embed - single visualization */}
-      <div className="mb-6">
+      {/* Weighted visualization - shown first */}
+      <div className="mb-8">
         <div className="overflow-hidden rounded-md">
-          <div style={{minHeight: "416px"}} id="datawrapper-vis-aD2yT">
-            <noscript><img src="https://datawrapper.dwcdn.net/aD2yT/full.png" alt="Weighted Economic Index by MSA" /></noscript>
-          </div>
+          <iframe 
+            title="Weighted Economic Index by MSA" 
+            aria-label="Map" 
+            id="datawrapper-chart-aD2yT" 
+            src="https://datawrapper.dwcdn.net/aD2yT/1/" 
+            scrolling="no" 
+            frameBorder="0" 
+            style={{ border: 'none', width: '100%' }} 
+            height="450" 
+            data-external="1">
+          </iframe>
+        </div>
+        <div className="text-sm text-zinc-600 dark:text-zinc-400 mt-3">
+          <p>Weighted Economic Index by MSA calculation: Economic_MSA_Score = Σ (Employment_i / Total_MSA_Employment) × Economic_Index_i</p>
         </div>
       </div>
       
-      {/* Formula explanation */}
-      <div className="mb-6 text-sm text-zinc-600 dark:text-zinc-400">
-        <p className="mb-2">Weighted Economic Index by MSA calculation: Economic_MSA_Score = Σ (Employment_i / Total_MSA_Employment) × Economic_Index_i</p>
-        {/* <p className="mb-2">Log10 Economic Index by MSA calculation: Log10_Economic_MSA_Score = log10(Economic_MSA_Score)</p> */}
-        <p className="font-bold italic">DISCLAIMER: THESE VISUALIZATION ARE SPECIFICALLY FOR DEMONSTRATION PURPOSES ONLY. THE UNDERLYING DATA IS PRELIMINARY, HAS BEEN USER-MODEFIED, AND WILL NOT REFLECT FINAL RESULTS.</p>
+      {/* Log10 visualization - shown second */}
+      <div className="mb-6">
+        <div className="overflow-hidden rounded-md">
+          <iframe 
+            title="Log10 Economic Index by MSA" 
+            aria-label="Map" 
+            id="datawrapper-chart-h71nE" 
+            src="https://datawrapper.dwcdn.net/h71nE/1/" 
+            scrolling="no" 
+            frameBorder="0" 
+            style={{ border: 'none', width: '100%' }} 
+            height="450" 
+            data-external="1">
+          </iframe>
+        </div>
+        <div className="text-sm text-zinc-600 dark:text-zinc-400 mt-3">
+          <p>Log10 Economic Index by MSA calculation: Log10_Economic_MSA_Score = log10(Economic_MSA_Score)</p>
+        </div>
       </div>
       
-      <div className="grid grid-cols-12 gap-3 sm:gap-4">
+      {/* Disclaimer in its own container */}
+      <div className="text-sm text-zinc-600 dark:text-zinc-400 pt-2 border-t border-zinc-200 dark:border-zinc-700">
+        <p className="font-bold italic mt-2">DISCLAIMER: THESE VISUALIZATIONS ARE SPECIFICALLY FOR DEMONSTRATION PURPOSES ONLY. THE UNDERLYING DATA IS PRELIMINARY, HAS BEEN USER-MODIFIED, AND WILL NOT REFLECT FINAL RESULTS.</p>
+      </div>
+      
+      {/* Charts and graphs section */}
+      <div className="grid grid-cols-12 gap-3 sm:gap-4 mt-6">
         {/* Charts section - same height as Graphs */}
         <div className="col-span-12 md:col-span-8 h-64 sm:h-72 rounded border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 flex items-center justify-center">
           <div className="text-center w-full p-4">

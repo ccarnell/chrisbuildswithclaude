@@ -260,8 +260,8 @@ export default function EconomicIndex() {
           <div className="relative h-full w-full rounded-[15px] bg-white p-3 sm:p-4 md:p-6 dark:bg-zinc-950 overflow-hidden">
             <h2 className="text-xl sm:text-2xl font-medium mb-4 sm:mb-6">Product Concept</h2>
             
-            {/* Dashboard Wireframe with integrated carousel */}
-            <div className="overflow-x-hidden">
+            {/* Dashboard Wireframe */}
+            <div>
               <DashboardWireframe />
             </div>
           </div>

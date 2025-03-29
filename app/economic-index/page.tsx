@@ -264,6 +264,7 @@ export default function EconomicIndex() {
             <div>
               <DashboardWireframe />
             </div>
+            
           </div>
         </div>
       </motion.section>

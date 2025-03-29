@@ -39,16 +39,16 @@ export function DashboardWireframe() {
             title="Weighted Economic Index by MSA" 
             aria-label="Map" 
             id="datawrapper-chart-aD2yT" 
-            src="https://datawrapper.dwcdn.net/aD2yT/1/" 
+            src="https://datawrapper.dwcdn.net/aD2yT/5/" 
             scrolling="no" 
             frameBorder="0" 
             style={{ border: 'none', width: '100%' }} 
-            height="450" 
+            height="720" 
             data-external="1">
           </iframe>
         </div>
         <div className="text-sm text-zinc-600 dark:text-zinc-400 mt-3">
-          <p>Weighted Economic Index by MSA calculation: Economic_MSA_Score = Σ (Employment_i / Total_MSA_Employment) × Economic_Index_i</p>
+          <p>The numbers and color differentiation are calculated by taking the total number of employed for each occupational code in BLS and multiplying it by its respective Anthropic Economic Index score of percentage of use cases. The Geographic Economic Index is the SUM of those calculations for each MSA. These are 'raw numbers' so naturally metropolitans will be much higher based on their population numbers alone.</p>
         </div>
       </div>
       
@@ -59,16 +59,16 @@ export function DashboardWireframe() {
             title="Log10 Economic Index by MSA" 
             aria-label="Map" 
             id="datawrapper-chart-h71nE" 
-            src="https://datawrapper.dwcdn.net/h71nE/1/" 
+            src="https://datawrapper.dwcdn.net/h71nE/4/" 
             scrolling="no" 
             frameBorder="0" 
             style={{ border: 'none', width: '100%' }} 
-            height="450" 
+            height="720" 
             data-external="1">
           </iframe>
         </div>
         <div className="text-sm text-zinc-600 dark:text-zinc-400 mt-3">
-          <p>Log10 Economic Index by MSA calculation: Log10_Economic_MSA_Score = log10(Economic_MSA_Score)</p>
+          <p>The numbers and color differentiation are calculated by taking the log base 10 of the Geographic Economic Index for each MSA. This view demonstrates what may be considered a 'relative comparison' as the raw numbers are placed linearly.</p>
         </div>
       </div>
       

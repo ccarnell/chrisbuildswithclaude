@@ -1,0 +1,12 @@
+/*The following MSA's were required to removed from the Economic Index Tool because the data did not have matching GEO CODES
+Danbury, CT
+Dover-Durham, NH-ME
+Leominster-Gardner, MA
+New Bedford, MA
+Portsmouth, OH
+Waterbury, CT
+
+The following MSA's were not included because of missing data:
+Poughkeepsie-Newburgh-Middletown, NY
+Yauco, PR
+*/

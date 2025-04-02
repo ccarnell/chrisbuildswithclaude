@@ -14,6 +14,7 @@ type Milestone = {
   day: string | number
   date?: string
   title: string
+  subtitle?: string
   status?: 'Complete' | 'WIP' | 'Backlog' | string
   tasks: Task[]
 }
@@ -110,9 +111,9 @@ export function ProjectTimeline({ milestones, currentPhase, title = "Project Tim
   
   return (
     <div className="w-full mb-8">
-      <h3 className="text-xl font-medium mb-6">{title}</h3>
-      <div className="text-sm text-zinc-500 dark:text-zinc-400 mb-4">
-        Current Phase: <span className="font-medium text-[#61AAF2]">{getCurrentPhase()}</span>
+      <h3 className="text-xl font-medium mb-4">{title}</h3>
+      <div className="text-sm text-zinc-500 dark:text-zinc-400 mb-6">
+        Current Phase: <span className="font-medium text-[#61AAF2] dark:text-[#61AAF2]">Validation Framework and Final Documentation</span> <span className="text-amber-500 dark:text-amber-400 text-xs font-medium ml-1">(Intentionally Incomplete)</span>
       </div>
       
       <div className="space-y-4">
@@ -155,7 +156,13 @@ export function ProjectTimeline({ milestones, currentPhase, title = "Project Tim
                   </div>
                   <h4 className="text-lg font-medium text-zinc-900 dark:text-zinc-100">
                     {milestone.title}
+                    {index === 2 && <span className="text-amber-500 dark:text-amber-400 text-xs font-bold ml-2">(Intentionally Incomplete)</span>}
                   </h4>
+                  {milestone.subtitle && (
+                    <p className="text-xs italic text-zinc-500 dark:text-zinc-400 mt-1">
+                      {milestone.subtitle}
+                    </p>
+                  )}
                 </div>
               </div>
               

@@ -158,7 +158,7 @@ export default function EconomicIndex() {
           title: "✅ Build first GEO data visualization"
         },
         {
-          title: "Add explanatory elements to visualization"
+          title: "✅ Add explanatory elements to visualization"
         },
         {
           title: "Create Methodology and Limitations components"
@@ -169,10 +169,11 @@ export default function EconomicIndex() {
       day: "Day 5-6",
       date: "Mar 27-28",
       title: "Validation Framework and Final Documentation",
+      subtitle: "Prototype complete: This Milestone has been left in WIP status strictly for display purposes",
       status: "WIP" as const,
       tasks: [
         {
-          title: "Finalize functional prototype display"
+          title: "✅ Finalize functional prototype display"
         },
         {
           title: "Finalize test criteria with internal users"
@@ -259,6 +260,53 @@ export default function EconomicIndex() {
           />
           <div className="relative h-full w-full rounded-[15px] bg-white p-3 sm:p-4 md:p-6 dark:bg-zinc-950 overflow-hidden">
             <h2 className="text-xl sm:text-2xl font-medium mb-4 sm:mb-6">Product Concept</h2>
+            
+            {/* Filter UI Mockup */}
+            <div className="mb-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {/* Region filter */}
+              <div className="flex items-center justify-between px-3 py-2 bg-white dark:bg-zinc-800 rounded-md border border-zinc-200 dark:border-zinc-700">
+                <span className="text-sm font-medium">Region:</span>
+                <div className="flex items-center">
+                  <span className="text-sm">By MSA</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1 text-zinc-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+              </div>
+              
+              {/* Employment filter */}
+              <div className="flex items-center justify-between px-3 py-2 bg-white dark:bg-zinc-800 rounded-md border border-zinc-200 dark:border-zinc-700">
+                <span className="text-sm font-medium">Employment:</span>
+                <div className="flex items-center">
+                  <span className="text-sm">Count</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1 text-zinc-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+              </div>
+              
+              {/* Major Occupational Code filter */}
+              <div className="flex items-center justify-between px-3 py-2 bg-white dark:bg-zinc-800 rounded-md border border-zinc-200 dark:border-zinc-700">
+                <span className="text-sm font-medium">Major Occupational Code:</span>
+                <div className="flex items-center">
+                  <span className="text-sm">All Codes</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1 text-zinc-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+              </div>
+              
+              {/* Minor Occupational Code filter */}
+              <div className="flex items-center justify-between px-3 py-2 bg-white dark:bg-zinc-800 rounded-md border border-zinc-200 dark:border-zinc-700 opacity-70">
+                <span className="text-sm font-medium">Minor Occupational Code:</span>
+                <div className="flex items-center">
+                  <span className="text-sm text-zinc-500">Select Major Code First</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1 text-zinc-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+              </div>
+            </div>
             
             {/* Dashboard Wireframe */}
             <div>

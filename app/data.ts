@@ -69,53 +69,58 @@ export const PROJECTS: Project[] = [
 
 export const SNAPSHOT: Snapshot[] = [
   {
-    title: "Backlog | ESSENCE: Economic Strategy System for Ethical Navigation & Commercial Engagement",
-    description: "The initial <strong>Idea Concept</strong>, domain purchase, and demo to learn local environment setup, Vercel, and GitHub deployment was completed Day One. Additional technical functionality was explored for self-interest and to document learning agility.\n\nTo align more with the position's responsibilities, I will now demonstrate strategic product management capabilities.\n\nAfter the 6-day sprint is complete for the Geographic Economic Index Tool, the documentation will be left here for showcasing, but I will be moving on to an even more comprehensive (2-4 week) strategic workflow.",
+    title: "Backlog | ESSENCE:\n\nEconomic Strategy System for Ethical Navigation & Commercial Engagement",
+    description: "1.) The initial <strong>Idea Concept</strong>, domain purchase, and demo to learn local environment setup, Vercel, and GitHub deployment was completed Day One. Additional technical functionality was explored for self-interest and to document learning agility.\n\n2.) To align more with the position's responsibilities, I built out a couple examples: The first to demonstrate different methods, processes, frameworks, and systems with a scneario of when to pivot and why. The second to demonstrate a scenario of when to scale back on features even an initial prototype - and that project is left incomplete strictly for display purposes.\n\n3.) For anyone at Anthropic who may come across this, I of course still welcome an opportunity should one be available. I am not abandoning this demonstration project in as much as I will be completing more in-depth research and customer development that eiher won't require the near daily updates or to respect anonomity of the organizations I will be speaking to. (see WIP).",
+    id: "snapshot26",
+  },
+  {
+    title: "WIP Update 25: ",
+    description: "Through this demonstration project, I have identified a real-world problem with a much needed solution. I've shared the conceptual thinking via the Anthropic Economic Index Research contact form. I would be thrilled to build upon this within Anthropic. Be that as it may, because of the work I've led for the past decade, there is an urgency that is required. So, I am moving forward and will provide more periodic updates to this page rather than near daily updates.\n 📝 <a href='/anthropic-economic-data-feedback-and-interest-form-questions-and-answers.pdf' class='text-[#EBDBBC] underline transition-colors'>Click here to view the Economic Index Research questions and answers submitted</a>",
+    id: "snapshot25",
+  },
+  {
+    title: "3/28 Update 24: Geographic Economic Index Tool - Day 5",
+    description: "Update DataWrapper visualizations and add bar chart. Add explanatory elements within visualization and footnotes with source. Utilize Claude Code for 'Filter' demo functionality.\n 🛠️ <a href='/economic-index' class='text-[#61AAF2] underline transition-colors'>Click here to view the Economic Index project</a>",
     id: "snapshot24",
   },
   {
-    title: "Backlog: v0.22 Validation Framework and Final Documentation",
-    description: "After completing the working prototype phase, we will need to create validation framework and final documentation for the Geographic Economic Index Tool.",
+    title: "3/27 Update 23: Submit conceptual thinking to Anthropic Research Team",
+    description: "Anthropic released their 2nd paper on the Economic index. Provide insights from experience, highlighting opportunity for the project to create systemic change throughout all of economics. Plan to revisit this in near future to expand.\n 📝 <a href='/anthropic-economic-data-feedback-and-interest-form-questions-and-answers.pdf' class='text-[#61AAF2] underline transition-colors'>Click here to view the Economic Index Research questions and answers submitted</a>",
     id: "snapshot23",
   },
   {
-    title: "WIP Update 23: Out of Office 3/27",
-    description: "Begin wrapup of v0.22 on 3/28",
-    id: "snapshot23a",
-  },
-  {
     title: "3/26 Update 22: Geographic Economic Index Tool - Day 4",
-    description: "Move to Datawrapper for simplicity to add choropleth mapping Economic Index to occupational codes by MSA and create new Economic_MSA_Index, Economic_Occupation_Index, and log10 and z-scores for both MSA's and occupations. The rest of the data can be later utilized or shared with Anthropic. The current mock prototype has been pushed to prod.\n 🎉 <a href='/economic-index' class='text-[#61AAF2] underline transition-colors'>Click here to view the Economic Index project</a>",
+    description: "Move to Datawrapper for simplicity to add choropleth mapping Economic Index to occupational codes by MSA and create new Economic_MSA_Index, Economic_Occupation_Index, and log10 and z-scores for both MSA's and occupations. The rest of the data can be later utilized or shared with Anthropic. The current mock prototype has been pushed to prod.\n 🛠️ <a href='/economic-index' class='text-[#61AAF2] underline transition-colors'>Click here to view the Economic Index project</a>",
     id: "snapshot22",
   },
   {
     title: "3/25 Update 21: Geographic Economic Index Tool - Day 3",
-    description: "Clone Anthropic's Economic Index Python project and run locally. Input BLS occupational data and create Python script to JOIN Anthropic's percentages with BLS' MSA's",
+    description: "Clone Anthropic's Economic Index Python project and run locally. Input BLS occupational data and create Python script to JOIN Anthropic's percentages with BLS' MSA's\n 🛠️ <a href='/economic-index' class='text-[#61AAF2] underline transition-colors'>Click here to view the Economic Index project</a>",
     id: "snapshot21",
   },
   {
     title: "3/22 Update 20: Begin ideation for v0.22",
-    description: "Begin v0.22 product roadmap. Begin draft of user stories for economic developers and sales teams.",
+    description: "Begin v0.22 product roadmap. Begin draft of user stories for economic developers and sales teams.\n 🛠️ <a href='/economic-index' class='text-[#61AAF2] underline transition-colors'>Click here to view the Economic Index project</a>",
     id: "snapshot20",
   },
   {
     title: "3/22 Update 19: Add new Geographic Economic Index Tool page",
-    description: "Create multiple new components to reuse for potential future products. Add Geographic Economic Index Tool page with Product Overview, Product Concept, and Project Timeline",
+    description: "Create multiple new components to reuse for potential future products. Add Geographic Economic Index Tool page with Product Overview, Product Concept, and Project Timeline\n 🛠️ <a href='/economic-index' class='text-[#61AAF2] underline transition-colors'>Click here to view the Economic Index project</a>",
     id: "snapshot19",
   },
   {
     title: "3/22 Update 18: Strategic Pivot to GEO Economic Index Tool",
-    description: "AI Safety & Ethics research complete. Pivot after Success Bookend triggered.\n 🎉 <a href='/economic-index' class='text-[#EBDBBC] underline transition-colors'>Click here to view the Economic Index project</a>",
+    description: "AI Safety & Ethics research complete. Pivot after Success Bookend triggered.",
     id: "snapshot18",
   },
   {
     title: "3/21 Update 17: AI Safety & Ethics - Day 2",
-    description: "Complete Disovery & Research for AI Safety & Ethics",
+    description: "Complete Disovery & Research for AI Safety & Ethics\n 🛠️ <a href='/ai-safety-ethics' class='text-[#61AAF2] underline transition-colors'>Click here to view the AI Safety & Ethics page</a>",
     id: "snapshot17",
   },
   {
     title: "3/19 Update 16: AI Safety & Ethics - Day 1",
-    description: "Set up project structure for v0.21\n 🎉 <a href='/ai-safety-ethics' class='text-[#61AAF2] underline transition-colors'>Click here to view the AI Safety & Ethics page</a>",
+    description: "Set up project structure for v0.21\n 🛠️ <a href='/ai-safety-ethics' class='text-[#61AAF2] underline transition-colors'>Click here to view the AI Safety & Ethics page</a>",
     id: "snapshot16",
   },
   {
@@ -181,7 +186,7 @@ export const SNAPSHOT: Snapshot[] = [
   },
   {
     title: "3/6 Update 3: Git workflows",
-    description: "Move static site to new v1 Vercel project and create v1 branch in GitHub to keep versioning records. Keep main branch for most update-to-date project. Learn clone, add, commmit, push flow for v2 on Vercel and GitHub.\n 🎉 <a href='/' class='text-[#61AAF2] underline transition-colors'>Click here to view v0.2</a>",
+    description: "Move static site to new v1 Vercel project and create v1 branch in GitHub to keep versioning records. Keep main branch for most update-to-date project. Learn clone, add, commmit, push flow for v2 on Vercel and GitHub.\n 🛠️ <a href='/' class='text-[#61AAF2] underline transition-colors'>Click here to view v0.2</a>",
     id: "snapshot3",
   },
   {
